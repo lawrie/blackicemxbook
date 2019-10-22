@@ -9,4 +9,4 @@ By Lawrie Griffiths
 * [Programming the Built-in Hardware](/blackicemxbook/Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)
 * [Directives](/blackicemxbook/Directives/Directives.html)
 * [Memory Access](/blackicemxbook/Memory_Access/Memory_Access.html)
-* [Memory Access](/blackicemxbook/Soft_Processors/Soft_Processors.html)
+* [Soft Processors](/blackicemxbook/Soft_Processors/Soft_Processors.html)
