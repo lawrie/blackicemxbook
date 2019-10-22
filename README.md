@@ -1,15 +1,13 @@
-# Open Source FPGAs  
-Using the MyStorm BlackIce II  
+# Programming Open Source FPGAs  
+Using the MyStorm BlackIce Mx  
 By Lawrie Griffiths
-
-![MyStorm BlackIce II][1]
 
 [1]:./MyStorm_BlackIceII.jpg "MyStorm BlackIce II"
 
 * [Introduction](/opensourcefpgas/Introduction/Introduction.html)
 * [Contents](/opensourcefpgas/Summary.html)
 * [The Hardware](/opensourcefpgas/The_Hardware/The_Hardware.html)
-* [Programming the Built-in Hardware](/blackicemxbook/Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)
+* [Programming the Built-in Hardware](https://lawrie.github.io/blackicemxbook/Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)
 * [Directives](/opensourcefpgas/Directives/Directives.html)
 * [Memory Access](/opensourcefpgas/Memory_Access/Memory_Access.html)
 * [Soft Processors](/opensourcefpgas/Soft_Processors/Soft_Processors.html)
