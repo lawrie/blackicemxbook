@@ -91,7 +91,7 @@ And a Makefile:
 
 	include ../blackicemx.mk
 
-Before building this example, you can open anotherterminal and in it, do:
+Before building this example, you can open another terminal and in it, do:
 
 	stty -F /dev/ttyACM0 raw -echo
 	cat /dev/ttyACM0
@@ -102,15 +102,13 @@ To run this example, type:
 
 	make upload
 
-When configuration is successful the green (DONE) LED will be on and the red (DBG1) LED will be off.
+When configuration is successful the green STATUS (S) LED will be on and the red CDONE(D) LED will be off.
 
 Your design should then run, and the blue LED should turn on. The other LEDs should all be off.
 
-before you run “make upload”.
+If the config fails for any reason, the green STATUS (S) LED will be off and red CDONE (D) LED will be on. The red CDONE (D) LED will be on while the upload is in progress.
 
-If the config fails for any reason, the green STATUS (S) LED will be off and red CDONE (D) LED will be on.  After a successful upload the green STATUS LED will be on and the red CDONE LED will be off. The red CDONE LED will be on while the upload is in progress.
-
-Config will fail if /dev/tyyACM0 has not been set to raw, or if the bitstream (toplevel.bin) is invalid in some way. The cat command may hang if a failure occrs and you may have to unlug the Blackice Mx and plug it in again.
+The config will fail if /dev/tyyACM0 has not been set to raw, or if the bitstream (toplevel.bin) is invalid in some way. The cat command may hang if a failure occrs and you may have to unplug the Blackice Mx and plug it in again.
 
 Another problem that can occur on Linux machine is that a program called modemmanager is running and accessing /dev/ttyACM0. If modemmanager is installed on your Linux machine, you should uninstall it, disable it, or use udev rules so that it ignores /dev/ttyACM0.
 
@@ -234,27 +232,29 @@ Coping with this behaviour is known as debouncing the button.
 
 There is an [article on this][] at fpga4fun.com.
 
-To see the problem, lets implement a simple button press module and use the 4 leds as a counter:
+To see the problem, lets implement a simple button press module and use 3 leds as a counter:
 
 Make a directory called bounce and add:
 
 bounce.pcf
 
-	set_io leds[0] 71
-	set_io leds[1] 67
-	set_io leds[2] 68
-	set_io leds[3] 70
+	set_io leds[0] 52
+	set_io leds[1] 55
+	set_io leds[2] 56
 
-	set_io button 63
+	set_io -pullup yes button 63
 
 bounce.v
 
 	module bounce(
 		input button,
-		output [3:0] leds
+		output 2:0] leds
 	);
 
-		always @(negedge button) leds <= leds + 1;
+          reg [2;0] led_counter;
+	  assign leds = ~led_counter;
+	  
+	  always @(negedge button) led_counter <= led_counter + 1;
 
 	endmodule
 
@@ -262,22 +262,21 @@ We use *negedge* as the button is pulled low when pressed.
 
 Build and upload in the normal way and you should see the led counter increasing by more than one per press.
 
-To fix this, we will use the debouncer from fpgafun.com.
+To fix this, we will use the debouncer from fpga4fun.com.
 
 So, create a directory called debounce and add:
 
 debounce.pcf:
 
-	set_io clk 129
+	set_io clk 60
 
-	set_io leds[0] 71
-	set_io leds[1] 67
-	set_io leds[2] 68
-	set_io leds[3] 70
+	set_io leds[0] 52
+	set_io leds[1] 55
+	set_io leds[2] 56
 
-	set_io button 63
+	set_io -pullup yes button 49
 
-Then add the debouncer from fpgafun.com:
+Then add the debouncer from fpga4fun.com:
 
 PushButton_Debouncer.v:
 
@@ -322,7 +321,7 @@ Then, to test it add debounce.v:
 	module debounce(
 		input clk,
 		input button,
-		output [3:0] leds
+		output [2:0] leds
 	);
 
 		reg PB_state, PB_down, PB_up;
@@ -331,8 +330,11 @@ Then, to test it add debounce.v:
 			.clk(clk),.PB(button), .PB_state(PB_state),
 			.PB_down(PB_down), .PB_up(PB_up)
 		);
+		
+		reg [2:0] led_count;
+		assign leds = ~led_count;
 
-		always @(posedge clk) if (PB_down) leds <= leds + 1;
+		always @(posedge clk) if (PB_down) led_count <= led_count + 1;
 
 	endmodule
 
@@ -361,8 +363,8 @@ Make a directory called LEDglow and in it add:
 
 LEDglow.pcf
 
-	set_io LED 71
-	set_io clk 129
+	set_io LED 49
+	set_io clk 60
 
 LEDglow.v
 
@@ -377,7 +379,7 @@ LEDglow.v
 		reg [4:0] PWM;
 		always @(posedge clk) PWM <= PWM[3:0]+PWM_input;
 		
-		assign LED = PWM[4];
+		assign LED = ~PWM[4];
 	endmodule
 
 Makefile:
@@ -393,17 +395,11 @@ Then run the Makefile in the normal way. You will see the blue LED glowing.
 
 ## UART
 
-The BlackIce github sites has a set of [example programs][] including comprehensive example of use of the uart.
+The IceCoregithub sites has a set of [example programs][] including a comprehensive example ofn the use of the uart.
 
-The uart is connected to pins 85 and 88 of the Ice40 and the RTS pin can be used as a reset and is connected to pin 128 (gReset).
+The uart is connected to pins 62 (TX) and 61 (RX) of the Ice40.
 
-The [HelloWorld example][] using just the TX pin and gReset. It writes “Hello World!\n” to the uart at 115200 baud every one and a half seconds.
+The [line_echo][] example reads from the uart and echoes back what it reads at 115200 baud.
 
-The [uart_loopback][] example does both reading and writing. It reads from the uart and echoes back what it reads at 115200 baud.
-
-The uart is useful for debugging Verilog program. [Here][] is an example of using a debug module.
-
-[example programs]:			https://github.com/mystorm-org/BlackIce-II/tree/master/examples
-[HelloWorld example]:		https://github.com/mystorm-org/BlackIce-II/tree/master/examples/hello_world
-[uart_loopback]:			https://github.com/mystorm-org/BlackIce-II/tree/master/examples/uart_loopback
-[Here]:						https://github.com/lawrie/verilog_examples/tree/master/fpga/debug
+[example programs]:			https://github.com/folknology/IceCore/tree/master/Examples
+[line_echo]:			https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/Examples/line-echo
