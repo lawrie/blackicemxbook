@@ -109,4 +109,8 @@ The Rpi header allows the Ice40 and the STM32 to talk to a Raspberry Pi using a 
 
 ![Schematic][img3]
 
+|                                             |         |                                          |
+|---------------------------------------------|---------|------------------------------------------|
+|[Previous](../Introduction/Introduction.html)|[Up](..) |[Next](../Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)|
+
 [img3]:				./Schematic.jpg "Schematic"
