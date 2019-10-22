@@ -33,12 +33,12 @@ Where blackicemx.mk is:
 bin/toplevel.bin : bin/toplevel.asc
         icepack bin/toplevel.asc bin/toplevel.bin
 
-bin/toplevel.json : ${VERILOG}
+bin/toplevel.json : ${VERILOG_FILES}
         mkdir -p bin
-        yosys -q -p "synth_ice40 -json bin/toplevel.json" ${VERILOG}
+        yosys -q -p "synth_ice40 -json bin/toplevel.json" ${VERILOG_FILES}
 
-bin/toplevel.asc : ${PCF} bin/toplevel.json
-        nextpnr-ice40 --freq 64 --hx8k --package tq144:4k --json bin/toplevel.json --pcf ${PCF} --asc bin/toplevel.asc --opt-timing --placer heap
+bin/toplevel.asc : ${PCF_FILE} bin/toplevel.json
+        nextpnr-ice40 --freq 64 --hx8k --package tq144:4k --json bin/toplevel.json --pcf ${PCF_FILE} --asc bin/toplevel.asc --opt-timing --placer heap
 
 .PHONY: time
 time: bin/toplevel.bin
@@ -269,7 +269,7 @@ set_io leds[0] 52
 set_io leds[1] 55
 set_io leds[2] 56
 
-set_io -pullup yes button 63
+set_io -pullup yes button 49
 ```
 
 bounce.v
@@ -277,7 +277,7 @@ bounce.v
 ```verilog
 module bounce(
   input button,
-  output 2:0] leds
+  output [2:0] leds
 );
 
   reg [2;0] led_counter;
