@@ -429,7 +429,7 @@ Makefile:
 VERILOG_FILES = LEDglow.v 
 PCF_FILE = LEDglow.pcf
 	
-include ../blackice.mk
+include ../blackicemx.mk
 ```
 
 Then run the Makefile in the normal way. You will see the blue LED glowing.
