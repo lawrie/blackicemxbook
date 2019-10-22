@@ -20,11 +20,11 @@ This ebook gives practical examples on how to use [Lattice Ice40][] FPGAs to dri
 
 It uses the open source icestorm toolchain and assumes you are using a Linux development machine. It is fairly simple to convert the examples to use the apio tools, which can run on Microsoft Windows. The examples will work with minimal changes on MAC OSX.
 
-The examples have all been run on the myStorm BlackIce II board but will work with some modification for other Ice40 boards.
+The examples have all been run on the myStorm BlackIce Mx board but will work with some modification for other Ice40 boards.
 
 All the examples are in [Verilog][]. This book is not a tutorial on Verilog. A working knowledge of Verilog is assumed.
 The source of the examples in this book is available in a [Github repository][]. 
 
 [Lattice Ice40]:		http://www.latticesemi.com/Products/FPGAandCPLD/iCE40
 [Verilog]:				https://en.wikipedia.org/wiki/Verilog
-[Github repository]:	https://github.com/lawrie/verilog_examples/tree/master/ebook
+[Github repository]:	https://github.com/lawrie/blackicemx_examples/tree/master/ebook
