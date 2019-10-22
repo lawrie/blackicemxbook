@@ -73,18 +73,16 @@ Dual ported RAM used for video memory or other uses, can be programmed as:
 
 Sometimes the clock used for reading and writing the memory is the same and a single clock parameter can be used.
 
-## SRAM
+## SDRAM
 
-In addition to BRAM, the BlackIce II has 512kb of external static ram or SRAM. This must be accessed explicitly using a set of dedicated address, data and control pins.
+In addition to BRAM, the BlackIce Mx has 2MB of external single data rate SDRAM. This must be accessed explicitly using a set of dedicated address, data and control pins.
 
-The [BlackIce SRAM example][] shows how this is done. SRAM is not dual-ported so only one access can be made to it in any clock cycle – either read or write.
+## Flash memory
 
-SRAM is usually accessed in 16-bit words, but the pines RAM_UB or RAM_LB can be used to read or write a single byte.
-
-The maximum address for the SRAM is 256k, which requires 18 bits.
-
-[BlackIce SRAM example]:	https://github.com/mystorm-org/BlackIce-II/tree/master/examples/sram
+The Blackice Mx board also has 512KB of external flash memory. This can be used to implement read-only memory (ROM) for soft CPUs using Execute-in-plce (XIP).
 
 ## Memory mapping
 
-SoCs and soft processors typically access hardware by memory mapping. So when the soft processor issues a memory access, a Verilog module examines the address and decides whether to map it to SRAM or BRAM or to interpret it as an a read or write to other hardware. In the latter case it will usually pass the address and data (in the case of writes) to another module to access the required hardware. A flag from that module will normally indicate when the access is complete or when an asynchronous access has been started and the soft processor memory access can then complete. It may take several clock cycles.
+SoCs and soft processors typically access hardware by memory mapping. So when the soft processor issues a memory access, a Verilog module examines the address and decides whether to map it to SDRAM or BRAM or flash memory, or to interpret it as an a read or write to other hardware. In the latter case it will usually pass the address and data (in the case of writes) to another module to access the required hardware. A flag from that module will normally indicate when the access is complete or when an asynchronous access has been started and the soft processor memory access can then complete. It may take several clock cycles.
+
+A standard Bus such as a Wishbone bus, or an AXI bus, on an APB bus, or some combination of these may be used for such accesses.
