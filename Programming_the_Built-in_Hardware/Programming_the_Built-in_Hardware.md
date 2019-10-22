@@ -1,76 +1,86 @@
 # Programming the Built-in Hardware
 
-This chapter describes how to use Verilog to access the built-in hardware on the BlackIce II board.
+This chapter describes how to use Verilog to access the built-in hardware on the BlackIce Mx board.
 
 This built-in hardware covered consists of:  
-- The 4 user LEDS
+- The 4 user LEDS (two of which are shared with buttons)
 - The two user buttons
-- The 4 DIP switches
-- The UART
+- The UART to the STM32
 
-Memory access including accessing the SRAM, and access to the SD card reader is covered in later chapters.
+Memory access including accessing the SDRAM, access to fkash memory, access to the SD card reader and the DSPI connection to the STM32 is covered in later chapters.
 
 ## Development environment
 
-All the projects are built using the open source icestorm tools: yosys, arachne-pnr, and icepack, and Makefiles are used to build the bit streams to configure the Ice40 FPGA.
+All the projects are built using the open source icestorm tools: yosys, nextpnr-ice40, and icepack, and make files are used to build the bit streams to configure the Ice40 FPGA.
 
-Instructions for setting the tools up for BlackIce II are [here][].
+Instructions for setting the tools up for BlackIce Mx are [here][].
 
 
-[here]:		https://github.com/mystorm-org/BlackIce-II/wiki/Getting-Started
+[here]:		https://github.com/folknology/IceCore/wiki/IceCore-Getting-Started
 
-Each project has its own directory contains the Verilog (.v) files, a .pcf file that maps pin names onto physical pin numbers, and a Makefile of the form:
+Each project has its own directory which contains the Verilog (.v) files, a .pcf file that maps port names onto physical pin numbers, and a Makefile of the form:
 
 	VERILOG_FILES = <list of Verilog files>
 	PCF_FILE = <pcf file>
 
-	include blackice.mk
+	include ../blackicemx.mk
 
-Where blackice.mk is:
+Where blackicemx.mk is:
 
-	chip.bin: $(VERILOG_FILES) ${PCF_FILE}
-		yosys -q -p "synth_ice40 -blif chip.blif" $(VERILOG_FILES)
-		arachne-pnr -d 8k -P tq144:4k -p ${PCF_FILE} chip.blif -o chip.txt
-		icepack chip.txt chip.bin
+```
+bin/toplevel.bin : bin/toplevel.asc
+        icepack bin/toplevel.asc bin/toplevel.bin
 
-	.PHONY: upload
-	upload: chip.bin
-				stty -F /dev/ttyACM0 raw
-		cat chip.bin >/dev/ttyACM0
+bin/toplevel.json : ${VERILOG}
+        mkdir -p bin
+        yosys -q -p "synth_ice40 -json bin/toplevel.json" ${VERILOG}
 
-	.PHONY: clean
-	clean:
-		$(RM) -f chip.blif chip.txt chip.bin
+bin/toplevel.asc : ${PCF} bin/toplevel.json
+        nextpnr-ice40 --freq 64 --hx8k --package tq144:4k --json bin/toplevel.json --pcf ${PCF} --asc bin/toplevel.asc --opt-timing --placer heap
+
+.PHONY: time
+time: bin/toplevel.bin
+        icetime -tmd hx8k bin/toplevel.asc
+
+.PHONY: upload
+upload : bin/toplevel.bin
+        stty -F /dev/ttyACM0 raw
+        cat bin/toplevel.bin >/dev/ttyACM0
+
+.PHONY: clean
+clean :
+        rm -rf bin
+```
 
 ## LEDs
 
 ![LEDs][img1]
 
-The BlackIce II board has 4 built in LEDs that are available to the FPGA:
-- A blue LED, labelled LED1, with pin number 71;
-- A green LED, labelled LED2, with pin number 67;
-- An orange LED, labelled LED3, with pin number 68;
-- A red LED, labelled LED4, with pin number 70.
+The BlackIce Mx board has 4 built in LEDs that are available to the FPGA:
+- A blue LED, labelled B, with pin number 49;
+- A green LED, labelled G, with pin number 52;
+- A yellow LED, labelled Y, with pin number 55;
+- A red LED, labelled R, with pin number 56.
 
 [img1]:				./LEDs.jpg
 
 ### Turn on an LED
 
-You should create a development directory for running the examples in this book. Put the blackice.mk file given above in that directory.
+You should create a development directory for running the examples in this book. Put the blackicemx.mk file given above in that directory.
 
 Inside that development directory, make a directory called led, and in it add the following files.
 
 You need a pcf file, led.pcf, to give the pin a name:
 
-	set_io blue_led 71
+	set_io blue_led 49
 
 And a Verilog file, led.v:
 
 	module led(
-		output blue_led
+	  output blue_led
 	);
 
-		assign blue_led = 1;
+	  assign blue_led = 0;
   
 	endmodule
 	
@@ -79,32 +89,66 @@ And a Makefile:
 	VERILOG_FILES = led.v 
 	PCF_FILE = led.pcf
 
-	include ../blackice.mk
+	include ../blackicemx.mk
 
-Before building this example, you should do:
+Before building this example, you can open anotherterminal and in it, do:
 
-	stty -F /dev/ttyACM0 raw
+	stty -F /dev/ttyACM0 raw -echo
 	cat /dev/ttyACM0
 
-This lets you see messages from the iceboot software when you upload bitstreams.
+This lets you see messages from the STM32 mystorm firmware when you upload bitstreams, but it is not normally necessary unless you are getting errors uploading the bitstream.
 
 To run this example, type:
 
 	make upload
 
-You should see messages on the iceboot console including the version number of iceboot and “Config done”.  You may also see “Setup done” and “Waiting for serial”.
-
 When configuration is successful the green (DONE) LED will be on and the red (DBG1) LED will be off.
 
-Your design should then run, and the blue LED should turn on. The other LEDs may be either on or off or floating depending on their previous state. It is therefore more sensible to program all 4 LEDs as an array – see the next section.
+Your design should then run, and the blue LED should turn on. The other LEDs should all be off.
 
 before you run “make upload”.
 
-If the config fails for any reason, the green (DONE) LED will be off and red (DBG1) LED will be on.  DBG1 comes on while the config is in progess.
+If the config fails for any reason, the green STATUS (S) LED will be off and red CDONE (D) LED will be on.  After a successful upload the green STATUS LED will be on and the red CDONE LED will be off. The red CDONE LED will be on while the upload is in progress.
 
-Config will fail if /dev/tyyACM0 has not been set to raw, or if the bitstream (chip.bin) is invalid in some way. After a config failure, you will need to press the reset button before you try again. Config can also fail if you have removed the jumper from the RPi header so you are in DFU and not normal mode. If can fail if the internal mux on the board is enabled and switched to the RPi header, but that only happens if you are using non-standard firmware.
+Config will fail if /dev/tyyACM0 has not been set to raw, or if the bitstream (toplevel.bin) is invalid in some way. The cat command may hang if a failure occrs and you may have to unlug the Blackice Mx and plug it in again.
 
-Another problem that can occur on Linux machine is that a program called modemmanager is running and accessing /dev/ttyACM0. If modemmanager is installed on your Linux machine, you should uninstall it, disble it ot stop it while you are doing BlackIce development.
+Another problem that can occur on Linux machine is that a program called modemmanager is running and accessing /dev/ttyACM0. If modemmanager is installed on your Linux machine, you should uninstall it, disable it, or use udev rules so that it ignores /dev/ttyACM0.
+
+Note that in the Verilog above, the value assigned to blue_led to turn it on is 0, not 1. A value of 1 will turn it off. This is because of thec way that the user LEDs are wired on the Blackice Mx iceCore board.
+
+There are other ways in Verilog to set the LED, for example:
+
+	module led(
+	  output reg blue_led
+	);
+
+	  always @(*) blue_led = 0;
+  
+	endmodule
+
+Note that in that case, you need to declare blue_led as a reg not a wire to avoid a warning message, although this does not mean that flip-flops are used to store the value. This is just an alternative way of expressing combinatorial logic.
+
+You can also use a clock and set the led using sequential logic:
+
+	module led(
+	  input clk,
+	  output reg blue_led
+	);
+
+	  always @(posedge clk) blue_led = 0;
+  
+	endmodule
+	
+In this case the reg does store a value and is implemented using flip-flops.
+
+For this case you will need clk defined in your pcf file:
+
+	set_io blue_led 49
+	set_io clk 60
+	
+Pin 60 is the 25Mhz system clock on the Blackice Mx.
+
+If you use LEDs in your Verilog for debugging in can sometimes be easier to use combinatorial logic (the assign statement or `always @(*)` block) to set the led, but if you want to set an LED when some condition has been triggered and then keep it set, the sequential logic style will be necessary.
 
 ### An array of LEDs
 
@@ -112,18 +156,18 @@ You can address all 4 LEDs at once. Make a directory called led and in it add:
 
 leds.pcf:
 
-	set_io leds[0] 71
-	set_io leds[1] 67
-	set_io leds[2] 68
-	set_io leds[3] 70
+	set_io leds[0] 49
+	set_io leds[1] 52
+	set_io leds[2] 55
+	set_io leds[3] 56
 
 leds.v:
 
 	module leds(
-		output [3:0] leds
+	  output [3:0] leds
 	);
 
-		assign leds = 4’b1111;
+	  assign leds = 4’b0000;
   
 	endmodule
  
@@ -132,31 +176,37 @@ Makefile:
 	VERILOG_FILES = leds.v 
 	PCF_FILE = leds.pcf
 
-	include ../blackice.mk
+	include ../blackicemx.mk
 
 ## Buttons
 
-The BlackIce II board has two built-in buttons available to the FPGA.
-- Button 1, pin 63
-- Button 2, pin 64
+The BlackIce Mx board has two built-in buttons available to the FPGA.
+- Button 1, pin 49
+- Button 2, pin 52
+
+Note that button 1 is wired to the blue user led and button 2 to the green user led, so that thoses LEDs come on when you press the appropriate button.
+
+If you are using pins 49 or 52 as buttons, you should declare them as input ports in your top level Verilog module, and you cannot write to the corresponding LEDs from verilog.
 
 ### Light an LED when button pressed
 
-Make a directory called button and in it add:
+You don't need to use Verilog to set an LED when a button is pressed as the buttons are wired to the blue and green LEDS. But if you wanted to set one of the other two LEDs when the button is prsssed, this is how you do it:
+
+Make a directory called button_test and in it add:
+
 button_test.pcf:
 
-	set_io blue_led 71
-
-	set_io button1 63
+	set_io yellow_led 55
+	set_io -pullup yes button1 49
 
 button_test.v:
 
 	module button_test(
-		output blue_led,
-		input button1
+	  output yellow_led,
+	  input button1
 	);
 
-		assign blue_led = ~button1;
+	  assign yellow_led = button1;
 
 	endmodule
 
@@ -165,7 +215,12 @@ Makefile:
 	VERILOG_FILES = button_test.v
 	PCF_FILE = button_test.pcf
 
-	include ../blackice.mk
+	include ../blackicemx.mk
+	
+Note that `-pullup yes` is used in the pcf file for the button. Although the Blackice Mx has a pullup resistor on the button, because of the way the buttons are wired to the blue and green user LEDs, that resistore is not sufficient to get reliable signals from a button press, so the internal resistor needs to be enabled.
+
+Note also that the button signal will be high by default and low when the button is prsssed, and that the user leds are set on when their output signal is low, and off when it is high. So no negation is needed when setting the LED signal from the button signal.
+
 
 If you need more buttons for your project, you can buy the [Digilent Pmod BTN][], which has 4 buttons.
 
@@ -177,7 +232,7 @@ Accessing buttons as in the way given by the previous example is not recommended
 
 Coping with this behaviour is known as debouncing the button.
 
-There is an [article on this][] at fpgafun.com.
+There is an [article on this][] at fpga4fun.com.
 
 To see the problem, lets implement a simple button press module and use the 4 leds as a counter:
 
@@ -286,49 +341,11 @@ and a Makefile:
 	VERILOG_FILES = debounce.v PushButton_Debouncer.v
 	PCF_FILE = debounce.pcf
 
-	include ../blackice.mk
+	include ../blackicemx.mk
 
 When you make and run this you should see the led counter increase by 1 for each button press.
 
 [article on this]:			https://www.fpga4fun.com/Debouncer.html
-
-## Using the DIP switches
-
-The BlackIce II board has 4 built in tiny slider switches on pins 37, 38, 39 and 41.
-
-They can be used for configuration settings, but the pins are also used for some other purposes such as SD card access, so care must be taken using them.
-
-If you need more switches, you can buy the [Digilent PmodSwt][] 4 slider switch Pmod.
-
-The following example sets the LEDs according to the switch setting.
-
-Make a directory called switches and in it add:
-
-switch_test.pcf:
-
-	set_io led[0] 71
-	set_io led[1] 67
-	set_io led[2] 68
-	set_io led[3] 70
-	
-	set_io switch[0] 41
-	set_io switch[1] 39
-	set_io switch[2] 38
-	set_io switch[3] 37
-	
-	switch_test.v
-	module switch_test(
-		output [3:0] led,
-		input [3:0] switch
-	);
-
-		assign led = switch;
-  
-	endmodule
-
-And then add a Makefile and run it in the normal way.
-
-[Digilent PmodSwt]:			https://store.digilentinc.com/pmodswt-4-user-slide-switches/
 
 ## PWM
 
