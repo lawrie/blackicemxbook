@@ -29,4 +29,4 @@ The source of the examples in this book is available in a [Github repository][].
 [Verilog]:				https://en.wikipedia.org/wiki/Verilog
 [Github repository]:	https://github.com/lawrie/blackicemx_examples/tree/master/ebook
 
-[Up](../README.md) [Next](../The_Hardware/The_Hardware.md)
+[Up](..) [Next](../The_Hardware/The_Hardware.html)
