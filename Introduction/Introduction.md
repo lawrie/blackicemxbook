@@ -28,3 +28,5 @@ The source of the examples in this book is available in a [Github repository][].
 [Lattice Ice40]:		http://www.latticesemi.com/Products/FPGAandCPLD/iCE40
 [Verilog]:				https://en.wikipedia.org/wiki/Verilog
 [Github repository]:	https://github.com/lawrie/blackicemx_examples/tree/master/ebook
+
+[Next](../Hardware/Hardware.md)
