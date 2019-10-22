@@ -57,42 +57,28 @@ The first of these ways is usually done by copying and modifying the iceboot fir
 
 How to use the Arduino IDE is in the Arduino chapter of this book.
 
-##	PMODS
+##	Pins
+
 ![pinout][img2]
 
-[img1]: ./pinout.png "pinout"
-
+[img2]: ./pinout.png "pinout"
 
 ### The Clock
 
-Pin 129 is the external clock, connected to a 100 Mhz oscillator.  This clock, or clocks derived from it, is used to co-ordinate all sequential logic.
+Pin 60 is the external clock, connected to a 25 Mhz oscillator.  This clock, or clocks derived from it, are used to co-ordinate all sequential logic.
 
-Clocks of other frequencies can be derived from this clock pin by use of pre-scalers or Phase Lock Loops (PLLs). PLLS are described in the Directives chapter.
+Clocks of other frequencies can be derived from this clock pin by use of clock dividers or Phase Lock Loops (PLLs). PLLS are described in the Directives chapter.
 
-Pre-scalers are mainly use for clocks that are a factor of 100, such as 33.3Mhz, 25Mhz, or 20Mhz.
-
-### gReset pin
-
-This pin is connected to the CH340 UART device and is brought high when a connection to the USB2 UART is made. It is not associated with reset button or the Ice40 reset pin.
-
-If you need an external reset signal you should use buttons 1 or 2.
 
 ### User buttons
 
-Button1 and button2 correspond to Ice40 pins 63 and 64, They are pulled up to 3.3v by a 10k resistor, so they are pulled low when pressed.
-
-These pins are also used to access the SD card, so don’t press them when the SD card is in use.
+Button1 and button2 correspond to Ice40 pins 49 and 52, They are pulled up to 3.3v by a 10k resistor, so they are pulled low when pressed. Pin 49 is connected to the blue led and pin 52 to the green led, so those leds come on when the corresponding button is pressed. Although these pins have a pull-up resistor, the ice40 internal pull-up resistor also needs to be enabled for reliable operations of the buttons.
 
 ### LEDs
 
-The LEDS correspond to pins 71, 68, 67 and 70, which are shared with Pmod 14.
+The LEDS correspond to pins 49, 52, 55 and 56. Pins 49 and 52 are also buttons.
 
-There is a Mux which is controllable from the STM32 that switches these pins between use as SPI pins and the LEDs. SPI is used to configure the Ice40, and when that is finished, iceboot switches the Mux so the LEDs can be used. 
-
-If you are using SPI from the STM32 (e.g. in an Arduino program), or via the Rpi header from a Raspberry Pi, then the LEDs are not available and will be off.
-
-
-## USB Port (USB 1)
+## USB Port 
 
 The USB port USB1 is connected to the STM32 processor which can support full USB capability. The iceboot software uses it as a cdc-acm serial communication port that runs at full speed and is available as /dev/ttyACM0 on Linux. You do not need to set a baud rate fort this port as it runs at full speed, but you should set it to raw by “stty -F /dev/ttyACM0 raw” for the iceboot bitstream configuration to work correctly in binary (raw) mode.
 
