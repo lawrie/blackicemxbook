@@ -29,7 +29,7 @@ It is possible to write custom firmware that can provide extra functions but mus
 
 As the icestorm tools treat the HX4K device as an HX8K device, the specs of the HX8K are most relevant to BlackIceMx.
 
-[img1]:					./MyStormBlackIceII.jpg "MyStorm BlackIce II Development Board"
+[img1]:					https://cdn.tindiemedia.com/images/resize/kRnwcslzIExDv1SM6Nmc1doFpqI=/p/fit-in/774x516/filters:fill(fff)/i/7474/products/2019-07-03T14%3A53%3A37.320Z-BlackIceMx.jpg
 [myStorm BlackIce Mx]:	https://www.tindie.com/products/Folknology/blackice-mx/
 [mystorm]:				https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/firmware/myStorm
 
