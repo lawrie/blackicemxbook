@@ -177,20 +177,24 @@ set_io leds[3] 56
 
 leds.v:
 
-	module leds(
-	  output [3:0] leds
-	);
+```verilog
+module leds(
+  output [3:0] leds
+);
 
-	  assign leds = 4’b0000;
-  
-	endmodule
- 
+  assign leds = 4’b0000;
+
+endmodule
+```
+
 Makefile:
 
-	VERILOG_FILES = leds.v 
-	PCF_FILE = leds.pcf
+```make
+VERILOG_FILES = leds.v 
+PCF_FILE = leds.pcf
 
-	include ../blackicemx.mk
+include ../blackicemx.mk
+```
 
 ## Buttons
 
@@ -210,27 +214,33 @@ Make a directory called button_test and in it add:
 
 button_test.pcf:
 
-	set_io yellow_led 55
-	set_io -pullup yes button1 49
+```
+set_io yellow_led 55
+set_io -pullup yes button1 49
+```
 
 button_test.v:
 
-	module button_test(
-	  output yellow_led,
-	  input button1
-	);
+```verilog
+module button_test(
+  output yellow_led,
+  input button1
+);
 
-	  assign yellow_led = button1;
+  assign yellow_led = button1;
 
-	endmodule
+endmodule
+```
 
 Makefile:
 
-	VERILOG_FILES = button_test.v
-	PCF_FILE = button_test.pcf
+```make
+VERILOG_FILES = button_test.v
+PCF_FILE = button_test.pcf
 
-	include ../blackicemx.mk
-	
+include ../blackicemx.mk
+```
+
 Note that `-pullup yes` is used in the pcf file for the button. Although the Blackice Mx has a pullup resistor on the button, because of the way the buttons are wired to the blue and green user LEDs, that resistore is not sufficient to get reliable signals from a button press, so the internal resistor needs to be enabled.
 
 Note also that the button signal will be high by default and low when the button is prsssed, and that the user leds are set on when their output signal is low, and off when it is high. So no negation is needed when setting the LED signal from the button signal.
@@ -254,25 +264,29 @@ Make a directory called bounce and add:
 
 bounce.pcf
 
-	set_io leds[0] 52
-	set_io leds[1] 55
-	set_io leds[2] 56
+```
+set_io leds[0] 52
+set_io leds[1] 55
+set_io leds[2] 56
 
-	set_io -pullup yes button 63
+set_io -pullup yes button 63
+```
 
 bounce.v
 
-	module bounce(
-		input button,
-		output 2:0] leds
-	);
+```verilog
+module bounce(
+  input button,
+  output 2:0] leds
+);
 
-          reg [2;0] led_counter;
-	  assign leds = ~led_counter;
+  reg [2;0] led_counter;
+  assign leds = ~led_counter;
 	  
-	  always @(negedge button) led_counter <= led_counter + 1;
+  always @(negedge button) led_counter <= led_counter + 1;
 
-	endmodule
+endmodule
+```
 
 We use *negedge* as the button is pulled low when pressed.
 
@@ -284,82 +298,90 @@ So, create a directory called debounce and add:
 
 debounce.pcf:
 
-	set_io clk 60
+```
+set_io clk 60
 
-	set_io leds[0] 52
-	set_io leds[1] 55
-	set_io leds[2] 56
+set_io leds[0] 52
+set_io leds[1] 55
+set_io leds[2] 56
 
-	set_io -pullup yes button 49
+set_io -pullup yes button 49
+```
 
 Then add the debouncer from fpga4fun.com:
 
 PushButton_Debouncer.v:
 
-	module PushButton_Debouncer(
-		input clk,
-		input PB,  // "PB" is the glitchy, asynchronous to clk, active low push-button signal
+```verilog
+module PushButton_Debouncer(
+	input clk,
+	input PB,  // "PB" is the glitchy, asynchronous to clk, active low push-button signal
 
-		// from which we make three outputs, all synchronous to the clock
-		output reg PB_state,  // 1 as long as the push-button is active (down)
-		output PB_down,  // 1 for one clock cycle when the push-button goes down (i.e. just pushed)
-		output PB_up   // 1 for one clock cycle when the push-button goes up (i.e. just released)
-	);
+	// from which we make three outputs, all synchronous to the clock
+	output reg PB_state,  // 1 as long as the push-button is active (down)
+	output PB_down,  // 1 for one clock cycle when the push-button goes down (i.e. just pushed)
+	output PB_up   // 1 for one clock cycle when the push-button goes up (i.e. just released)
+);
 
-		// First use two flip-flops to synchronize the PB signal the "clk" clock domain
-		reg PB_sync_0;  always @(posedge clk) PB_sync_0 <= ~PB;  // invert PB to make PB_sync_0 active high
-		reg PB_sync_1;  always @(posedge clk) PB_sync_1 <= PB_sync_0;
+	// First use two flip-flops to synchronize the PB signal the "clk" clock domain
+	reg PB_sync_0;  always @(posedge clk) PB_sync_0 <= ~PB;  // invert PB to make PB_sync_0 active high
+	reg PB_sync_1;  always @(posedge clk) PB_sync_1 <= PB_sync_0;
 
-		// Next declare a 16-bits counter
-		reg [15:0] PB_cnt;
+	// Next declare a 16-bits counter
+	reg [15:0] PB_cnt;
 
-		// When the push-button is pushed or released, we increment the counter
-		// The counter has to be maxed out before we decide that the push-button state has changed
+	// When the push-button is pushed or released, we increment the counter
+	// The counter has to be maxed out before we decide that the push-button state has changed
 
-		wire PB_idle = (PB_state==PB_sync_1);
-		wire PB_cnt_max = &PB_cnt;	// true when all bits of PB_cnt are 1's
+	wire PB_idle = (PB_state==PB_sync_1);
+	wire PB_cnt_max = &PB_cnt;	// true when all bits of PB_cnt are 1's
 
-		always @(posedge clk)
-		if(PB_idle)
-			PB_cnt <= 0;  // nothing's going on
-		else
-		begin
-			PB_cnt <= PB_cnt + 16'd1;  // something's going on, increment the counter
-			if(PB_cnt_max) PB_state <= ~PB_state;  // if the counter is maxed out, PB changed!
-		end
+	always @(posedge clk)
+	if(PB_idle)
+		PB_cnt <= 0;  // nothing's going on
+	else
+	begin
+		PB_cnt <= PB_cnt + 16'd1;  // something's going on, increment the counter
+		if(PB_cnt_max) PB_state <= ~PB_state;  // if the counter is maxed out, PB changed!
+	end
 
-		assign PB_down = ~PB_idle & PB_cnt_max & ~PB_state;
-		assign PB_up   = ~PB_idle & PB_cnt_max &  PB_state;
-	endmodule
+	assign PB_down = ~PB_idle & PB_cnt_max & ~PB_state;
+	assign PB_up   = ~PB_idle & PB_cnt_max &  PB_state;
+endmodule
+```
 
 Then, to test it add debounce.v:
 
-	module debounce(
-		input clk,
-		input button,
-		output [2:0] leds
+```verilog
+module debounce(
+	input clk,
+	input button,
+	output [2:0] leds
+);
+
+	reg PB_state, PB_down, PB_up;
+
+	PushButton_Debouncer pdb (
+		.clk(clk),.PB(button), .PB_state(PB_state),
+		.PB_down(PB_down), .PB_up(PB_up)
 	);
-
-		reg PB_state, PB_down, PB_up;
-
-		PushButton_Debouncer pdb (
-			.clk(clk),.PB(button), .PB_state(PB_state),
-			.PB_down(PB_down), .PB_up(PB_up)
-		);
 		
-		reg [2:0] led_count;
-		assign leds = ~led_count;
+	reg [2:0] led_count;
+	assign leds = ~led_count;
 
-		always @(posedge clk) if (PB_down) led_count <= led_count + 1;
+	always @(posedge clk) if (PB_down) led_count <= led_count + 1;
 
-	endmodule
+endmodule
+```
 
 and a Makefile:
 
-	VERILOG_FILES = debounce.v PushButton_Debouncer.v
-	PCF_FILE = debounce.pcf
+```make
+VERILOG_FILES = debounce.v PushButton_Debouncer.v
+PCF_FILE = debounce.pcf
 
-	include ../blackicemx.mk
+include ../blackicemx.mk
+```
 
 When you make and run this you should see the led counter increase by 1 for each button press.
 
@@ -378,32 +400,37 @@ Here we will use it to set the brightness of a built-in LED.
 Make a directory called LEDglow and in it add:
 
 LEDglow.pcf
-
-	set_io LED 49
-	set_io clk 60
+```
+set_io LED 49
+set_io clk 60
+```
 
 LEDglow.v
 
-	module LEDglow(clk, LED);
-		input clk;
-		output LED;
+```verilog
+module LEDglow(clk, LED);
+	input clk;
+	output LED;
 		
-		reg [27:0] cnt;
-		always @(posedge clk) cnt<=cnt+1;
+	reg [27:0] cnt;
+	always @(posedge clk) cnt<=cnt+1;
 		
-		wire [3:0] PWM_input = cnt[27] ? cnt[26:23] : ~cnt[26:23];
-		reg [4:0] PWM;
-		always @(posedge clk) PWM <= PWM[3:0]+PWM_input;
+	wire [3:0] PWM_input = cnt[27] ? cnt[26:23] : ~cnt[26:23];
+	reg [4:0] PWM;
+	always @(posedge clk) PWM <= PWM[3:0]+PWM_input;
 		
-		assign LED = ~PWM[4];
-	endmodule
+	assign LED = ~PWM[4];
+endmodule
+```
 
 Makefile:
 
-	VERILOG_FILES = LEDglow.v 
-	PCF_FILE = LEDglow.pcf
+```make
+VERILOG_FILES = LEDglow.v 
+PCF_FILE = LEDglow.pcf
 	
-	include ../blackice.mk
+include ../blackice.mk
+```
 
 Then run the Makefile in the normal way. You will see the blue LED glowing.
 
