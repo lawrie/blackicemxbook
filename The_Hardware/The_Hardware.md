@@ -1,42 +1,37 @@
 # The Hardware
 
-##	The MyStorm BlackIce II Development Board
+##	The MyStorm BlackIce Mx Development Board
 
-![myStorm BlackIce II][img1]
+![myStorm BlackIce Mx][img1]
 
-The [myStorm BlackIce II][] is a development board with:
+The [myStorm BlackIce Mx][] is a development board with:
 *	a Lattice HX4K TQFP144 Ice40 FPGA with 16KB of block RAM
-*	an STM32L433 processor with 256KB of flash memory and 64KB or RAM
-*	A full capability USB port attached to the STM32
-*	A USB UART switchable between the STM32 and the FPGA
-*	6 double and 2 single Pmods
-*	512KB of external SRAM
-*	An SD card reader available to both the FPGA and STM32
-*	Arduino Uno headers (with 4 extra pins on Digital3)
-*	a short Raspberry Pi header.
-*	a reset button for the STM32
-*	two buttons available to the FPGA
-*	4 dip switches available to the FPGA
+*	an Stm32F730 processor with 256KB of flash memory and 64KB or RAM
+*	A full capability USB port attached to the STM32 used for programming and as a UART to the ice40
+* A second USB port attached to the STM32, currently unused
+*	3 Mixmods which correspond to 6 double Pmods but also have analog signalks
+* 2MB of external SDRAM
+* 512KB of flash memory 
+*	An SD card reader available to the ice40
+*	A short Raspberry Pi header.
+*	Two buttons available to the FPGA
 *	A power LED
-*	An LED that indicates when the FPGA has been configured (DONE)
-*	An LED available to the STM32 (DEBUG)
-*	4 LEDs available to the FPGA
+*	A red (D) LED that indicates when the FPGA has been configured (CDONE)
+*	A green (S) LED available to the STM32 (STATUS)
+* A yellow (M) LED that indicates the programming mode (MODE)
+*	4 LEDs (B, G, Y, R) available to the FPGA, but two shared with the buttons
 
-The design of the board is slightly unusual as flash memory is not directly available to the FPGA, so configuration of the FPGA must be done via the STM32 processor (or via the Raspberry Pi header).
+The Ice40 chip is an HX4K, which is really an HX8K whose resources have been limited by the Lattice software. As we are using the icestorm tools, we get the full resources of an HX8K.
 
-Another oddity is that although the Ice40 chip is an HX4K, it is really an HX8K whose resources have been limited by the Lattice software. As we are using the icestorm tools, we get the full resources of an HX8K.
+The standard [mystorm][] STM32 firmware supports configuring the FPGA by copying the bit stream to the cdc-acm USB port (/dev/ttyACM0 on Linux). It also supports writing bitstreams to the flash memory, which the ice40 then boots to.
 
-The standard [iceboot][] STM32 firmware supports configuring the FPGA by copying the bit stream to the cdc-acm USB port (/dev/ttyACM0 on Linux) or by copying it from a fixed address in the STM32 flash memory.
+It is possible to write custom firmware that can provide extra functions but must provide some way to configure the FPGA.
 
-However, it is possible to write custom firmware that can provide extra functions but must provide some way to configure the FPGA.
-
-The board also includes a Mux that allows some of the components to be switched. The STM32 can switch the Ice40 SPI slave used for configuration between itself and the RPi header.  When the SPI slave is switched to the RPi header the 4 LEDs are not available to the Ice40.
-
-As the icestorm tools treat the HX4K device as an HX8K device, the specs of the HX8K are most relevant to BlackIce II.
+As the icestorm tools treat the HX4K device as an HX8K device, the specs of the HX8K are most relevant to BlackIceMx.
 
 [img1]:					./MyStormBlackIceII.jpg "MyStorm BlackIce II Development Board"
-[myStorm BlackIce II]:	https://www.tindie.com/products/Folknology/blackice-ii/
-[iceboot]:				https://github.com/mystorm-org/BlackIce-II/tree/master/firmware/iceboot
+[myStorm BlackIce Mx]:	https://www.tindie.com/products/Folknology/blackice-mx/
+[mystorm]:				https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/firmware/myStorm
 
 ##	The Lattice ICE40 HX4K FPGA
 As the device is effectively an HX8K when programmed with the icestorm tools, the specs for that device are most relevant. It comes in a TQFP144 144 pin package.  There are 56 pins available via the Pmod connectors, and a total of 107 pins used (PIOs).
