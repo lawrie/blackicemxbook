@@ -1,37 +1,40 @@
-## Welcome to GitHub Pages
+# Open Source FPGAs  
+Using the MyStorm BlackIce II  
+By Lawrie Griffiths
 
-You can use the [editor on GitHub](https://github.com/lawrie/blackicemxbook/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+![MyStorm BlackIce II][1]
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+[1]:./MyStorm_BlackIceII.jpg "MyStorm BlackIce II"
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lawrie/blackicemxbook/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+* [Introduction](/opensourcefpgas/Introduction/Introduction.html)
+* [Contents](/opensourcefpgas/Summary.html)
+* [The Hardware](/opensourcefpgas/The_Hardware/The_Hardware.html)
+* [Programming the Built-in Hardware](/blackicemxbook/Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)
+* [Directives](/opensourcefpgas/Directives/Directives.html)
+* [Memory Access](/opensourcefpgas/Memory_Access/Memory_Access.html)
+* [Soft Processors](/opensourcefpgas/Soft_Processors/Soft_Processors.html)
+* [BlackSoC](/opensourcefpgas/BlackSoC/BlackSoC.html)
+* [Output Devices](/opensourcefpgas/Output_Devices/Output_Devices.html)
+* [Audio](/opensourcefpgas/Audio/Audio.html)
+* [Input Devices](/opensourcefpgas/Input_Devices/Input_Devices.html)
+* [Sensors](/opensourcefpgas/Sensors/Sensors.html)
+* [Grove Devices](/opensourcefpgas/Grove_Devices/Grove_Devices.html)
+* [LEGO Mindstorm Devices](/opensourcefpgas/Lego_Mindstorm_Devices/Lego_Mindstorm_Devices.html)
+* [Cameras](/opensourcefpgas/Cameras/Cameras.html)
+* [Analog to Digital](/opensourcefpgas/Analog2Digital/Analog2Digital.html)
+* [Storage Devices](/opensourcefpgas/StorageDevices/StorageDevices.html)
+* [Communication Devices](/opensourcefpgas/CommunicationDevices/CommunicationDevices.html)
+* [Actuators](/opensourcefpgas/Actuators/Actuators.html)
+* [STM32 Programming](/opensourcefpgas/STM32Programming/STM32Programming.html)
+* [Arduino](/opensourcefpgas/Arduino/Arduino.html)
+* [RPi Header](/opensourcefpgas/RPiHeader/RPiHeader.html)
+* [Robotics](/opensourcefpgas/Robotics/Robotics.html)
+* [Languages](/opensourcefpgas/Languages/Languages.html)
+* [Debugging](/opensourcefpgas/Debugging/Debugging.html)
+* [Simulation](/opensourcefpgas/Simulation/Simulation.html)
+* [Retro Computing](/opensourcefpgas/RetroComputing/RetroComputing.html)
+* [Direct Digital Synthesis](/opensourcefpgas/DirectDigitalSynthesis/DirectDigitalSynthesis.html)
+* [Making Pmods](/opensourcefpgas/MakingPmods/MakingPmods.html)
+* [High Level Synthesis](/opensourcefpgas/HighLevelSynthesis/HighLevelSynthesis.html)
+* [Oscilloscopes](/opensourcefpgas/Oscilloscopes/Oscilloscopes.html)
+* [Logic Analysers](/opensourcefpgas/LogicAnalysers/LogicAnalysers.html)
