@@ -20,14 +20,16 @@ Instructions for setting the tools up for BlackIce Mx are [here][].
 
 Each project has its own directory which contains the Verilog (.v) files, a .pcf file that maps port names onto physical pin numbers, and a Makefile of the form:
 
-	VERILOG_FILES = <list of Verilog files>
-	PCF_FILE = <pcf file>
+```make
+VERILOG_FILES = <list of Verilog files>
+PCF_FILE = <pcf file>
 
-	include ../blackicemx.mk
+include ../blackicemx.mk
+```
 
 Where blackicemx.mk is:
 
-```
+```make
 bin/toplevel.bin : bin/toplevel.asc
         icepack bin/toplevel.asc bin/toplevel.bin
 
@@ -76,25 +78,31 @@ You need a pcf file, led.pcf, to give the pin a name:
 
 And a Verilog file, led.v:
 
-	module led(
-	  output blue_led
-	);
+```verilog
+module led(
+  output blue_led
+);
 
-	  assign blue_led = 0;
-  
-	endmodule
-	
+  assign blue_led = 0;
+
+endmodule
+```
+
 And a Makefile:
 
-	VERILOG_FILES = led.v 
-	PCF_FILE = led.pcf
+```make
+VERILOG_FILES = led.v 
+PCF_FILE = led.pcf
 
-	include ../blackicemx.mk
+include ../blackicemx.mk
+```
 
 Before building this example, you can open another terminal and in it, do:
 
-	stty -F /dev/ttyACM0 raw -echo
-	cat /dev/ttyACM0
+```sh
+stty -F /dev/ttyACM0 raw -echo
+cat /dev/ttyACM0
+```
 
 This lets you see messages from the STM32 mystorm firmware when you upload bitstreams, but it is not normally necessary unless you are getting errors uploading the bitstream.
 
@@ -116,34 +124,40 @@ Note that in the Verilog above, the value assigned to blue_led to turn it on is 
 
 There are other ways in Verilog to set the LED, for example:
 
-	module led(
-	  output reg blue_led
-	);
+```verilog
+module led(
+  output reg blue_led
+);
 
-	  always @(*) blue_led = 0;
-  
-	endmodule
+  always @(*) blue_led = 0;
+
+endmodule
+```
 
 Note that in that case, you need to declare blue_led as a reg not a wire to avoid a warning message, although this does not mean that flip-flops are used to store the value. This is just an alternative way of expressing combinatorial logic.
 
 You can also use a clock and set the led using sequential logic:
 
-	module led(
-	  input clk,
-	  output reg blue_led
-	);
+```verilog
+module led(
+  input clk,
+  output reg blue_led
+);
 
-	  always @(posedge clk) blue_led = 0;
-  
-	endmodule
-	
+  always @(posedge clk) blue_led = 0;
+
+endmodule
+```
+
 In this case the reg does store a value and is implemented using flip-flops.
 
 For this case you will need clk defined in your pcf file:
 
-	set_io blue_led 49
-	set_io clk 60
-	
+```
+set_io blue_led 49
+set_io clk 60
+```
+
 Pin 60 is the 25Mhz system clock on the Blackice Mx.
 
 If you use LEDs in your Verilog for debugging in can sometimes be easier to use combinatorial logic (the assign statement or `always @(*)` block) to set the led, but if you want to set an LED when some condition has been triggered and then keep it set, the sequential logic style will be necessary.
@@ -154,10 +168,12 @@ You can address all 4 LEDs at once. Make a directory called led and in it add:
 
 leds.pcf:
 
-	set_io leds[0] 49
-	set_io leds[1] 52
-	set_io leds[2] 55
-	set_io leds[3] 56
+```
+set_io leds[0] 49
+set_io leds[1] 52
+set_io leds[2] 55
+set_io leds[3] 56
+```
 
 leds.v:
 
