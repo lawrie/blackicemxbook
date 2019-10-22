@@ -399,7 +399,7 @@ The IceCoregithub sites has a set of [example programs][] including a comprehens
 
 The uart is connected to pins 62 (TX) and 61 (RX) of the Ice40.
 
-The [line_echo[] example reads from the uart and echoes back what it reads at 115200 baud.
+The [line_echo][] example reads from the uart and echoes back what it reads at 115200 baud.
 
 [example programs]:			https://github.com/folknology/IceCore/tree/master/Examples
-[uart_loopback]:			https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/Examples/line-echo
+[line_echo]:			https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/Examples/line-echo
