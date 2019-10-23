@@ -1,6 +1,6 @@
 # Memory Access
 
-The internal memory in the Ice40 FPGA is known as Block RAM or BRAM. There is 16kb of it in 32 banks of 512 bytes.
+The internal memory in the Ice40 FPGA is known as Block RAM or BRAM. There is 16KB of it in 32 banks of 512 bytes.
 
 Yosys deduces when BRAM can be used. Memory blocks are typically defined like:
 
@@ -83,6 +83,6 @@ The Blackice Mx board also has 512KB of external flash memory. This can be used 
 
 ## Memory mapping
 
-SoCs and soft processors typically access hardware by memory mapping. So when the soft processor issues a memory access, a Verilog module examines the address and decides whether to map it to SDRAM or BRAM or flash memory, or to interpret it as an a read or write to other hardware. In the latter case it will usually pass the address and data (in the case of writes) to another module to access the required hardware. A flag from that module will normally indicate when the access is complete or when an asynchronous access has been started and the soft processor memory access can then complete. It may take several clock cycles.
+SoCs and soft processors typically access hardware by memory mapping. So when the soft processor issues a memory access, a Verilog module examines the address and decides whether to map it to SDRAM or BRAM or flash memory, or to interpret it as a read or write to other hardware. In the latter case it will usually pass the address and data (in the case of writes) to another module to access the required hardware. A flag from that module will normally indicate when the access is complete or when an asynchronous access has been started and the soft processor memory access can then complete. It may take several clock cycles.
 
 A standard Bus such as a Wishbone bus, or an AXI bus, on an APB bus, or some combination of these may be used for such accesses.
