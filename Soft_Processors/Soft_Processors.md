@@ -39,32 +39,29 @@ There were just 32 words of 32-but data in the first implementation of the BABy,
 
 [Small Scale Experimental Machine]:		https://web.archive.org/web/20000826224406/http://www.computer50.org:80/kgill/mark1/ssem.html
 
-Here is a [BlackIce implementation of the Baby][]:
+Here is a [BlackIce Mx implementation of the Baby][]:
 
-[BlackIce implementation of the Baby]:		https://github.com/lawrie/verilog_examples/tree/master/fpga/baby
+[BlackIce Mx implementation of the Baby]:		https://github.com/lawrie/blackice_examples/tree/master/ebook/baby
 
 ```verilog
 module baby(
-	input clk125,
+	input clk25,
 	input button,
-	output [3:0] led,
+	output [2:0] led,
 	output [7:0] led2
 );
-
 	reg [31:0] a, d;
 	reg [4:0] ci, addr;
 	reg [2:0] f;
+	
 	reg [2:0] state = WAITING;
-	wire we, re;
-
-	reg [1:0] counter;
-	always @(posedge clk25) counter <= counter + 1;
+	reg we, re;
 
 	wire clk =  clk25;
 
 	localparam WAITING = 0, SCAN1 = 1, ACTION1 = 2, 
-		SCAN2 = 3, SCAN3 = 4,  ACTION2 = 5, 
-		ACTION3 = 6, STOPPED = 7;
+		   SCAN2 = 3, SCAN3 = 4,  ACTION2 = 5, 
+		   ACTION3 = 6, STOPPED = 7;
 
 	line_ram ram (.clk(clk), .addr(addr), .din(a), 
 		.we(we), .re(re), .dout(d));
@@ -72,7 +69,7 @@ module baby(
 	always @(posedge clk)
 	  begin
 		case (state)
-			WAITING: if (~button) state = SCAN1; // Doesn't work after pressing reset
+			WAITING: if (~button) state = SCAN1; // Start when button pressed
 			SCAN1: begin re <= 1; ci <= ci + 1; addr <= ci + 1; state <= ACTION1; end
 			ACTION1: begin; re <= 0; state <= SCAN2; end // delay for BRAM
 			SCAN2:
@@ -99,7 +96,7 @@ module baby(
 	   endcase
 	  end
 
-	assign led = {3'b000, state == STOPPED}; 
+	assign led = ~{2'b00, state == STOPPED}; 
 	assign led2 = a; // Show accumular at end of program
 endmodule
 
@@ -111,7 +108,6 @@ module line_ram(
 	input we,
 	input re 
 );
-
 	reg [31:0] ram [0:31]; 
 
 	initial $readmemh("lines.hex", ram); 
@@ -121,7 +117,6 @@ module line_ram(
 		if (we) ram[addr] <= din;
 		else if (re) dout <= ram[addr]; 
 	  end 
-
 endmodule
 ```
 
