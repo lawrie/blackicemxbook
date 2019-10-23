@@ -95,7 +95,7 @@ module baby(
 					7: state <= STOPPED;			// STOP
 				endcase
 			  end
-	   endcase
+	  	endcase
 	  end
 
 	assign led = ~{2'b00, state == STOPPED}; 
