@@ -24,8 +24,10 @@ Create a directory call music, and add:
 
 music.pcf:
 
-	set_io speaker 26
-	set_io clk 60
+```
+set_io speaker 26
+set_io clk 60
+```
 
 It uses pin 26 (on Mixmod 3) to connect to a speaker directly (if impedance is high), via a resistor, or via a low pass filter. There is information on this on the fpga4fun site.
 
@@ -58,61 +60,57 @@ The fpga4fun.com site describes how to do more [interesting sounds][] like polic
 
 ## Playing tunes
 
-The fpgafun site goes on to give an [example of playing tunes][]. Here is a [BlackIce II version][] of that.
+The fpgafun site goes on to give an [example of playing tunes][]. Here is a [BlackIce Mx version][] of that.
 
 [example of playing tunes]:				https://www.fpga4fun.com/MusicBox4.html
-[BlackIce II version]:					https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music4
+[BlackIce Mx version]:					https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music4
 
 ## Audio streaming over a UART
 
-The fpgafun site has an example of audio streaming MP3 data coming from a UART connection.  The code works unchanged on Blackice II. We just need to set up a pcf file use the standard Makefile.
+The fpgafun site has an example of audio streaming MP3 data coming from a UART connection.  The code works unchanged on Blackice Mx. We just need to set up a pcf file use the standard Makefile.
 
 Create a directory called audiostream and add:
 
 stream.pcf:
 
-	set_io PWM_out 34
-	set_io RxD 88
-	set_io clk 129
+```
+set_io PWM_out 26
+set_io RxD 61
+set_io clk 60
+```
 
 PWM.v
 
-	module PWM(input clk, input RxD, output PWM_out);
-		wire RxD_data_ready;
-		wire [7:0] RxD_data;
-		async_receiver deserializer(.clk(clk), .RxD(RxD), .RxD_data_ready(RxD_data_ready), .RxD_data(RxD_data)); 
+```verilog
+module PWM(input clk, input RxD, output PWM_out);
+	wire RxD_data_ready;
+	wire [7:0] RxD_data;
+	async_receiver deserializer(.clk(clk), .RxD(RxD), .RxD_data_ready(RxD_data_ready), .RxD_data(RxD_data)); 
 
-		reg [7:0] RxD_data_reg;
-		always @(posedge clk) if(RxD_data_ready) RxD_data_reg <= RxD_data;
-		////////////////////////////////////////////////////////////////////////////
-		reg [8:0] PWM_accumulator;
-		always @(posedge clk) PWM_accumulator <= PWM_accumulator[7:0] + RxD_data_reg;
+	reg [7:0] RxD_data_reg;
+	always @(posedge clk) if(RxD_data_ready) RxD_data_reg <= RxD_data;
+	////////////////////////////////////////////////////////////////////////////
+	reg [8:0] PWM_accumulator;
+	always @(posedge clk) PWM_accumulator <= PWM_accumulator[7:0] + RxD_data_reg;
 
-		assign PWM_out = PWM_accumulator[8];
-	endmodule
-
+	assign PWM_out = PWM_accumulator[8];
+end
+module
+```
 Get the async_receiver.v and BaudTickGen.v files from fpgafun.com.
 
 Makefile:
 
-	VERILOG_FILES = PWM.v async_receiver.v BaudTickGen.v
-	PCF_FILE = stream.pcf
+```make
+VERILOG_FILES = PWM.v async_receiver.v BaudTickGen.v
+PCF_FILE = stream.pcf
 
-	include ../blackice.mk
+include ../blackice.mk
+```
 
 To stream audio over uart, you need a suitable streaming client. On Linux, you can install mpg123.
 
-	mpg123 -m -s -4 --8bit <filename>.mp3 >/dev/ttyUSB0
-
-## Audio streaming from an SD card
-
-There are several ways of playing WAV files from an SD card.
-
-One is to use the Arduino IDE to write a program that reads a WAV file from the SD card and sends it to the Ice40 using QSPI, which then uses PWM to send it to a speaker as in the examples above. This is described in the Arduino chapter below.
-
-Another way is to use BlackSoC to read the SD card and to use mod_audio to do the PWM output. The [wavplay][] BlackSoC example does that.
-
-[wavplay]:								https://github.com/lawrie/icotools/blob/master/icosoc/examples/wavplay
+`mpg123 -m -s -4 --8bit <filename>.mp3 >/dev/ttyUSB0`
 
 ## I2S
 
@@ -136,5 +134,5 @@ There is the [Digilent MIC3 MEMS Microphone Pmod][].
 Here is [an example][] of using the microphone to stream audio to the i2s Pmod. The example needs some work on it to get the timing right.
 
 [Digilent MIC3 MEMS Microphone Pmod]:	https://store.digilentinc.com/pmod-mic3-mems-microphone-with-adjustable-gain/
-[img3]:									./Microphone.jpg "Microphone Pmod"
-[an example]:							https://github.com/lawrie/verilog_examples/tree/master/fpgafun/microphone
+[img3]:					./Microphone.jpg "Microphone Pmod"
+[an example]:				https://github.com/lawrie/verilog_examples/tree/master/fpgafun/microphone
