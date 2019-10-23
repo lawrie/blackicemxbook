@@ -4,16 +4,14 @@
 
 You can play audio on any FPGA output pin by sending a pulse width modulated (PWM) signal to it. A PWM signal has a frequency and a duty cycle.
 
-There is a general purpose PWM generator in BlackSoC called mod_pwm. This lets you set any frequency and duty cycle on any pin.
-
-There are also PWM implementations in [Simon Monk’s Programming FPGAs][] book and on the [fpgafun site][].
+There are also PWM implementations in [Simon Monk’s Programming FPGAs][] book and on the [fpga4fun site][].
 
 The PWM signal can be sent to one channel of a speaker just by connecting the pin to an audio jack through a resistor or a low-pass filter. The low pass filter smooths the PWM signal, but that is optional for high impedance speakers.
 
 ![PWM Audio][img1]
 
 [Simon Monk’s Programming FPGAs]:		https://github.com/lawrie/prog_fpgas/tree/master/blackice/ch07_pwm/src
-[fpgafun site]:							https://www.fpga4fun.com/PWM_DAC.html
+[fpga4fun site]:							https://www.fpga4fun.com/PWM_DAC.html
 [img1]:									./PWMAudio.jpg "PWM Audio"
 
 ## Tone generation
@@ -26,36 +24,37 @@ Create a directory call music, and add:
 
 music.pcf:
 
-	set_io speaker 34
-	set_io clk 129
+	set_io speaker 26
+	set_io clk 60
 
-It uses pin 1 on Pmod 12 top connect to a speaker directly (if impedance is high), via a resistor, or via a low pass filter. There is information on this on the fpgafun site.
+It uses pin 26 (on Mixmod 3) to connect to a speaker directly (if impedance is high), via a resistor, or via a low pass filter. There is information on this on the fpga4fun site.
 
-This is the Verilog code for middle C using the BlackIce II 100Mhz clock:
+This is the Verilog code for middle C using the BlackIce II 25hz clock:
 
 music.v:
 
-	module music(clk, speaker);
-		input clk;
-		output speaker;
-		parameter clkdivider = 100000000/440/2;
+```verilog
+module music(clk, speaker);
+	input clk;
+	output speaker;
+	parameter clkdivider = 25000000/440/2;
 
-		reg [16:0] counter;
-		always @(posedge clk) if(counter==0) counter <= clkdivider-1; else counter <= counter-1;
+	reg [16:0] counter;
+	always @(posedge clk) if(counter==0) counter <= clkdivider-1; else counter <= counter-1;
 
-		reg speaker;
-		always @(posedge clk) if(counter==0) speaker <= ~speaker;
+	reg speaker;
+	always @(posedge clk) if(counter==0) speaker <= ~speaker;
 
-	endmodule
-
+endmodule
+```
 
 Run that in the normal way and you should here middle C.
 
-The fpgafun.com site describes how to do more [interesting sounds][] like police sirens. [Here][here1] are [here][here2] are the BlackIce II version of those sound generators.
+The fpga4fun.com site describes how to do more [interesting sounds][] like police sirens. [Here][here1] are [here][here2] are the BlackIce Mx version of those sound generators.
 
 [interesting sounds]:					https://www.fpga4fun.com/MusicBox2.html
-[here1]:								https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music2
-[here2]:								https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music2a
+[here1]:						https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music2
+[here2]:						https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music2a
 
 ## Playing tunes
 
