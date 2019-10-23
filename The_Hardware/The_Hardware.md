@@ -5,57 +5,48 @@
 ![myStorm BlackIce Mx][img1]
 
 The [myStorm BlackIce Mx][] is a development board with:
-*	a Lattice HX4K TQFP144 Ice40 FPGA with 16KB of block RAM
-*	an Stm32F730 processor with 256KB of flash memory and 64KB or RAM
-*	A full capability USB port attached to the STM32 used for programming and as a UART to the ice40
+*	A Lattice HX4K TQFP144 Ice40 FPGA with 16KB of block RAM, running at 216MHz
+*	An STM32F730 processor with 256KB of flash memory and 64KB or RAM
+*	A  USB 2.0 full-speed port attached to the STM32 used for programming and as a UART to the ice40
 * A second USB port attached to the STM32, currently unused
 *	3 Mixmods which correspond to 6 double Pmods but also have analog signalks
-* 2MB of external SDRAM
-* 512KB of flash memory 
+* 2MB (!6 MBbit) of external SDRAM
+* 512KB (4 Mbit) of external flash memory 
 *	An SD card reader available to the ice40
-*	A short Raspberry Pi header.
+*	A short Raspberry Pi header
 *	Two buttons available to the FPGA
 *	A power LED
 *	A red (D) LED that indicates when the FPGA has been configured (CDONE)
 *	A green (S) LED available to the STM32 (STATUS)
 * A yellow (M) LED that indicates the programming mode (MODE)
-*	4 LEDs (B, G, Y, R) available to the FPGA, but two shared with the buttons
+*	4 user LEDs (B, G, Y, R) available to the FPGA, but two shared with the buttons
 
-The Ice40 chip is an HX4K, which is really an HX8K whose resources have been limited by the Lattice software. As we are using the icestorm tools, we get the full resources of an HX8K.
-
-The standard [mystorm][] STM32 firmware supports configuring the FPGA by copying the bit stream to the cdc-acm USB port (/dev/ttyACM0 on Linux). It also supports writing bitstreams to the flash memory, which the ice40 then boots to.
+The standard [mystorm][] STM32 firmware supports configuring the FPGA by copying the bit stream to the CDC-ACM USB port (/dev/ttyACM0 on Linux). It also supports writing bitstreams to the flash memory, which the ice40 then boots to.
 
 It is possible to write custom firmware that can provide extra functions but must provide some way to configure the FPGA.
 
-As the icestorm tools treat the HX4K device as an HX8K device, the specs of the HX8K are most relevant to BlackIceMx.
+As the icestorm tools treat the HX4K device as an HX8K device, the specs of the HX8K are most relevant to BlackIce Mx.
 
 [img1]:					https://cdn.tindiemedia.com/images/resize/kRnwcslzIExDv1SM6Nmc1doFpqI=/p/fit-in/774x516/filters:fill(fff)/i/7474/products/2019-07-03T14%3A53%3A37.320Z-BlackIceMx.jpg
 [myStorm BlackIce Mx]:	https://www.tindie.com/products/Folknology/blackice-mx/
 [mystorm]:				https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/firmware/myStorm
 
 ##	The Lattice ICE40 HX4K FPGA
-As the device is effectively an HX8K when programmed with the icestorm tools, the specs for that device are most relevant. It comes in a TQFP144 144 pin package.  There are 56 pins available via the Pmod connectors, and a total of 107 pins used (PIOs).
+As the device is effectively an HX8K when programmed with the icestorm tools, the specs for that device are most relevant. It comes in a TQFP144 144 pin package.  There are 48 pins available via the Pmod connectors.
 
-There are two PLL (but the 2nd one may not work) and 960 Programmable Logic Blocks (PLLs) which each consist of a 4 input look-up table (4-LUT) and a 1-bit D flip-flop. There are 32 blocks, each of 512 bytes, giving a total of 16kb of BRAM.
+There are two PLLs and 960 Programmable Logic Blocks (PLLs) which each consist of a 4 input look-up table (4-LUT) and a 1-bit D flip-flop. There are 32 blocks, each of 512 bytes, giving a total of 16kb of BRAM.
 
 Verilog written for other devices, provided it does not use directives specific to Xilinx or Altera or other manufacturers, will normally work on the Ice40, as long as it does not use too many resources. The icestorm tools report on all resources used.
 
 There are some differences due to use of the icestorm tools. It is not usually possible to deduce the usage of pins marked as inout in module interfaces, and there is limited support for tri-state logic. For this reason, the SB_IO directive (see the Directives chapter below) needs to be used for inout pins and the should be tri-stated by setting the direction to input.
 
-Although all the examples in this book are in Verilog, it is possible to program the device using the icestorm tools, in VHDL. See the Languages chapter below.
+Although all the examples in this book are in Verilog, it is possible to program the device using higher-level hardware description languages (HDLs). See the Languages chapter.
 
 ##	STM32 Processor
-The STM32L433 is a 32-bit ARM device that is connected to the Arduino headers and shares some pins with the Ice40 and with the Rpi header.
+The STM32F7303 is a 32-bit ARM device that shares some pins with the Ice40 and with the Rpi header.
 
-The STM32L433 uses a 12Mhz crystal, but a PLL multiplies this by 9, so the clock speed is 108Mhz.
+The main ways of programming the STM32 processor is to use the arm-none-eabi gnu toolchain with STM HAL libraries. This is usually done by copying and modifying the myStorm firmware.  This is described in the STM32 Programming chapter below.
 
-The main ways of programming the STM32 processor are:
--	The arm-none-eabi gnu toolchain with STM drivers and libraries
--	The Arduino IDE
-
-The first of these ways is usually done by copying and modifying the iceboot firmware.  This is described in the STM32 Programming chapter below.
-
-How to use the Arduino IDE is in the Arduino chapter of this book.
 
 ##	Pins
 
@@ -80,9 +71,9 @@ The LEDS correspond to pins 49, 52, 55 and 56. Pins 49 and 52 are also buttons.
 
 ## USB Port 
 
-The USB port USB1 is connected to the STM32 processor which can support full USB capability. The iceboot software uses it as a cdc-acm serial communication port that runs at full speed and is available as /dev/ttyACM0 on Linux. You do not need to set a baud rate fort this port as it runs at full speed, but you should set it to raw by “stty -F /dev/ttyACM0 raw” for the iceboot bitstream configuration to work correctly in binary (raw) mode.
+The USB port, USB PRG, is connected to the STM32 processor which can support full USB capability. The iceboot software uses it as a CDC-ACM serial communication port that runs at full speed and is available as /dev/ttyACM0 on Linux. You do not need to set a baud rate for this port as it runs at full speed, but you should set it to raw and no echo by `stty -F /dev/ttyACM0 raw -echo` for the ice40 bitstream configuration to work correctly in binary (raw) mode.
 
-Custom firmware on the STM32 can use this port in any way that it wants.
+Custom firmware on the STM32 can use both USB ports in any way that it wants.
 
 ## RPi header
 
