@@ -14,3 +14,4 @@ By Lawrie Griffiths
 * [Output Devices](./Output_Devices/Output_Devices.html)
 * [Input Devices](./Input_Devices/Input_Devices.html)
 * [Retro Computing](./RetroComputing/RetroComputing.html)
+* [Sensors](./Sensors/Sensors.html)
