@@ -288,6 +288,15 @@ module bounce(
 endmodule
 ```
 
+Makefile:
+
+```make
+VERILOG_FILES = bounce.v
+PCF_FILE = bounce.pcf
+
+include ../blackicemx.mk
+```
+
 We use *negedge* as the button is pulled low when pressed.
 
 Build and upload in the normal way and you should see the led counter increasing by more than one per press.
