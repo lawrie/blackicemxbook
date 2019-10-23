@@ -178,11 +178,16 @@ Here is a [video][] of the [led panel version][] of this program:
 
 A SoC is a soft processor, plus implementation of associated hardware, to produce a complete system on a chip or in our case on an FPGA chip.  The hardware that is implemented as part of a SoC typically includes SPI and I2C implementations, GPIO access including LEDs, buttons, switches etc., a UART, PWM or I2S for audio output, and typically other input and output devices such as VGA monitors, LED panels, 7-segment displays, and PS/2 keyboards or mice. Access to such hardware modules is usually via a memory-mapped API.
 
-A GNU (or other) toolchain is used to build an image file for the CPU to execute, and there needs to be some way that this can be loaded. It may be by UART, by reading from the SD card, via SPI from the STM32, or over the RPi header.
+A GNU (or other) toolchain is used to build an image file for the CPU to execute, and there needs to be some way that this can be loaded into memory. It can be copied into flash memory by the STM32 co-processor and then wither copied into RAM or executed in-place from the flash memory. Alternatively, it can be read from the UART, or from the SD card, or sent by via DSPI from the STM32.
 
 Typically, some form of configuration is required to say which hardware modules a particular instance of the SoC requires and which pins they are connected to.
 
-Clifford Wolf produced a SoC, or more accurately, a SoC genedrator, for the icoBoard, called [icoSoC][]. This has been modified and renamed [BlackSoC][] to run on the BlackIce II. The next chapter describes BlackSoC.
+Clifford Wolf produced a SoC, or more accurately, a SoC genedrator, for the icoBoard, called [icoSoC][]. This has been modified and renamed [BlackSoC][] to run on the BlackIce II, but has not yet been ported to the BlackIce Mx.  There is also a simpler picorv32 based SoC, written by Clifford Wolf, called [picoSoC][], which has a limited set of peripherals, but which can be extended.
+
+In addition there is a Risc-V SoC called [SaxonSoc][], which uses the VexRiscv Risc-V implementation, and has been ported to Blackice Mx. Both VexRiscv and SaxonSoc are written in SpinalHDL and Charles Papon is the author of all three of these.
 
 [icoSoC]:					https://github.com/cliffordwolf/icotools/tree/master/icosoc
 [BlackSoC]:					https://github.com/lawrie/icotools/tree/master/icosoc
+[picSoC]:					https://github.com/cliffordwolf/picorv32/tree/master/picosoc
+[SaxonSoc]:					https://github.com/SpinalHDL/SaxonSoc/tree/dev
+
