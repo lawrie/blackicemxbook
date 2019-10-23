@@ -158,7 +158,7 @@ set_io blue_led 49
 set_io clk 60
 ```
 
-Pin 60 is the 25Mhz system clock on the Blackice Mx.
+Pin 60 is the 25MHz system clock on the Blackice Mx.
 
 If you use LEDs in your Verilog for debugging in can sometimes be easier to use combinatorial logic (the assign statement or `always @(*)` block) to set the led, but if you want to set an LED when some condition has been triggered and then keep it set, the sequential logic style will be necessary.
 
