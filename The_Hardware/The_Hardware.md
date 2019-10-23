@@ -35,7 +35,7 @@ As the icestorm tools treat the HX4K device as an HX8K device, the specs of the 
 ##	The Lattice ICE40 HX4K FPGA
 As the device is effectively an HX8K when programmed with the icestorm tools, the specs for that device are most relevant. It comes in a TQFP144 144 pin package.  There are 48 pins available via the Pmod connectors.
 
-There are two PLLs and 960 Programmable Logic Blocks (PLLs) which each consist of a 4 input look-up table (4-LUT) and a 1-bit D flip-flop. There are 32 blocks, each of 512 bytes, giving a total of 16kb of BRAM.
+There are two PLLs and 960 Programmable Logic Blocks (PLBs) which are each a block of 16 logic cells (LCs), giving a total of 7680 LCs. Each logic cell consists of a 4 input look-up table (4-LUT) and a 1-bit D flip-flop. There are 32 BRAM blocks, each of 512 bytes, giving a total of 16KB of BRAM.
 
 Verilog written for other devices, provided it does not use directives specific to Xilinx or Altera or other manufacturers, will normally work on the Ice40, as long as it does not use too many resources. The icestorm tools report on all resources used.
 
@@ -47,7 +47,6 @@ Although all the examples in this book are in Verilog, it is possible to program
 The STM32F7303 is a 32-bit ARM device that shares some pins with the Ice40 and with the Rpi header.
 
 The main ways of programming the STM32 processor is to use the arm-none-eabi gnu toolchain with STM HAL libraries. This is usually done by copying and modifying the myStorm firmware.  This is described in the STM32 Programming chapter below.
-
 
 ##	Pins
 
@@ -64,7 +63,7 @@ Clocks of other frequencies can be derived from this clock pin by use of clock d
 
 ### User buttons
 
-Button1 and button2 correspond to Ice40 pins 49 and 52, They are pulled up to 3.3v by a 10k resistor, so they are pulled low when pressed. Pin 49 is connected to the blue led and pin 52 to the green led, so those leds come on when the corresponding button is pressed. Although these pins have a pull-up resistor, the ice40 internal pull-up resistor also needs to be enabled for reliable operations of the buttons.
+Button1 and button2 correspond to Ice40 pins 49 and 52, They are pulled up to 3.3v by a 10k resistor, so they are pulled low when pressed. Pin 49 is connected to the blue LED and pin 52 to the green LED, so those LEDs come on when the corresponding button is pressed. Although these pins have a pull-up resistor, the ice40 internal pull-up resistor also needs to be enabled for reliable operations of the buttons.
 
 ### LEDs
 
