@@ -8,7 +8,7 @@ The Z80 and 6502 implementations are described in the Retro Computing chapter be
 
 There is a family of soft processors known as Open Page Code (OPC). They implement a family of simple ISAs that can be implemented on one page of computer printout paper. The [OPC6 variant is available on BlackIce][] but has not yet been ported to BlackIce Mx.
 
-There is a professional open source ISA called Risc-V. It is well supported by gnu tool chains and can be considered as an open source alternative to the ARM family of ISAs.
+There is a professional open source ISA called Risc-V. It is well supported by the GNU tool chain and can be considered as an open source alternative to the ARM family of ISAs.
 
 This book will concentrate on the picorv32 implementation of Risc-V, written by Clifford Wolf and VexRiscv, written by Charles Papon.
 
@@ -35,7 +35,7 @@ One of the simplest instructions set ever used for a computer, was the instructi
 | 006     |   CMP    | Compare – skip instruction if accumulator is negative |
 | 007     |   STP    | Halts execution                                       |
 
-There were just 32 words of 32-but data in the first implementation of the BABy, otherwise known as the [Small Scale Experimental Machine][].
+There were just 32 words of 32-bit data in the first implementation of the BABy, otherwise known as the [Small Scale Experimental Machine][].
 
 [Small Scale Experimental Machine]:		https://web.archive.org/web/20000826224406/http://www.computer50.org:80/kgill/mark1/ssem.html
 
