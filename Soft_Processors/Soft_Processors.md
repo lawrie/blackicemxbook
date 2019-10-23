@@ -124,7 +124,8 @@ endmodule
 
 baby.pcf:
 
-```set_io clk25 60
+```
+set_io clk25 60
 set_io -pullup yes button 49
 
 set_io led[0] 52
