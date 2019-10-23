@@ -120,7 +120,7 @@ The config will fail if /dev/tyyACM0 has not been set to raw, or if the bitstrea
 
 Another problem that can occur on Linux machine is that a program called modemmanager is running and accessing /dev/ttyACM0. If modemmanager is installed on your Linux machine, you should uninstall it, disable it, or use udev rules so that it ignores /dev/ttyACM0.
 
-Note that in the Verilog above, the value assigned to blue_led to turn it on is 0, not 1. A value of 1 will turn it off. This is because of thec way that the user LEDs are wired on the Blackice Mx iceCore board.
+Note that in the Verilog above, the value assigned to blue_led to turn it on is 0, not 1. A value of 1 will turn it off. This is because of the way that the user LEDs are wired on the Blackice Mx iceCore board.
 
 There are other ways in Verilog to set the LED, for example:
 
@@ -136,7 +136,7 @@ endmodule
 
 Note that in that case, you need to declare blue_led as a reg not a wire to avoid a warning message, although this does not mean that flip-flops are used to store the value. This is just an alternative way of expressing combinatorial logic.
 
-You can also use a clock and set the led using sequential logic:
+You can also use a clock and set the LED using sequential logic:
 
 ```verilog
 module led(
@@ -160,7 +160,7 @@ set_io clk 60
 
 Pin 60 is the 25MHz system clock on the Blackice Mx.
 
-If you use LEDs in your Verilog for debugging in can sometimes be easier to use combinatorial logic (the assign statement or `always @(*)` block) to set the led, but if you want to set an LED when some condition has been triggered and then keep it set, the sequential logic style will be necessary.
+If you use LEDs in your Verilog for debugging in can sometimes be easier to use combinatorial logic (the assign statement or `always @(*)` block) to set the LED, but if you want to set an LED when some condition has been triggered and then keep it set, the sequential logic style will be necessary.
 
 ### An array of LEDs
 
@@ -202,13 +202,13 @@ The BlackIce Mx board has two built-in buttons available to the FPGA.
 - Button 1, pin 49
 - Button 2, pin 52
 
-Note that button 1 is wired to the blue user led and button 2 to the green user led, so that thoses LEDs come on when you press the appropriate button.
+Note that button 1 is wired to the blue user LED and button 2 to the green user LED, so that those LEDs come on when you press the appropriate button.
 
 If you are using pins 49 or 52 as buttons, you should declare them as input ports in your top level Verilog module, and you cannot write to the corresponding LEDs from verilog.
 
 ### Light an LED when button pressed
 
-You don't need to use Verilog to set an LED when a button is pressed as the buttons are wired to the blue and green LEDS. But if you wanted to set one of the other two LEDs when the button is prsssed, this is how you do it:
+You don't need to use Verilog to set an LED when a button is pressed as the buttons are wired to the blue and green LEDS. But if you wanted to set one of the other two LEDs when the button is pressed, this is how you do it:
 
 Make a directory called button_test and in it add:
 
@@ -241,9 +241,9 @@ PCF_FILE = button_test.pcf
 include ../blackicemx.mk
 ```
 
-Note that `-pullup yes` is used in the pcf file for the button. Although the Blackice Mx has a pullup resistor on the button, because of the way the buttons are wired to the blue and green user LEDs, that resistore is not sufficient to get reliable signals from a button press, so the internal resistor needs to be enabled.
+Note that `-pullup yes` is used in the pcf file for the button. Although the Blackice Mx has a pullup resistor on the button, because of the way the buttons are wired to the blue and green user LEDs, that resistor is not sufficient to get reliable signals from a button press, so the internal resistor needs to be enabled.
 
-Note also that the button signal will be high by default and low when the button is prsssed, and that the user leds are set on when their output signal is low, and off when it is high. So no negation is needed when setting the LED signal from the button signal.
+Note also that the button signal will be high by default and low when the button is pressed, and that the user LEDs are set on when their output signal is low, and off when it is high. So no negation is needed when setting the LED signal from the button signal.
 
 
 If you need more buttons for your project, you can buy the [Digilent Pmod BTN][], which has 4 buttons.
@@ -258,7 +258,7 @@ Coping with this behaviour is known as debouncing the button.
 
 There is an [article on this][] at fpga4fun.com.
 
-To see the problem, lets implement a simple button press module and use 3 leds as a counter:
+To see the problem, lets implement a simple button press module and use 3 LEDs as a counter:
 
 Make a directory called bounce and add:
 
@@ -299,7 +299,7 @@ include ../blackicemx.mk
 
 We use *negedge* as the button is pulled low when pressed.
 
-Build and upload in the normal way and you should see the led counter increasing by more than one per press.
+Build and upload in the normal way and you should see the LED counter increasing by more than one per press.
 
 To fix this, we will use the debouncer from fpga4fun.com.
 
@@ -392,7 +392,7 @@ PCF_FILE = debounce.pcf
 include ../blackicemx.mk
 ```
 
-When you make and run this you should see the led counter increase by 1 for each button press.
+When you make and run this you should see the LED counter increase by 1 for each button press.
 
 [article on this]:			https://www.fpga4fun.com/Debouncer.html
 
