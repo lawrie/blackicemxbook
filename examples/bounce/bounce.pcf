@@ -1,0 +1,6 @@
+set_io leds[0] 52
+set_io leds[1] 55
+set_io leds[2] 56
+
+set_io -pullup yes button 49
+

@@ -1,0 +1,5 @@
+set_io leds[0] 49
+set_io leds[1] 52
+set_io leds[2] 55
+set_io leds[3] 56
+

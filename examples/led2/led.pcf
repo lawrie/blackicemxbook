@@ -1,0 +1,4 @@
+set_io blue_led 49
+set_io clk 60
+
+

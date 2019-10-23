@@ -1,0 +1,4 @@
+set_io PWM_out 34
+set_io RxD 88
+set_io clk 129
+

@@ -1,0 +1,17 @@
+set_io clk25 60
+set_io -pullup yes button 49
+
+set_io led[0] 52
+set_io led[1] 55
+set_io led[2] 56
+
+set_io led2[0] 34
+set_io led2[1] 33
+set_io led2[2] 29
+set_io led2[3] 28
+set_io led2[4] 38
+set_io led2[5] 37
+set_io led2[6] 32
+set_io led2[7] 31
+
+

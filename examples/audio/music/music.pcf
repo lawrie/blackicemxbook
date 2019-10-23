@@ -1,0 +1,4 @@
+set_io speaker 26
+
+set_io clk 60
+
