@@ -447,7 +447,7 @@ Then run the Makefile in the normal way. You will see the blue LED glowing.
 
 ## UART
 
-The IceCoregithub sites has a set of [example programs][] including a comprehensive example ofn the use of the uart.
+The IceCore github site has a set of [example programs][] including a comprehensive example on the use of the uart.
 
 The uart is connected to pins 62 (TX) and 61 (RX) of the Ice40.
 
