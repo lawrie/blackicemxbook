@@ -188,6 +188,6 @@ In addition there is a Risc-V SoC called [SaxonSoc][], which uses the VexRiscv R
 
 [icoSoC]:					https://github.com/cliffordwolf/icotools/tree/master/icosoc
 [BlackSoC]:					https://github.com/lawrie/icotools/tree/master/icosoc
-[picSoC]:					https://github.com/cliffordwolf/picorv32/tree/master/picosoc
+[picoSoC]:					https://github.com/cliffordwolf/picorv32/tree/master/picosoc
 [SaxonSoc]:					https://github.com/SpinalHDL/SaxonSoc/tree/dev
 
