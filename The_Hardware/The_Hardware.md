@@ -20,6 +20,7 @@ The [myStorm BlackIce Mx][] is a development board with:
 *	A green (S) LED available to the STM32 (STATUS)
 * A yellow (M) LED that indicates the programming mode (MODE)
 *	4 user LEDs (B, G, Y, R) available to the FPGA, but two shared with the buttons
+* A mini HDMI connector (not currently working)
 
 The standard [mystorm][] STM32 firmware supports configuring the FPGA by copying the bit stream to the CDC-ACM USB port (/dev/ttyACM0 on Linux). It also supports writing bitstreams to the flash memory, which the ice40 then boots to.
 
@@ -86,10 +87,10 @@ The Rpi header allows the Ice40 and the STM32 to talk to a Raspberry Pi using a 
 |    9     | GPIO3  |  SCL   |  5   |  6   |  GND  |        |          |
 |    7     | GPIO4  | SWCLK  |  7   |  8   |  RX   | GPIO14 |    15    |
 |          |        |  GND   |  9   |  10  |  TX   | GPIO15 |    16    |
-|    0     | GPIO17 | SWDIO  |  11  |  12  |   S   | GPIO18 |    1     |
-|    2     | GPIO27 | nRESET |  13  |  14  |  GND  |        |          |
-|    3     | GPIO22 |   OE   |  15  |  16  | BOOT  | GPIO23 |    4     |
-|          |        |   NC   |  17  |  18  | RESET | GPIO24 |    5     |
+|    0     | GPIO17 | SWDIO  |  11  |  12  |  TCK  | GPIO18 |    1     |
+|    2     | GPIO27 | RESET  |  13  |  14  |  GND  |        |          |
+|    3     | GPIO22 |  TMS   |  15  |  16  |  TDI  | GPIO23 |    4     |
+|          |        |   NC   |  17  |  18  |  TDO  | GPIO24 |    5     |
 |    12    | GPIO10 |  EMOSI |  19  |  20  |  GND  |        |          |
 |    13    | GPIO9  |  EMISO |  21  |  22  | DONE  | GPIO25 |    6     |
 |    14    | GPIO11 |  ESCK  |  23  |  24  |  ESS  | GPIO8  |    10    |
