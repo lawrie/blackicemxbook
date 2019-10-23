@@ -17,6 +17,12 @@ Some of them require an SD card created for them to stores games and other progr
 
 The NES implementation is based on the up5k-demos version by David Shah, which is based on the Mist version, which was based on the original fpganes version by Ludwig Strigeus.
 
+See https://github.com/lawrie/up5k-demos/tree/master/nesmx
+
+![Mario](https://forum.mystorm.uk/uploads/default/optimized/1X/970a9bb39cb8261948b0c90bf9450ca2200412df_1_690x408.jpg)
+
+![NES](https://forum.mystorm.uk/uploads/default/original/1X/b359124c09434f0abbc4e0a9a41a39cbdcd551ef.jpg)
+
 ## Acorn Atom
 
 ![Acorn Atom](./AcornAtom.jpg "Acorn Atom")
@@ -33,6 +39,8 @@ where sdxxx is SD card drive.
 
 
 ## Jupiter ACE
+
+![Jupiter Ace](https://forum.mystorm.uk/uploads/default/optimized/1X/e07f9482fefe563c5dfb304d3df3cc85cd0683d5_1_690x454.jpg)
 
 Another David Banks port.
 
