@@ -43,6 +43,8 @@ Here is a [BlackIce Mx implementation of the Baby][]:
 
 [BlackIce Mx implementation of the Baby]:		https://github.com/lawrie/blackice_examples/tree/master/ebook/baby
 
+baby.v:
+
 ```verilog
 module baby(
 	input clk25,
@@ -120,11 +122,76 @@ module line_ram(
 endmodule
 ```
 
+baby.pcf:
+
+```set_io clk25 60
+set_io -pullup yes button 49
+
+set_io led[0] 52
+set_io led[1] 55
+set_io led[2] 56
+
+set_io led2[0] 34
+set_io led2[1] 33
+set_io led2[2] 29
+set_io led2[3] 28
+set_io led2[4] 38
+set_io led2[5] 37
+set_io led2[6] 32
+set_io led2[7] 31
+```
+
+Makefile:
+
+```
+VERILOG_FILES = baby.v
+PCF_FILE = baby.pcf
+
+include ../blackicemx.mk
+```
+
 The 32x32bit RAM is implemented using a BRAM memory module. More information on this is in the Memory chapter.
 
 The Baby ordered bits from least significant first. This implementation does not stick to that convention, but is otherwise a fairly accurate emulation of the Baby.
 
-This is a disassembly of an example program. The program is loaded from the hex file lines.hex.
+Here is an example program in the file, lines.hex :
+
+```
+00000000
+e8020000
+c8030000
+c8020000
+d0030000
+d0020000
+00060000
+d8000000
+f8020000
+f0040000
+c8030000
+c8020000
+f8030000
+d0020000
+e0040000
+c8030000
+c8020000
+d0030000
+c0000000
+f8020000
+c8030000
+c8020000
+00070000
+00000000
+00000004
+00000000
+00000000
+00000012
+ffffffff
+00000005
+00000032
+00000000
+```
+
+And here is the  disassembly of the example program. 
 
 	 0   JMP   0
 	 1   LDN   29
