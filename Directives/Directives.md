@@ -26,9 +26,9 @@ When one of the IO pins is required to be used as input, the corresponding entry
 
 ## PLL
 
-When slower clock speeds than the 25Mhz of the built in clock on pin 60 are needed, they can sometimes be created using pre-scalers if they are a simple factor of 25. If faster clocks are needed, or if the clock required is not a simple factor of 25, then Phase Locked Loops must be used.
+When slower clock speeds than the 25 MHz of the built in clock on pin 60 are needed, they can sometimes be created using pre-scalers if they are a simple factor of 25. If faster clocks are needed, or if the clock required is not a simple factor of 25, then Phase Locked Loops must be used.
 
-One example is to produce a clock of 31.5 Mhz for VGA from the 100Mhz built-in clock.
+One example is to produce a clock of 31.5 MHz for VGA from the 100 MHz built-in clock.
 
 ```verilog
 SB_PLL40_CORE #(
