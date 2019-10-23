@@ -16,3 +16,4 @@ By Lawrie Griffiths
 * [Retro Computing](./RetroComputing/RetroComputing.html)
 * [Sensors](./Sensors/Sensors.html)
 * [Storage Devices](./StorageDevices/StorageDevices.html)
+* [Actuators](./Actuators/Actuators.html)
