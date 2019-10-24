@@ -48,21 +48,19 @@ IntelliJ
 
 ## Risc V cores
 
-picorv32
+There is a list of [RISC-V cores and SoC platforms](https://github.com/riscv/riscv-cores-list) on github, but it is not complete.
 
-icicle
+Some of the RISC-V cores that run on ice40 devices include:
 
-Vexriscv
+[picorv32](https://github.com/cliffordwolf/picorv32/tree/master/picosoc)
 
-f32c
+[icicle](https://github.com/grahamedgecombe/icicle)
+
+[Vexriscv](https://github.com/SpinalHDL/VexRiscv)
 
 ## SoC generators
 
-Murax
-
-Briey
-
-SaxonSoc
+## Verilog 
 
 PicoSoc
 
@@ -70,11 +68,21 @@ icoSoC
 
 BlackSoc
 
-LiteX
+icicle
 
 FuseSoC
 
-icicle
+## SpinalHDL
+
+Murax
+
+Briey
+
+SaxonSoc
+
+### migen
+
+LiteX
 
 
 ## Other Hardware Description Languages
