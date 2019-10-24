@@ -272,140 +272,132 @@ This example needs a Digilent VGA Pmod in Pmods 7/8/9/10 and a rotary encoder fo
 Make a directory called pong, and add:
 
 pong.v
+```verilog
+// Pong VGA game
+// (c) fpga4fun.com
 
-	// Pong VGA game
-	// (c) fpga4fun.com
+module pong(clk25, vga_h_sync, vga_v_sync, vga_R, vga_G, vga_B, quadA, quadB);
+input clk125;
+output vga_h_sync, vga_v_sync, vga_R, vga_G, vga_B;
+input quadA, quadB;
 
-	module pong(clk100, vga_h_sync, vga_v_sync, vga_R, vga_G, vga_B, quadA, quadB);
-	input clk100;
-	output vga_h_sync, vga_v_sync, vga_R, vga_G, vga_B;
-	input quadA, quadB;
+wire inDisplayArea;
+wire [9:0] CounterX;
+wire [8:0] CounterY;
+wire clk = clk25;
 
-	wire inDisplayArea;
-	wire [9:0] CounterX;
-	wire [8:0] CounterY;
-	wire clk;
+hvsync_generator syncgen(.clk(clk), .vga_h_sync(vga_h_sync), .vga_v_sync(vga_v_sync), 
+	.inDisplayArea(inDisplayArea), .CounterX(CounterX), .CounterY(CounterY));
 
-	SB_PLL40_CORE #(
-		 .FEEDBACK_PATH("SIMPLE"),
-		 .DIVR(4'b1001),         // DIVR =  9
-		 .DIVF(7'b1100100),      // DIVF = 100
-		 .DIVQ(3'b101),          // DIVQ =  5
-		 .FILTER_RANGE(3'b001)   // FILTER_RANGE = 1
-	) uut (
-		 .RESETB(1'b1),
-		 .BYPASS(1'b0),
-		 .REFERENCECLK(clk100),
-		 .PLLOUTCORE(clk)
-	);
+/////////////////////////////////////////////////////////////////
+reg [8:0] PaddlePosition;
+reg [2:0] quadAr, quadBr;
+always @(posedge clk) quadAr <= {quadAr[1:0], quadA};
+always @(posedge clk) quadBr <= {quadBr[1:0], quadB};
 
-	hvsync_generator syncgen(.clk(clk), .vga_h_sync(vga_h_sync), .vga_v_sync(vga_v_sync), 
-		.inDisplayArea(inDisplayArea), .CounterX(CounterX), .CounterY(CounterY));
-
-	/////////////////////////////////////////////////////////////////
-	reg [8:0] PaddlePosition;
-	reg [2:0] quadAr, quadBr;
-	always @(posedge clk) quadAr <= {quadAr[1:0], quadA};
-	always @(posedge clk) quadBr <= {quadBr[1:0], quadB};
-
-	always @(posedge clk)
-	if(quadAr[2] ^ quadAr[1] ^ quadBr[2] ^ quadBr[1])
+always @(posedge clk)
+if(quadAr[2] ^ quadAr[1] ^ quadBr[2] ^ quadBr[1])
+begin
+	if(quadAr[2] ^ quadBr[1])
 	begin
-		if(quadAr[2] ^ quadBr[1])
-		begin
-			if(~&PaddlePosition)        // make sure the value doesn't overflow
-				PaddlePosition <= PaddlePosition + 1;
-		end
-		else
-		begin
-			if(|PaddlePosition)        // make sure the value doesn't underflow
-				PaddlePosition <= PaddlePosition - 1;
-		end
+		if(~&PaddlePosition)        // make sure the value doesn't overflow
+			PaddlePosition <= PaddlePosition + 1;
+	end
+	else
+	begin
+		if(|PaddlePosition)        // make sure the value doesn't underflow
+			PaddlePosition <= PaddlePosition - 1;
+	end
+end
+
+/////////////////////////////////////////////////////////////////
+reg [9:0] ballX;
+reg [8:0] ballY;
+reg ball_inX, ball_inY;
+
+always @(posedge clk)
+if(ball_inX==0) ball_inX <= (CounterX==ballX) & ball_inY; else ball_inX <= !(CounterX==ballX+16);
+
+always @(posedge clk)
+if(ball_inY==0) ball_inY <= (CounterY==ballY); else ball_inY <= !(CounterY==ballY+16);
+
+wire ball = ball_inX & ball_inY;
+
+/////////////////////////////////////////////////////////////////
+wire border = (CounterX[9:3]==0) || (CounterX[9:3]==79) || (CounterY[8:3]==0) || (CounterY[8:3]==59);
+wire paddle = (CounterX>=PaddlePosition+8) && (CounterX<=PaddlePosition+120) && (CounterY[8:4]==27);
+wire BouncingObject = border | paddle; // active if the border or paddle is redrawing itself
+
+reg ResetCollision;
+always @(posedge clk) ResetCollision <= (CounterY==500) & (CounterX==0);  // active only once for every video frame
+
+reg CollisionX1, CollisionX2, CollisionY1, CollisionY2;
+always @(posedge clk) if(ResetCollision) CollisionX1<=0; else if(BouncingObject & (CounterX==ballX   ) & (CounterY==ballY+ 8)) CollisionX1<=1;
+always @(posedge clk) if(ResetCollision) CollisionX2<=0; else if(BouncingObject & (CounterX==ballX+16) & (CounterY==ballY+ 8)) CollisionX2<=1;
+always @(posedge clk) if(ResetCollision) CollisionY1<=0; else if(BouncingObject & (CounterX==ballX+ 8) & (CounterY==ballY   )) CollisionY1<=1;
+always @(posedge clk) if(ResetCollision) CollisionY2<=0; else if(BouncingObject & (CounterX==ballX+ 8) & (CounterY==ballY+16)) CollisionY2<=1;
+
+/////////////////////////////////////////////////////////////////
+wire UpdateBallPosition = ResetCollision;  // update the ball position at the same time that we reset the collision detectors
+
+reg ball_dirX, ball_dirY;
+always @(posedge clk)
+if(UpdateBallPosition)
+begin
+	if(~(CollisionX1 & CollisionX2))        // if collision on both X-sides, don't move in the X direction
+	begin
+		ballX <= ballX + (ball_dirX ? -1 : 1);
+		if(CollisionX2) ball_dirX <= 1; else if(CollisionX1) ball_dirX <= 0;
 	end
 
-	/////////////////////////////////////////////////////////////////
-	reg [9:0] ballX;
-	reg [8:0] ballY;
-	reg ball_inX, ball_inY;
-
-	always @(posedge clk)
-	if(ball_inX==0) ball_inX <= (CounterX==ballX) & ball_inY; else ball_inX <= !(CounterX==ballX+16);
-
-	always @(posedge clk)
-	if(ball_inY==0) ball_inY <= (CounterY==ballY); else ball_inY <= !(CounterY==ballY+16);
-
-	wire ball = ball_inX & ball_inY;
-
-	/////////////////////////////////////////////////////////////////
-	wire border = (CounterX[9:3]==0) || (CounterX[9:3]==79) || (CounterY[8:3]==0) || (CounterY[8:3]==59);
-	wire paddle = (CounterX>=PaddlePosition+8) && (CounterX<=PaddlePosition+120) && (CounterY[8:4]==27);
-	wire BouncingObject = border | paddle; // active if the border or paddle is redrawing itself
-
-	reg ResetCollision;
-	always @(posedge clk) ResetCollision <= (CounterY==500) & (CounterX==0);  // active only once for every video frame
-
-	reg CollisionX1, CollisionX2, CollisionY1, CollisionY2;
-	always @(posedge clk) if(ResetCollision) CollisionX1<=0; else if(BouncingObject & (CounterX==ballX   ) & (CounterY==ballY+ 8)) CollisionX1<=1;
-	always @(posedge clk) if(ResetCollision) CollisionX2<=0; else if(BouncingObject & (CounterX==ballX+16) & (CounterY==ballY+ 8)) CollisionX2<=1;
-	always @(posedge clk) if(ResetCollision) CollisionY1<=0; else if(BouncingObject & (CounterX==ballX+ 8) & (CounterY==ballY   )) CollisionY1<=1;
-	always @(posedge clk) if(ResetCollision) CollisionY2<=0; else if(BouncingObject & (CounterX==ballX+ 8) & (CounterY==ballY+16)) CollisionY2<=1;
-
-	/////////////////////////////////////////////////////////////////
-	wire UpdateBallPosition = ResetCollision;  // update the ball position at the same time that we reset the collision detectors
-
-	reg ball_dirX, ball_dirY;
-	always @(posedge clk)
-	if(UpdateBallPosition)
+	if(~(CollisionY1 & CollisionY2))        // if collision on both Y-sides, don't move in the Y direction
 	begin
-		if(~(CollisionX1 & CollisionX2))        // if collision on both X-sides, don't move in the X direction
-		begin
-			ballX <= ballX + (ball_dirX ? -1 : 1);
-			if(CollisionX2) ball_dirX <= 1; else if(CollisionX1) ball_dirX <= 0;
-		end
-
-		if(~(CollisionY1 & CollisionY2))        // if collision on both Y-sides, don't move in the Y direction
-		begin
-			ballY <= ballY + (ball_dirY ? -1 : 1);
-			if(CollisionY2) ball_dirY <= 1; else if(CollisionY1) ball_dirY <= 0;
-		end
-	end 
-
-	/////////////////////////////////////////////////////////////////
-	wire R = BouncingObject | ball | (CounterX[3] ^ CounterY[3]);
-	wire G = BouncingObject | ball;
-	wire B = BouncingObject | ball;
-
-	reg vga_R, vga_G, vga_B;
-	always @(posedge clk)
-	begin
-		vga_R <= R & inDisplayArea;
-		vga_G <= G & inDisplayArea;
-		vga_B <= B & inDisplayArea;
+		ballY <= ballY + (ball_dirY ? -1 : 1);
+		if(CollisionY2) ball_dirY <= 1; else if(CollisionY1) ball_dirY <= 0;
 	end
+end 
 
-	endmodule
-	
+/////////////////////////////////////////////////////////////////
+wire R = BouncingObject | ball | (CounterX[3] ^ CounterY[3]);
+wire G = BouncingObject | ball;
+wire B = BouncingObject | ball;
+
+reg vga_R, vga_G, vga_B;
+always @(posedge clk)
+begin
+	vga_R <= R & inDisplayArea;
+	vga_G <= G & inDisplayArea;
+	vga_B <= B & inDisplayArea;
+end
+
+endmodule
+```
+
 Get [hvsync_generator.v][] from the fpga.fun site.
 
 [hvsync_generator.v]:					https://www.fpga4fun.com/files/hvsync_generator.zip
 
 pong.pcf
 
-	set_io   clk100   129
-	set_io   vga_h_sync  8
-	set_io   vga_v_sync   7
-	set_io   vga_R      15
-	set_io   vga_G     1
-	set_io   vga_B      11
-	set_io   quadA     105
-	set_io   quadB     102
+```
+set_io   clk25       60
+set_io   vga_h_sync  1
+set_io   vga_v_sync  2
+set_io   vga_R       139
+set_io   vga_G       4
+set_io   vga_B       135
+set_io   quadA       21
+set_io   quadB       22
+```
 
 And a Makefile:
 
-	VERILOG_FILES = pong.v hsync_generator.v
-	PCF_FILE = pong.pcf
+```make
+VERILOG_FILES = pong.v hsync_generator.v
+PCF_FILE = pong.pcf
 
-	include ../blackice.mk
+include ../blackice.mk
+```
 
 Use the rotary encoder to move the paddle.
 
@@ -420,56 +412,9 @@ Here is [an example][] of driving a short 8 neopixel strip.
 [img9]:									./NeoPixels.jpg "Neopixels"
 [an example]:							https://github.com/lawrie/verilog_examples/tree/master/fpga/ws2812b
 
-## OLED displays
-
-### I2C OLED displays
-
-![I2C Display][img10]
-![I2C Display][img11]
-
-Some of the cheaper OLED displays are driven by I2C. There are cheap 4-pin modules available on edbay and elsewhere that can be plugged in to a Pmod header via a simple homemade adapter or even directly into the Pmod header (or via a connecting cable) if VCC and GND are in the correct position. An I2C master module, mod_i2c_master, has been added to BlackSoC, with an [example program][]. The module in the picture uses two colours, but they are fixed and not variable by software. The top lines of that display use yellow text and the other lines blue.
-
-It is harder to access i2c oled displays and other i2c devices without a soft processor as they have complex sequences of commands for initialisation and writing data. However it is not too hard to set up a ROM with the appropriate initialisation commands.
-
-[img10]:								./I2CDisplay.jpg "I2C Display"
-[img11]:								./I2CDisplay2.jpg "I2C Display"
-[example program]:						https://github.com/lawrie/icotools/tree/master/icosoc/examples/ssd1306
-
-### SPI OLED displays
-
-![SPI OLED Displays][img12]
-
-OLED displays such sssd1306, ssd1351 etc. Are driven either by the SPI or I2C protocol.
-
-Icosoc has an implementation of an SPI master in mod_spi which is also in BlackSoC.
-
-The OLED displays use a variant of SPI that is output only and so has no MISO pin, and which has an extra pin (DC) to distinguish between commands and data. They also have a reset pin. To cope with this a new BlackSoC module, mod_spi_oled has been produced.
-
-There are BlackSoC examples for a variety of monochrome and RGB SPI OLED displays: the [ssd1306 or sh1106][], the [ssd1331][] and the [ssd1335][].
-
-[img12]:								./SPIOLEDDisplay.jpg "SPI OLED Displays"
-[ssd1306 or sh1106]:					https://github.com/lawrie/icotools/tree/master/icosoc/examples/spi1306
-[ssd1331]:								https://github.com/lawrie/icotools/tree/master/icosoc/examples/ssd1331
-[ssd1335]:								https://github.com/lawrie/icotools/tree/master/icosoc/examples/ssd1335
-
 ## LCD Displays
 
 ### LCD Text Displays
-
-There are a lot of different types of LCD display. A common one is a two-line character LCD. The one in the picture is a Grove I2C RGB-backlit two-line character LCD.
-
-There are two types of these 2-line text LCDs : serial-connected or parallel connected.
-
-#### Serial-connected text LCDs
-
-![Serial Connected Text LCD][img13]
-
-There are separate I2C devices for the backlight and the character display. The character display needs a 5v supply, which can be taken from the Arduino header on the BlackIce II.
-
-The i2c_master module in BlackSoC can be used to drive both devices, as in the BlackSoC [grovelcd example][].
-
-[img13]:								./SerialConnectedTextLCD.jpg "Serial Connected Text LCD"
-[grovelcd example]:						https://github.com/lawrie/icotools/blob/master/icosoc/examples/grovelcd/main.c
 
 #### Parallel-connected text LCDs
 
