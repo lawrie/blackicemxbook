@@ -113,6 +113,14 @@ The myStorm 7-segment MixMod has three digits with optional decimal points. It a
 
 ![7 segment MixMod](./7segmix.jpg)
 
+Seven segment displays are useful for diagnostics and as a simple user interface. They can display decimal or hex numbers.
+
+Seven segment displays usually have a pin for each segment and another for the dot that optionally separates digits. The digits themselves are usually multiplexed, with a selector pin for each digit. Each digit must be selected, and its segments activated about one thousand times a second.
+
+This example  displays three hex digits, the first of which is the bit pattern from the switches:
+
+This example 
+
 The hex27seg.v module converts a hex digit to the output pins to set the relevant segments:
 
 ```verilog
@@ -171,7 +179,7 @@ module seven_seg_display (
 endmodule
 ```
 
-And the top level 7seg.v module displays three hex digits, the first of which is the bit pattern from the switches:
+And here is the top level 7seg.v module:
 
 ```verilog
 module chip(
@@ -238,130 +246,11 @@ include ../blackicemx.mk
 
 ### 2-Digit Digilent Pmod
 
-![Dual 7 Segment LEDs][img3]
-
 Digilent make the [PmodSSD][], a two-digit 7-segment display Pmod.
 
-Seven segment displays are useful for diagnostics and as a simple user interface. They can display decimal or hex numbers.
+This can be driven in a simlar way, except that there are just two digits, no decimal points and a single pin is used to select which digit to display.
 
-Seven segment displays usually have a pin for each segment and another for the dot that optionally separates digits. The digits themselves are usually multiplexed, with a selector pin for each digit. Each digit must be selected, and its segments activated about one thousand times a second.
-
-Here is an example of using a 7-segment display to 2-digit hex number. The example uses Pmod 7 and 9 (top row).
-
-Note the code in this example is modified from that in Simon Monk’s Programming FPGAs book.
-
-[img3]:									./7Segment.jpeg "Dual 7 Segment LEDs"
 [PmodSSD]:								https://store.digilentinc.com/pmod-ssd-seven-segment-display/
-
-Create a directory called hex7seg and add:
-
-decoder_7_seg_hex.v:
-
-	module decoder_7_seg_hex(
-		input clk,
-		input [3:0] d,
-		output reg [6:0] seg
-	);
-
-		always @(posedge clk) 
-		begin
-			case(d)
-				4'd0: seg <= 7'b1111110;
-				4'd1: seg <= 7'b0110000; 
-				4'd2: seg <= 7'b1101101;
-				4'd3: seg <= 7'b1111001;
-				4'd4: seg <= 7'b0110011;
-				4'd5: seg <= 7'b1011011;
-				4'd6: seg <= 7'b1011111;
-				4'd7: seg <= 7'b1110000;
-				4'd8: seg <= 7'b1111111;
-				4'd9: seg <= 7'b1111011;
-				4'hA: seg <= 7'b1110111;
-				4'hB: seg <= 7'b0011111;
-				4'hC: seg <= 7'b1001110;
-				4'hD: seg <= 7'b0111101;
-				4'hE: seg <= 7'b1001111;
-				4'hF: seg <= 7'b1000111;
-			endcase
-		end
-
-	endmodule
-
-Add the multiplexer, display_7_seg_hex.v
-
-	module display_7_seg_hex(
-		input clk,
-		input [7:0] n,
-		output [6:0] seg,
-		output reg digit
-	);
-		
-		reg [3:0] digit_data;
-		reg digit_posn;
-		reg [23:0] prescaler;
-
-		decoder_7_seg_hex decoder(.clk (clk), .seg(seg), .d(digit_data));   
-
-		always @(posedge clk)
-		begin
-			prescaler <= prescaler + 24'd1;
-			if (prescaler == 24'd50000) // 1 kHz
-			begin
-				prescaler <= 0;
-				digit_posn <= digit_posn + 2'd1;
-				if (digit_posn == 0)
-				begin
-					digit_data <= n[3:0];
-					digit <= 4'b0;
-				end
-				if (digit_posn == 2'd1)
-				begin
-					digit_data <= n[7:4];
-					digit <= 4'b1;
-				end
-			end
-		end
-
-	endmodule
-
-Add seg_test.v
-
-	module seg_test(
-		input clk,
-		output [6:0] seg,
-		output digit
-	);	
-		
-		display_7_seg_hex seghex (.clk(clk), .n(8'hfb), .seg(seg), .digit(digit));
-	
-	endmodule
-
-And seg_test.pcf:
-
-	set_io clk 129
-
-	set_io digit  1
-
-	set_io seg[0] 2
-	set_io seg[1] 9
-	set_io seg[2] 10
-	set_io seg[3] 15
-	set_io seg[4] 16
-	set_io seg[5] 19
-	set_io seg[6] 20
-
-Add a Makefile:
-
-	VERILOG_FILES = seg_test.v decoder_7_seg_hex.v display_7_seg_hex.v
-	PCF_FILE = seg_test.pcf
-
-	include ../blackice.mk
-
-When you run this, you should see “fb”  appear on the display.
-
-Seven segment displays are also supported by the BlackSoC mod_pmodssd module. See the [BlackSoC otl-demo example][].
-
-[BlackSoC otl-demo example]:			https://github.com/lawrie/icotools/tree/master/icosoc/examples/otl-demo
 
 ## VGA output
 
