@@ -6,7 +6,7 @@ You can play audio on any FPGA output pin by sending a pulse width modulated (PW
 
 There are also PWM implementations in [Simon Monk’s Programming FPGAs][] book and on the [fpga4fun site][].
 
-There is a more detailed article on it on the [ZipCPU blog][] using the Digilent PmodAmp2. That Pmod has one pin for the audio output, but has two extra pins to specific gain and shutdown. See more details below.
+There is a more detailed article on it on the [ZipCPU blog][] using the [Digilent PmodAmp2](https://reference.digilentinc.com/reference/pmod/pmodamp2/start). That Pmod has one pin for the audio output, but has two extra pins to specific gain and shutdown. See more details below.
 
 The PWM signal can be sent to one channel of a speaker just by connecting the pin to an audio jack through a resistor or a low-pass filter. The low pass filter smooths the PWM signal, but that is optional for high impedance speakers.
 
