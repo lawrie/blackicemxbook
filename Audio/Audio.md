@@ -55,6 +55,39 @@ endmodule
 
 Run that in the normal way and you should hear an A4 note.
 
+To run that using the Digilent PmodAmp2 in the top row of Mixmod3, closest to the USB connector, change the pcf file to:
+
+music.pcf:
+
+```
+set_io speaker 21
+set_io gain 22
+set_io shutdown 26
+
+set_io clk 60
+```
+
+and change the Verilog to:
+
+music.v:
+
+```verilog
+module music(clk, speaker, gain, shutdown);
+	input clk;
+	output speaker, gain, shutdown;
+	parameter clkdivider = 25000000/440/2;
+	
+	assign gain = 0;
+	assign shutdown = 1;
+
+	reg [16:0] counter;
+	always @(posedge clk) if(counter==0) counter <= clkdivider-1; else counter <= counter-1;
+
+	reg speaker;
+	always @(posedge clk) if(counter==0) speaker <= ~speaker;
+
+endmodule
+
 The fpga4fun.com site describes how to do more [interesting sounds][] like police sirens. [Here][here1] are [here][here2] are the BlackIce Mx version of those sound generators.
 
 [interesting sounds]:					https://www.fpga4fun.com/MusicBox2.html
