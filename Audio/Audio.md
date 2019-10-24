@@ -6,17 +6,20 @@ You can play audio on any FPGA output pin by sending a pulse width modulated (PW
 
 There are also PWM implementations in [Simon Monk’s Programming FPGAs][] book and on the [fpga4fun site][].
 
+There is a more detailed article on it on the [ZipCPU blog][] using the Digilent PmodAmp2. That Pmod has one pin for the audio output, but has two extra pins to specific gain and shutdown. See more details below.
+
 The PWM signal can be sent to one channel of a speaker just by connecting the pin to an audio jack through a resistor or a low-pass filter. The low pass filter smooths the PWM signal, but that is optional for high impedance speakers.
 
 ![PWM Audio][img1]
 
 [Simon Monk’s Programming FPGAs]:		https://github.com/lawrie/prog_fpgas/tree/master/blackice/ch07_pwm/src
-[fpga4fun site]:							https://www.fpga4fun.com/PWM_DAC.html
-[img1]:									./PWMAudio.jpg "PWM Audio"
+[fpga4fun site]:				https://www.fpga4fun.com/PWM_DAC.html
+[img1]:						./PWMAudio.jpg "PWM Audio"
+[ZipCPU blog]:					http://zipcpu.com/blog/2019/04/24/pl-pmodamp2.html
 
 ## Tone generation
 
-The fpgafun site has a [very simple example of tone generation][].
+The fpga4fun site has a [very simple example of tone generation][].
 
 [very simple example of tone generation]:	https://www.fpga4fun.com/MusicBox1.html
 
@@ -31,7 +34,7 @@ set_io clk 60
 
 It uses pin 26 (on Mixmod 3) to connect to a speaker directly (if impedance is high), via a resistor, or via a low pass filter. There is information on this on the fpga4fun site.
 
-This is the Verilog code for the musical note A above middle C using the BlackIce II 25hz clock:
+This is the Verilog code for the musical note A above middle C using the BlackIce Mx 25hz clock:
 
 music.v:
 
@@ -50,7 +53,7 @@ module music(clk, speaker);
 endmodule
 ```
 
-Run that in the normal way and you should here middle C.
+Run that in the normal way and you should hear an A4 note.
 
 The fpga4fun.com site describes how to do more [interesting sounds][] like police sirens. [Here][here1] are [here][here2] are the BlackIce Mx version of those sound generators.
 
@@ -60,14 +63,14 @@ The fpga4fun.com site describes how to do more [interesting sounds][] like polic
 
 ## Playing tunes
 
-The fpgafun site goes on to give an [example of playing tunes][]. Here is a [BlackIce Mx version][] of that.
+The fpga4fun site goes on to give an [example of playing tunes][]. Here is a [BlackIce Mx version][] of that.
 
 [example of playing tunes]:				https://www.fpga4fun.com/MusicBox4.html
 [BlackIce Mx version]:					https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music4
 
 ## Audio streaming over a UART
 
-The fpgafun site has an example of audio streaming MP3 data coming from a UART connection.  The code works unchanged on Blackice Mx. We just need to set up a pcf file use the standard Makefile.
+The fpga4fun site has an example of audio streaming MP3 data coming from a UART connection.  The code works unchanged on Blackice Mx. We just need to set up a pcf file use the standard Makefile.
 
 Create a directory called audiostream and add:
 
@@ -97,7 +100,7 @@ module PWM(input clk, input RxD, output PWM_out);
 end
 module
 ```
-Get the async_receiver.v and BaudTickGen.v files from fpgafun.com.
+Get the async_receiver.v and BaudTickGen.v files from fpga4fun.com.
 
 Makefile:
 
@@ -105,12 +108,12 @@ Makefile:
 VERILOG_FILES = PWM.v async_receiver.v BaudTickGen.v
 PCF_FILE = stream.pcf
 
-include ../blackice.mk
+include ../blackicemx.mk
 ```
 
 To stream audio over uart, you need a suitable streaming client. On Linux, you can install mpg123.
 
-`mpg123 -m -s -4 --8bit <filename>.mp3 >/dev/ttyUSB0`
+`mpg123 -m -s -4 --8bit <filename>.mp3 >/dev/ttyACM0`
 
 ## I2S
 
