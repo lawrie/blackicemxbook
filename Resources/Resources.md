@@ -6,7 +6,7 @@
 
 Simon Monk's book : [Programming FPGAs: Getting Started with Verilog](https://www.amazon.co.uk/Programming-FPGAs-Getting-Started-Verilog-ebook/dp/B01M0F1L5G) is good for beginners and explains how to program in Verilog and drive simple hardware.
 
-Its example are for commercial FPGAs, so need some conversion to run on Blackice Mx.
+Its examples are for commercial FPGAs, so need some conversion to run on Blackice Mx.
 
 Steven Hugg's book [Designing Video Game Hardware in Verilog](https://www.amazon.co.uk/Designing-Video-Game-Hardware-Verilog-ebook/dp/B07LD48CTV) is good if you are interested in retro computing. 
 
@@ -26,11 +26,76 @@ The [FPGA Wars](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_
 
 ## Tools
 
+icestorm
+
+iVerilog
+
+gtkwave
+
+Verilator
+
+apio
+
+icestudio
+
 ## IDEs
+
+Atom
+
+Visual Studio
+
+IntelliJ
 
 ## Risc V cores
 
+picorv32
+
+icicle
+
+Vexriscv
+
+f32c
+
+## SoC generators
+
+Murax
+
+Briey
+
+SaxonSoc
+
+PicoSoc
+
+icoSoC
+
+BlackSoc
+
+LiteX
+
+FuseSoC
+
+icicle
+
+
 ## Other Hardware Description Languages
+
+SpinalHDL
+
+migen
+
+nmigen
+
+Chisel
+
+[clash](https://clash-lang.org/)
+
+## Other open source boards
+
+TinyFPGA BX
+
+iCEBreaker
+
+Fomu
 
 ## Retro computer resources
 
@@ -40,11 +105,15 @@ The [FPGA Wars](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_
 
 ## Other forums
 
+TinyFPGA
+
+iCEBreaker
+
 ## Chat servers
 
+## IP core repositories
 
-
-
+## Twitter
 
 
 
