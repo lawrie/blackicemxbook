@@ -1,0 +1,25 @@
+set_io clk 60
+
+#set_io led[0] 49 # B81/GBin5 L0 Blue led / S2 button
+#set_io led[1] 52 # B82/GBin4 L1 Green led / S1 button
+#set_io led[2] 55 # B91 L3 Yellow led
+#set_io led[3] 56 # B94 cs Red led
+
+set_io seg[0] 3  # a
+set_io seg[1] 4  # b
+set_io seg[2] 144  # c
+set_io seg[3] 143  # d
+set_io seg[4] 1  # e
+set_io seg[5] 8  # f
+set_io seg[6] 7  # g
+set_io seg[7] 2  # dp
+
+set_io ca[0] 135  # ca0
+set_io ca[1] 139 # ca1
+set_io ca[2] 138  # ca2
+
+set_io d[0] 142
+set_io d[1] 141
+set_io d[2] 136
+set_io d[3] 137
+
