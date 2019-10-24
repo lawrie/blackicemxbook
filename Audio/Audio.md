@@ -89,6 +89,8 @@ module music(clk, speaker, gain, shutdown);
 endmodule
 ```
 
+![PmodAmp2](./pmodamp2.jpg)
+
 The fpga4fun.com site describes how to do more [interesting sounds][] like police sirens. [Here][here1] are [here][here2] are the BlackIce Mx version of those sound generators.
 
 [interesting sounds]:					https://www.fpga4fun.com/MusicBox2.html
