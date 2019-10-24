@@ -84,16 +84,15 @@ SaxonSoc
 
 LiteX
 
-
 ## Other Hardware Description Languages
 
-SpinalHDL
+[SpinalHDL](https://github.com/SpinalHDL/SpinalHDL) is the language that VexRiscv and SaxonSoc is written in. Its author is Charles Papn (Dolu1990). There is [online documentation](https://spinalhdl.github.io/SpinalDoc-RTD/).
 
-migen
+[migen](https://github.com/m-labs/migen)
 
-nmigen
+[nmigen](https://github.com/m-labs/nmigen)
 
-Chisel
+[Chisel](https://github.com/freechipsproject/chisel3)
 
 [clash](https://clash-lang.org/)
 
