@@ -4,11 +4,11 @@
 
 If you need more LEDs than the 4 built-in ones, you can buy an LED Pmod. The [Digilent Pmod8LD][] has 8 leds, or you can make your own. An 8-LED Pmod is useful for simple diagnostics, displaying the value of a byte as a bit pattern.
 
-[Digilent Pmod8LD]:						https://store.digilentinc.com/pmod-8ld-eight-high-brightness-leds/
+[Digilent Pmod8LD]:		https://store.digilentinc.com/pmod-8ld-eight-high-brightness-leds/
 
 ![LEDs][img1]
 
-[img1]:									./LEDs.jpg "LEDs"
+[img1]:				./LEDs.jpg "LEDs"
 
 Here is an example with the Pmod connected to Pmod 3 / 4.
 
@@ -16,31 +16,39 @@ Make a directory called leds8 and add:
 
 leds.pcf
 
-	set_io leds[0] 105
-	set_io leds[1] 102
-	set_io leds[2] 99
-	set_io leds[3] 97
-	set_io leds[4] 104
-	set_io leds[5] 101
-	set_io leds[6] 98
-	set_io leds[7] 96
+```
+set_io clk 60
+
+set_io leds[0] 34
+set_io leds[1] 33
+set_io leds[2] 29
+set_io leds[3] 28
+set_io leds[4] 38
+set_io leds[5] 37
+set_io leds[6] 32
+set_io leds[7] 31
+```
 
 leds.v
 
-	module leds(
-		output [7:0] leds
-	);
+```verilog
+module leds(
+  output reg [7:0] leds
+);
 
-		assign leds = 8’b11111111;
-
-	endmodule
+ always @(posedge clk) leds <= leds + 1;
+ 
+endmodule
+```
 
 Makefile
 
-	VERILOG_FILES = leds.v 
-	PCF_FILE = leds.pcf
+```make
+VERILOG_FILES = leds.v 
+PCF_FILE = leds.pcf
 
-	include ../blackice.mk
+include ../blackicemx.mk
+```
 
 ## RGB LEDs
 
