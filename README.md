@@ -18,4 +18,5 @@ By Lawrie Griffiths
 * [Storage Devices](./StorageDevices/StorageDevices.html)
 * [Actuators](./Actuators/Actuators.html)
 * [STM32 Programming](./STM32Programming/STM32Programming.html)
+* [Making Pmods](./MakingPmods/MakingPmods.html)
 * [Resources](./Resources/Resources.html)
