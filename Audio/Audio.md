@@ -87,6 +87,7 @@ module music(clk, speaker, gain, shutdown);
 	always @(posedge clk) if(counter==0) speaker <= ~speaker;
 
 endmodule
+```
 
 The fpga4fun.com site describes how to do more [interesting sounds][] like police sirens. [Here][here1] are [here][here2] are the BlackIce Mx version of those sound generators.
 
