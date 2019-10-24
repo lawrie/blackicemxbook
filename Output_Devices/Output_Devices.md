@@ -71,31 +71,37 @@ Create a directory called rgbled and add:
 
 rgbled.pcf:
 
-	set_io rgb[0] 34
-	set_io rgb[1] 33
-	set_io rgb[2] 22
+```
+set_io rgb[0] 34
+set_io rgb[1] 33
+set_io rgb[2] 29
 	
-	set_io switch[0] 37
-	set_io switch[1] 38
-	set_io switch[2] 39
+set_io switch[0] 142
+set_io switch[1] 141
+set_io switch[2] 136
+```
 
 rgbled.v:
 
-	module rgbled(
-		input [2:0] switch,
-		output [2:0] rgb
-	);
+```verilog
+module rgbled(
+	input [2:0] switch,
+	output [2:0] rgb
+);
 	
-		assign rgb = switch;
+	assign rgb = switch;
 	
-	endmodule
+endmodule
+```
 
 Makefile:
 
-	VERILOG_FILES = rgbled.v
-	PCF_FILE = rgbled.pcf
+```make
+VERILOG_FILES = rgbled.v
+PCF_FILE = rgbled.pcf
 
-	Include ../blackice.mk
+include ../blackicemx.mk
+```
 
 You can then use the first three dip switches on the board to set the colour of the RGB LED.
 
