@@ -17,4 +17,5 @@ By Lawrie Griffiths
 * [Sensors](./Sensors/Sensors.html)
 * [Storage Devices](./StorageDevices/StorageDevices.html)
 * [Actuators](./Actuators/Actuators.html)
+* [STM32 Programming](./STM32Programming/STM32Programming.html)
 * [Resources](./Resources/Resources.html)
