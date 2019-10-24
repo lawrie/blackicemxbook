@@ -31,7 +31,7 @@ set_io clk 60
 
 It uses pin 26 (on Mixmod 3) to connect to a speaker directly (if impedance is high), via a resistor, or via a low pass filter. There is information on this on the fpga4fun site.
 
-This is the Verilog code for middle C using the BlackIce II 25hz clock:
+This is the Verilog code for the musical note A above middle C using the BlackIce II 25hz clock:
 
 music.v:
 
@@ -55,8 +55,8 @@ Run that in the normal way and you should here middle C.
 The fpga4fun.com site describes how to do more [interesting sounds][] like police sirens. [Here][here1] are [here][here2] are the BlackIce Mx version of those sound generators.
 
 [interesting sounds]:					https://www.fpga4fun.com/MusicBox2.html
-[here1]:						https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music2
-[here2]:						https://github.com/lawrie/verilog_examples/tree/master/fpgafun/music2a
+[here1]:						../examples/audio/music2
+[here2]:						../examples/audio/music2a
 
 ## Playing tunes
 
