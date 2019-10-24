@@ -107,6 +107,135 @@ You can then use the first three dip switches on the board to set the colour of 
 
 ## Seven segment displays
 
+### 3-digit MixMod
+
+The myStorm 7-segment MixMod has three digits with optional decimal points. It also has 4 dip switches and an optional header for reading some digital and analog signals from the MixMod.
+
+![7 segment MixMod](./7segmix.jpg)
+
+The hex27seg.v module converts a hex digit to the output pins to set the relevant segments:
+
+```verilog
+module h27seg (
+    input wire [3:0] hex,
+    output reg [6:0] s7
+    );
+
+    always @(*)
+        case (hex)
+            // Segments - gfedcba
+            4'h0: s7 = 7'b1000000;
+            4'h1: s7 = 7'b1111001;
+            4'h2: s7 = 7'b0100100;
+            4'h3: s7 = 7'b0110000;
+            4'h4: s7 = 7'b0011001;
+            4'h5: s7 = 7'b0010010;
+            4'h6: s7 = 7'b0000010;
+            4'h7: s7 = 7'b1111000;
+            4'h8: s7 = 7'b0000000;
+            4'h9: s7 = 7'b0010000;
+            4'hA: s7 = 7'b0001000;
+            4'hB: s7 = 7'b0000011;
+            4'hC: s7 = 7'b1000110;
+            4'hD: s7 = 7'b0100001;
+            4'hE: s7 = 7'b0000110;
+            4'hF: s7 = 7'b0001110;
+            default: s7 = 7'b1111111;
+        endcase 
+
+endmodule
+```
+
+The 7seg_display.v module periodically displays each digit before they fade:
+
+```verilog
+module seven_seg_display (
+	input clk, 
+	output reg [2:0] ca, 
+	);
+
+	initial begin
+		ca = 3'b110;
+	end
+
+	reg [17:0] count;
+
+	always @(posedge clk) begin
+    	count <= count + 1;
+		if(count[17]) begin
+			count <= 0;
+			ca <= {ca[1:0], ca[2]};
+		end
+	end
+	
+endmodule
+```
+
+And the top level 7seg.v module displays three hex digits, the first of which is the bit pattern from the switches:
+
+```verilog
+module chip(
+  input clk,
+  output [2:0] ca,
+  output [7:0] seg,
+  input  [3:0] d
+);
+
+ wire [11:0] val = 'h123;
+ wire [3:0] dig = (ca == 'b011 ? d : ca == 'b101 ? val[7:4] : val[3:0]);
+ assign seg[7] = 1;
+
+ h27seg hex (
+   .hex(dig),
+   .s7(seg[6:0])
+ );
+
+ seven_seg_display seg7 (
+   .clk(clk),
+   .ca(ca)
+ );
+
+endmodule
+```
+
+7seg_display.pcf:
+
+```
+set_io clk 60
+
+#set_io led[0] 49 # B81/GBin5 L0 Blue led / S2 button
+#set_io led[1] 52 # B82/GBin4 L1 Green led / S1 button
+#set_io led[2] 55 # B91 L3 Yellow led
+#set_io led[3] 56 # B94 cs Red led
+
+set_io seg[0] 3  # a
+set_io seg[1] 4  # b
+set_io seg[2] 144  # c
+set_io seg[3] 143  # d
+set_io seg[4] 1  # e
+set_io seg[5] 8  # f
+set_io seg[6] 7  # g
+set_io seg[7] 2  # dp
+
+set_io ca[0] 135  # ca0
+set_io ca[1] 139 # ca1
+set_io ca[2] 138  # ca2
+
+set_io d[0] 142
+set_io d[1] 141
+set_io d[2] 136
+set_io d[3] 137
+```
+
+and the Makefile:
+
+```make
+VERILOG_FILES = 7seg.v 7seg_display.v hex27seg.v
+PCF_FILE = 7seg_display.pcf
+
+include ../blackicemx.mk
+```
+
 ### 2-Digit Digilent Pmod
 
 ![Dual 7 Segment LEDs][img3]
