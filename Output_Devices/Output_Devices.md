@@ -391,15 +391,6 @@ And a Makefile:
 
 Use the rotary encoder to move the paddle.
 
-## VGA Text
-
-![VGA Text][img8]
-
-BlackSoC contains a module for writing text to a VGA monitor with 30 rows of 80 column text. There is an [example program][] for it, which reads text from /dev/ttyUSB0 and writes it to the screen.
-
-[img8]:									./VGAText.jpg "VGA Text"
-[example program]:						https://github.com/lawrie/icotools/tree/master/icosoc/examples/vga_text
-
 ## Neopixels
 
 ![Neopixels][img9]
