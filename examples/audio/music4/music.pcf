@@ -1,0 +1,6 @@
+set_io speaker 21
+set_io gain 22
+set_io shutdown 26
+
+set_io clk 60
+
