@@ -234,34 +234,6 @@ Seven segment displays are also supported by the BlackSoC mod_pmodssd module. Se
 
 [BlackSoC otl-demo example]:			https://github.com/lawrie/icotools/tree/master/icosoc/examples/otl-demo
 
-### 8-digit SPI device
-
-There are also 7-segment modules that use an SPI interface. They typically have multiple digits, such as this 8-digit version.
-
-Here is a [BlackSoC example][] that displays a number on such a device.
-
-![8 Digit SPI Device][img4]
-
-[BlackSoC example]:						https://github.com/lawrie/icotools/tree/master/icosoc/examples/seg8
-[img4]:									./8DigitSPIDevice.jpg "8 Digit SPI Device"
-
-## LED Panels
-
-You can use BlackSoC to drive an LED Panel. The [Towers of Hanoi][] example, which comes from icoSoC, uses the module mod_ledpanel to drive the panel.
-
-![Towers Of Hanoi][img5]
-![Towers Of Hanoi PCBs][img6]
-
-The panel is an [Adafruit 32x32 one][]. It needs a 4A 12v power supply. The PCB for the Pmod comes from [bikerglen at OSHPark][].
-There are other BlackSoC examples that use the LED panel including [Conway’s Game of Life][].
-
-[Towers Of Hanoi]:						https://github.com/lawrie/icotools/tree/master/icosoc/examples/hanoi
-[img5]:									./TowersOfHanoi.jpg "Towers Of Hanoi"
-[img6]:									./TowersOfHanoiPCBs.jpg "Towers Of Hanoi PCBs"
-[Adafruit 32x32 one]:					https://learn.adafruit.com/32x16-32x32-rgb-led-matrix/
-[bikerglen at OSHPark]:					https://oshpark.com/shared_projects/pjxHdBL0
-[Conway’s Game of Life]:				https://github.com/lawrie/icotools/tree/master/icosoc/examples/life
-
 ## VGA output
 
 ![VGA Output][img7]
@@ -503,7 +475,3 @@ to reset it.
 [img14]:								./ParallelConnectedTextLCD.jpg "Parallel Connected Text LCD"
 [fpgafun site]:							https://www.fpga4fun.com/TextLCDmodule.html
 [here]:									https://github.com/lawrie/verilog_examples/blob/master/fpgafun/textlcd/
-
-### Graphics LCDs
-
-To be supplied.
