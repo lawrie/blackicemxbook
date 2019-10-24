@@ -396,7 +396,7 @@ And a Makefile:
 VERILOG_FILES = pong.v hsync_generator.v
 PCF_FILE = pong.pcf
 
-include ../blackice.mk
+include ../blackicemx.mk
 ```
 
 Use the rotary encoder to move the paddle.
@@ -409,8 +409,8 @@ WS2811, WS2812 and WS2812B neopixel strips use PWM signals over a single wire to
 
 Here is [an example][] of driving a short 8 neopixel strip.
 
-[img9]:									./NeoPixels.jpg "Neopixels"
-[an example]:							https://github.com/lawrie/verilog_examples/tree/master/fpga/ws2812b
+[img9]:				./NeoPixels.jpg "Neopixels"
+[an example]:			https://github.com/lawrie/verilog_examples/tree/master/fpga/ws2812b
 
 ## LCD Displays
 
@@ -420,12 +420,12 @@ Here is [an example][] of driving a short 8 neopixel strip.
 
 ![Parallel Connected Text LCD][img14]
 
-The [fpgafun site][] shows how to drive these displays, and [here][] is the example, modified to run on the BlackIce II. You can send command to it from the command line e.g.
+The [fpgafun site][] shows how to drive these displays, and [here][] is the example, modified to run on the BlackIce Mx. You can send command to it from the command line e.g.
 
-echo -n -e “\x00\x01” >/dev/ttyUSB0
+`echo -n -e “\x00\x01” >/dev/ttyACM0`
 
 to reset it.
 
-[img14]:								./ParallelConnectedTextLCD.jpg "Parallel Connected Text LCD"
-[fpgafun site]:							https://www.fpga4fun.com/TextLCDmodule.html
-[here]:									https://github.com/lawrie/verilog_examples/blob/master/fpgafun/textlcd/
+[img14]:			./ParallelConnectedTextLCD.jpg "Parallel Connected Text LCD"
+[fpgafun site]:			https://www.fpga4fun.com/TextLCDmodule.html
+[here]:				https://github.com/lawrie/verilog_examples/blob/master/fpgafun/textlcd/
