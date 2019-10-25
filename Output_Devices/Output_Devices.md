@@ -410,7 +410,7 @@ WS2811, WS2812 and WS2812B neopixel strips use PWM signals over a single wire to
 Here is [an example][] of driving a short 8 neopixel strip.
 
 [img9]:				./NeoPixels.jpg "Neopixels"
-[an example]:			https://github.com/lawrie/verilog_examples/tree/master/fpga/ws2812b
+[an example]:			https://github.com/lawrie/blackicemxbook/tree/master/examples/output/ws2812b
 
 ## LCD Displays
 
