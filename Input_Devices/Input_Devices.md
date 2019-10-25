@@ -9,22 +9,13 @@ It is not possible to use USB keyboards with BlackIce but PS/2 keyboards work as
 [Here][] is an example based on code on code by David Banks (@hoglet67).
 
 [img1]:									./Keyboard.jpg "Keyboard"
-[Here]:									https://github.com/lawrie/verilog_examples/tree/master/fpga/ps2
-
-## Gamepads
-
-![Gamepad][img2]
-
-Gamepads can be useful for playing some games. Here is [a BlackSoC example][] of getting input from the buttons on a gamepad connected to a 15-pin PC gameport which is then connected to a Pmod.
-
-[img2]:									./Gamepad.jpg "Gamepad"
-[a BlackSoC example]:					https://github.com/lawrie/icotools/tree/master/icosoc/examples/gamepad
+[Here]:									https://github.com/lawrie/blackicemxbook/tree/master/examples/input/ps2
 
 ## DIP switches
 
 ![DIP Switches][img3]
 
-Dip switches can  be useful for configuration. Sometimes the 4 built-in ones are insufficient or can’t be used as the SD card is in use. Here is [an example of using the DIP switches][] or a homemade Pmod to set LEDs on a Digilent 8 LED strip. The example has the dip switches Pmod in PMOD 7 / 8 and the Digilent 8 LED Pmod in PMOD 11/!”.
+Dip switches can  be useful for configuration. Here is [an example of using the DIP switches][] or a homemade Pmod to set LEDs on a Digilent 8 LED strip..
 
 [img3]:									./DIPSwitches.jpg "DIP Switches"
 [an example of using the DIP switches]:	https://github.com/lawrie/verilog_examples/tree/master/ebook/input/switches8
