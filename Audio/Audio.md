@@ -151,3 +151,7 @@ To stream audio over uart, you need a suitable streaming client. On Linux, you c
 `mpg123 -m -s -4 --8bit <filename>.mp3 >/dev/ttyACM0`
 
 The quality is not very good.
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Soft_Processors/Soft_Processors.html)|[Up](..) |[Next](../Output_Devices/Output_Devices.html)|
