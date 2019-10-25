@@ -20,7 +20,7 @@ It reads the key and writes the scan codes received in hex to  the uart (dev/tty
 Dip switches can  be useful for configuration. Here is [a very simple example of using the DIP switches][] or a homemade Pmod to set LEDs on a Digilent 8 LED strip. There are 4 dip switches on the myStorm 7-segment display Pmod.
 
 [img3]:									                            ./DIPSwitches.jpg "DIP Switches"
-[a very simple example of using the DIP switches]:	https://github.com/lawrie/verilog_examples/tree/master/ebook/input/switches8
+[a very simple example of using the DIP switches]:	https://github.com/lawrie/blackicemxbook/tree/master/examples/input/switches8
 
 ## Keypads
 
