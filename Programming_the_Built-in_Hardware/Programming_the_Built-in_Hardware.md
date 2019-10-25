@@ -458,4 +458,4 @@ The [line_echo][] example reads from the uart and echoes back what it reads at 1
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Previous](../The_Hardware/The_Hardware.html)|[Up](..) |[Next](../Directives/Directives.html)|
+|[Prev](../The_Hardware/The_Hardware.html)|[Up](..) |[Next](../Directives/Directives.html)|
