@@ -1,0 +1,20 @@
+
+set_io leds[0] 34
+set_io leds[1] 33
+set_io leds[2] 29
+set_io leds[3] 28
+set_io leds[4] 38
+set_io leds[5] 37
+set_io leds[6] 32
+set_io leds[7] 31
+
+set_io switches[0] 136
+set_io switches[1] 141
+set_io switches[2] 137
+set_io switches[3] 142
+set_io switches[4] 134
+set_io switches[5] 138
+set_io switches[6] 135
+set_io switches[7] 139
+
+
