@@ -31,4 +31,4 @@ The source of the examples in this book is available in a [Github repository][].
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](..)|[Up](..) |[Next](../The_Harware/The_Hardware.html)|
+|[Prev](..)|[Up](..) |[Next](../The_Hardware/The_Hardware.html)|
