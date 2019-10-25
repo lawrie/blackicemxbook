@@ -256,5 +256,5 @@ In addition there is a Risc-V SoC called [SaxonSoc][], which uses the VexRiscv R
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Memory_Access/Memory_Acesses.html)|[Up](..) |[Next](../Memory_Access/Memory_Access.html)|
+|[Prev](../Memory_Access/Memory_Acesses.html)|[Up](..) |[Next](../Audio/Audio.html)|
 
