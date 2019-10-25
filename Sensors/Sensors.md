@@ -27,3 +27,7 @@ Other types of sensor use quadrature to count rotations. Two signals with a 90-d
 The encoders on encoder motors are also quadrature rotation sensors. See the Actuators and Robotics chapters.
 
 [img3]:									./RotarySensor.jpg "Rotary Sensor"
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../RetorComputing/RetroComputing.html)|[Up](..) |[Next](../StorageDevices/StorageDevices.html)|
