@@ -422,7 +422,7 @@ Here is [an example][] of driving a short 8 neopixel strip.
 
 The [fpgafun site][] shows how to drive these displays, and [here][] is the example, modified to run on the BlackIce Mx. You can send commands and data to it from the command line e.g.
 
-'''sh
+```sh
 echo -n -e "\x00\x38" >/dev/ttyACM0
 echo -n -e "\x00\x0F" >/dev/ttyACM0
 echo -n -e "\x00\x01" >/dev/ttyACM0
