@@ -86,3 +86,7 @@ The Blackice Mx board also has 512KB of external flash memory. This can be used 
 SoCs and soft processors typically access hardware by memory mapping. So when the soft processor issues a memory access, a Verilog module examines the address and decides whether to map it to SDRAM or BRAM or flash memory, or to interpret it as a read or write to other hardware. In the latter case it will usually pass the address and data (in the case of writes) to another module to access the required hardware. A flag from that module will normally indicate when the access is complete or when an asynchronous access has been started and the soft processor memory access can then complete. It may take several clock cycles.
 
 A standard Bus such as a Wishbone bus, or an AXI bus, on an APB bus, or some combination of these may be used for such accesses.
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Previous](../Directives/Directives.html)|[Up](..) |[Next](../Soft_Processors/Soft_Processors.html)|
