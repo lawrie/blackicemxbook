@@ -23,11 +23,11 @@ It uses the open source icestorm toolchain and assumes you are using a Linux dev
 The examples have all been run on the myStorm BlackIce Mx board but will work with some modification for other Ice40 boards.
 
 All the examples are in [Verilog][]. This book is not a tutorial on Verilog. A working knowledge of Verilog is assumed.
-The source of the examples in this book is available in a [Github repository][]. 
+The source of the examples in this book is available in the [Github repository][]. 
 
 [Lattice Ice40]:		http://www.latticesemi.com/Products/FPGAandCPLD/iCE40
 [Verilog]:				https://en.wikipedia.org/wiki/Verilog
-[Github repository]:	https://github.com/lawrie/blackicemx_examples/tree/master/ebook
+[Github repository]:	https://github.com/lawrie/blackicemxbook/tree/master/examples
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
