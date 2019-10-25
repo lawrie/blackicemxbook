@@ -64,6 +64,10 @@ When you are sure you know how your device working and the examples are working,
 
 ## Troubleshooting
 
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../The_Hardware/The_Hardware.html)|[Up](..) |[Next](../Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)|
+
 
 
 
