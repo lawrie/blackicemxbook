@@ -1,0 +1,13 @@
+set_io CLK 60
+
+# Keyboard - Matches Digilent PmodPS/2 
+set_io PS2_CLK  23
+set_io PS2_DATA 19
+
+set_io LED[0] 49
+set_io LED[1] 52
+set_io LED[2] 55
+set_io LED[3] 56
+
+set_io UART_TX 62
+
