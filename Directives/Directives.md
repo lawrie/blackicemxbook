@@ -51,4 +51,4 @@ There is a lot of information on how to use PLLs in the [BlackIce Wiki][].
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Previous](../Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)|[Up](..) |[Next](../Memory_Access/Memory_Access.html)|
+|[Prev](../Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)|[Up](..) |[Next](../Memory_Access/Memory_Access.html)|
