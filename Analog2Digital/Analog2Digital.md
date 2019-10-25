@@ -11,3 +11,7 @@
 ![8 Bit AD/DA][img2]
 
 [img2]:									./8bitADDA.jpg "8 Bit AD/DA"
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../MakingPmods/MakingPmods.html)|[Up](..) |[Next](../Resources/Resources.html)|
