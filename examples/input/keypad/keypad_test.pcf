@@ -1,0 +1,17 @@
+set_io clk 60
+
+set_io col[0] 20
+set_io col[1] 22
+set_io col[2] 19
+
+set_io row[0] 24
+set_io row[1] 26
+set_io row[2] 23
+set_io row[3] 25
+
+set_io led[0] 49
+set_io led[1] 52 
+set_io led[2] 55
+set_io led[3] 56
+
+
