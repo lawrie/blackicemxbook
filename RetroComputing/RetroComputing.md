@@ -54,3 +54,7 @@ The Jupiter Ace was a Forth machine.
 
 This implementation of the [Apple One](https://github.com/lawrie/apple-one) is by Alan Garfield.
 
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Input_Devices/Input_Devices.html)|[Up](..) |[Next](../Sensors/Sensors.html)|
+
