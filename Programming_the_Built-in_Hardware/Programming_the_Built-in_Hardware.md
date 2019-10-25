@@ -455,3 +455,7 @@ The [line_echo][] example reads from the uart and echoes back what it reads at 1
 
 [example programs]:			https://github.com/folknology/IceCore/tree/master/Examples
 [line_echo]:			https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/Examples/line-echo
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Previous](../The_Hardware/The_Hardware.html)|[Up](..) |[Next](../Directives/Directives.html)|
