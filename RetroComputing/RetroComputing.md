@@ -17,7 +17,10 @@ Some of them require an SD card created for them to stores games and other progr
 
 The NES implementation is based on the up5k-demos version by David Shah, which is based on the Mist version, which was based on the original fpganes version by Ludwig Strigeus.
 
-See https://github.com/lawrie/up5k-demos/tree/master/nesmx
+This is available at
+https://github.com/lawrie/up5k-demos/tree/master/nesmx
+
+It uses a non-standard (512 x 480) VGA mode that does not work on all monitors or most TVs.
 
 ![Mario](https://forum.mystorm.uk/uploads/default/optimized/1X/970a9bb39cb8261948b0c90bf9450ca2200412df_1_690x408.jpg)
 
@@ -25,18 +28,18 @@ See https://github.com/lawrie/up5k-demos/tree/master/nesmx
 
 ## Acorn Atom
 
-![Acorn Atom](./AcornAtom.jpg "Acorn Atom")
+![Acorn Atom](https://forum.mystorm.uk/uploads/default/optimized/1X/4a8e2a5815e4faf3c1adf6371f8898c58312b0e8_1_690x477.jpg)
 
-The Acorn Atom implementation is based of David Bank’s Ice40Atom. 
+The [Acorn Atom implementation](https://github.com/lawrie/Ice40Atom/tree/master/blackicemx) is based of David Bank’s Ice40Atom. 
+It is built by build.sh.
 
-The software archive is available at <https://github.com/hoglet67/AtomSoftwareArchive/releases/download/V10/AtomSoftwareArchive_20180225_1154_V10_SDDOS2.zip>
+The software archive for the SD card is available at <https://github.com/hoglet67/AtomSoftwareArchive/releases/download/V10/AtomSoftwareArchive_20180225_1154_V10_SDDOS2.zip>
 
 You need to write this as a raw image to ad SD card by:
 
 `dd if=archive.img of=/dev/sdxxx`
 
 where sdxxx is SD card drive.
-
 
 ## Jupiter ACE
 
@@ -50,7 +53,7 @@ This port is a simpler one that does not require custom firmware It can be build
 
 ## Apple One
 
-![Apple One](AppleOne.jpg "Apple One")
+![Apple One](https://forum.mystorm.uk/uploads/default/optimized/1X/220279feaf92e8afd8e1d918f9a72b4b722f680f_1_690x423.jpg)
 
 This implementation of the Apple One is by Alan Garfield.
 
