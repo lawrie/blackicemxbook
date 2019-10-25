@@ -36,7 +36,7 @@ Here is [an example][] that reads the keys and displays the latest key pressed o
 Numeric keypads are useful for some applications where a full keyboard is overkill.
 
 [img4]:									./Keypad.jpg "Keypad"
-[an example]:							https://github.com/lawrie/verilog_examples/tree/master/fpga/keypad
+[an example]:						https://github.com/lawrie/blackicemxbook/tree/master/examples/input/keypad
 
 ## Mice
 
