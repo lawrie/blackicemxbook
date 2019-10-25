@@ -48,3 +48,7 @@ The [BlackSoC motor example][] can be used to test encoder motors. See also the 
 
 [img3]:									./EncoderMotors.jpg "Encoder Motors"
 [BlackSoC motor example]:				https://github.com/lawrie/icotools/tree/master/icosoc/examples/motor
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../StorageDevices/StorageDevices.html)|[Up](..) |[Next](../STM32Programming/STM32Programming.html)|
