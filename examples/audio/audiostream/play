@@ -1,1 +1,1 @@
-mpg123 -m -s -4 --8bit stairway.mp3 >/dev/ttyAMA0
+mpg123 -m -s -4 --8bit sample.mp3 >/dev/ttyACM0

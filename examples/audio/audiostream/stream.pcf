@@ -1,4 +1,7 @@
-set_io PWM_out 34
-set_io RxD 88
-set_io clk 129
+set_io PWM_out 21
+set_io gain 22
+set_io shutdown 26
+
+set_io RxD 61
+set_io clk 60
 
