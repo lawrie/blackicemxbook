@@ -48,3 +48,7 @@ SB_PLL40_CORE #(
 There is a lot of information on how to use PLLs in the [BlackIce Wiki][].
 
 [BlackIce Wiki]:			https://github.com/mystorm-org/BlackIce-II/wiki/PLLs
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Previous](../Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)|[Up](..) |[Next](../Memory_Access/Memory_Access.html)|
