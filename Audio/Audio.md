@@ -135,12 +135,12 @@ module PWM(input clk, input RxD, output PWM_out);
 	assign PWM_out = PWM_accumulator[8];
 endmodule
 ```
-Get the async_receiver.v and BaudTickGen.v files from fpga4fun.com.
+Get the async.v file from [fpga4fun.com](https://www.fpga4fun.com/files/async.zip).
 
 Makefile:
 
 ```make
-VERILOG_FILES = PWM.v async_receiver.v BaudTickGen.v
+VERILOG_FILES = PWM.v async.v
 PCF_FILE = stream.pcf
 
 include ../blackicemx.mk
@@ -150,27 +150,4 @@ To stream audio over uart, you need a suitable streaming client. On Linux, you c
 
 `mpg123 -m -s -4 --8bit <filename>.mp3 >/dev/ttyACM0`
 
-## I2S
-
-To get better sound quality you can use the [Digilent i2s Pmod][].
-
-![I2S Audio][img2]
-
-This requires a higher bandwidth music stream than uart can handle. You could read the mp3 file from the SD card reader, or you could stream data over QSPI from the STM32 or over SPI from a Raspberry Pi using the RPi header. See the chapter on the RPi header for how to do that.
-
-[Digilent i2s Pmod]:					https://store.digilentinc.com/pmod-i2s-stereo-audio-output/
-[img2]:							./I2SAudio.jpg "I2S Audio"
-
-## Microphones
-
-To record speech or other audio input, you need a microphone.
-
-There is the [Digilent MIC3 MEMS Microphone Pmod][].
-
-![Microphone Pmod][img3]
-
-Here is [an example][] of using the microphone to stream audio to the i2s Pmod. The example needs some work on it to get the timing right.
-
-[Digilent MIC3 MEMS Microphone Pmod]:	https://store.digilentinc.com/pmod-mic3-mems-microphone-with-adjustable-gain/
-[img3]:					https://cdn10.bigcommerce.com/s-7gavg/products/385/images/3862/Pmod_MIC3__04127.1456866882.1280.1280.png?c=2
-[an example]:				https://github.com/lawrie/verilog_examples/tree/master/fpgafun/microphone
+The quality is not very good.
