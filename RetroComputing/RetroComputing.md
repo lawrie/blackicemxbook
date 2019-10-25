@@ -15,10 +15,7 @@ Some of them require an SD card created for them to stores games and other progr
 
 ## Nintendo Entertainment System
 
-The NES implementation is based on the up5k-demos version by David Shah, which is based on the Mist version, which was based on the original fpganes version by Ludwig Strigeus.
-
-This is available at
-https://github.com/lawrie/up5k-demos/tree/master/nesmx
+The [NES implementation](https://github.com/lawrie/up5k-demos/tree/master/nesmx) is based on the up5k-demos version by David Shah, which is based on the Mist version, which was based on the original fpganes version by Ludwig Strigeus.
 
 It uses a non-standard (512 x 480) VGA mode that does not work on all monitors or most TVs.
 
@@ -33,7 +30,7 @@ It uses a non-standard (512 x 480) VGA mode that does not work on all monitors o
 The [Acorn Atom implementation](https://github.com/lawrie/Ice40Atom/tree/master/blackicemx) is based of David Bank’s Ice40Atom. 
 It is built by build.sh.
 
-The software archive for the SD card is available at <https://github.com/hoglet67/AtomSoftwareArchive/releases/download/V10/AtomSoftwareArchive_20180225_1154_V10_SDDOS2.zip>
+It needs the [software archive](https://github.com/hoglet67/AtomSoftwareArchive/releases/download/V10/AtomSoftwareArchive_20180225_1154_V10_SDDOS2.zip) for the SD card.
 
 You need to write this as a raw image to ad SD card by:
 
@@ -49,12 +46,11 @@ Another David Banks port.
 
 The Jupiter Ace was a Forth machine.
 
-This port is a simpler one that does not require custom firmware It can be build using the build.sh file at <https://github.com/lawrie/Ice40JupiterAce/tree/master/blackicemx>.
+[This port](V) is a simpler one that does not require custom firmware It can be build using the build.sh file.
 
 ## Apple One
 
 ![Apple One](https://forum.mystorm.uk/uploads/default/optimized/1X/220279feaf92e8afd8e1d918f9a72b4b722f680f_1_690x423.jpg)
 
-This implementation of the Apple One is by Alan Garfield.
+This implementation of the [Apple One](https://github.com/lawrie/apple-on) is by Alan Garfield.
 
-It is available at <https://github.com/lawrie/apple-one>.
