@@ -4,9 +4,11 @@
 
 ![Keyboard][img1]
 
-It is not possible to use USB keyboards with BlackIce but PS/2 keyboards work as long as they are OK with 3.3v logic. Microsoft wireless keyboards work (as shown above), as do most HP ones.
+It is not possible to use USB keyboards with BlackIce but PS/2 keyboards work as long as they are OK with 3.3v logic. Microsoft wireless keyboards work (as shown above), as do most HP ones. The Microsoft Wireless receiver needs more power than the Blacice Mx board can provide, and probably needs %v. So I am using a battery pack connected to the power input header on the PS/2 Pmod to supply %v.
 
 [Here][] is an example based on code on code by David Banks (@hoglet67).
+
+It reads the key and writes the scan codes received in hex to  the uart (dev/ttyACM0). The can codes need to be converted to ascii for most uses.
 
 [img1]:									./Keyboard.jpg "Keyboard"
 [Here]:									https://github.com/lawrie/blackicemxbook/tree/master/examples/input/ps2
@@ -15,10 +17,10 @@ It is not possible to use USB keyboards with BlackIce but PS/2 keyboards work as
 
 ![DIP Switches][img3]
 
-Dip switches can  be useful for configuration. Here is [an example of using the DIP switches][] or a homemade Pmod to set LEDs on a Digilent 8 LED strip..
+Dip switches can  be useful for configuration. Here is [a very simple example of using the DIP switches][] or a homemade Pmod to set LEDs on a Digilent 8 LED strip. There are 4 dip switches on the myStorm 7-dsegment display Pmod.
 
-[img3]:									./DIPSwitches.jpg "DIP Switches"
-[an example of using the DIP switches]:	https://github.com/lawrie/verilog_examples/tree/master/ebook/input/switches8
+[img3]:									                            ./DIPSwitches.jpg "DIP Switches"
+[a very simple example of using the DIP switches]:	https://github.com/lawrie/verilog_examples/tree/master/ebook/input/switches8
 
 ## Keypads
 
