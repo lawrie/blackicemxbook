@@ -254,3 +254,7 @@ In addition there is a Risc-V SoC called [SaxonSoc][], which uses the VexRiscv R
 [picoSoC]:					https://github.com/cliffordwolf/picorv32/tree/master/picosoc
 [SaxonSoc]:					https://github.com/SpinalHDL/SaxonSoc/tree/dev
 
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Memory_Access/Memory_Acesses.html)|[Up](..) |[Next](../Memory_Access/Memory_Access.html)|
+
