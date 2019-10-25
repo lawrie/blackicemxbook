@@ -28,3 +28,7 @@ Information on using an STLink dongle over the SWDIO interface to flash and debu
 You can do the same thing from a Raspberry Pi connected via the RPi header without an STLink dongle as described in the RPi header section below.
 
 [Using an STLink Dongle and GDB with your BlackIce II]:	https://github.com/mystorm-org/BlackIce-II/wiki/Using-an-STLink-Dongle-and-GDB-with-your-BlackIce-II
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Actuators/Actuators.html)|[Up](..) |[Next](../MakingPmods/MakingPmods.html)|
