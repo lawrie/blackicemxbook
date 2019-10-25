@@ -432,3 +432,7 @@ echo -n "Hello World!" >/dev/ttyACM0
 [img14]:			./ParallelConnectedTextLCD.jpg "Parallel Connected Text LCD"
 [fpgafun site]:			https://www.fpga4fun.com/TextLCDmodule.html
 [here]:				https://github.com/lawrie/blackicemxbook/tree/master/examples/output/textlcd
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Audio/Audio.html)|[Up](..) |[Next](../Input_Devices/Input_Devices.html)|
