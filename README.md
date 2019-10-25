@@ -6,6 +6,7 @@ By Lawrie Griffiths
 
 * [Introduction](./Introduction/Introduction.html)
 * [The Hardware](./The_Hardware/The_Hardware.html)
+* [Getting Started](./GettingStarted/GettingStarted.html)
 * [Programming the Built-in Hardware](./Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)
 * [Directives](./Directives/Directives.html)
 * [Memory Access](./Memory_Access/Memory_Access.html)
