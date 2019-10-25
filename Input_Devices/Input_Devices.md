@@ -41,3 +41,7 @@ Numeric keypads are useful for some applications where a full keyboard is overki
 ## Mice
 
 PS/2 mice can be connected to the BlackIce II using the same Digilent PS/2 Pmos that is used for keyboards.
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Output_Devices/Output_Devices.html)|[Up](..) |[Next](../RetroComputing/RetroComputing.html)|
