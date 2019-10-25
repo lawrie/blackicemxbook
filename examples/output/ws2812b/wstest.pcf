@@ -1,0 +1,4 @@
+set_io clk  60
+set_io -pullup yes reset 49
+set_io DO 21
+
