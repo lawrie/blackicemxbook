@@ -46,7 +46,7 @@ Another David Banks port.
 
 The Jupiter Ace was a Forth machine.
 
-[This port](V) is a simpler one that does not require custom firmware It can be build using the build.sh file.
+[This port](https://github.com/lawrie/Ice40JupiterAce/tree/master/blackicemx) is a simpler one that does not require custom firmware. It can be build using the build.sh file.
 
 ## Apple One
 
