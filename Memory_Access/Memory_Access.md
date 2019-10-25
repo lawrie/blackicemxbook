@@ -89,4 +89,4 @@ A standard Bus such as a Wishbone bus, or an AXI bus, on an APB bus, or some com
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Previous](../Directives/Directives.html)|[Up](..) |[Next](../Soft_Processors/Soft_Processors.html)|
+|[Prev](../Directives/Directives.html)|[Up](..) |[Next](../Soft_Processors/Soft_Processors.html)|
