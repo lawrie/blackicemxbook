@@ -19,4 +19,5 @@ By Lawrie Griffiths
 * [Actuators](./Actuators/Actuators.html)
 * [STM32 Programming](./STM32Programming/STM32Programming.html)
 * [Making Pmods](./MakingPmods/MakingPmods.html)
+* [Analog to Digital (ADC)](./Analog2Digital/Analog2Digital.html)
 * [Resources](./Resources/Resources.html)
