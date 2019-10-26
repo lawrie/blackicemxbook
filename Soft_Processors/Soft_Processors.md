@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Memory_Access/Memory_Access.html)|[Up](..) |[Next](../Audio/Audio.html)|
+
 # Soft Processors
 
 A soft processor is an FPGA implementation of a CPU, or more accurately of an Instruction Set Architecture (ISA).
