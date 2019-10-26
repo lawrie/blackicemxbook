@@ -12,11 +12,12 @@ The simplest digital sensors are buttons and sliders which were covered in the b
 
 Other digital sensors measure a pulse. An HC-SR04 ultrasonic ping sensor is such a device. It uses an output (trigger) pin to request a range measurement and then measures the length of the pulse on an input (echo) pin.
 
-This is supported in BlackSoC by mod_ping. See the [ping][] and [theremin][] examples. See also Robotics below, for another use of an HC-SR04 sensor.
+See the [ping][] and example, which displays the distance to an object on the myStorm 3-digit 7-segment display. 
+See also the Robotics chapter, for another use of an HC-SR04 sensor.
 
 [img2]:									./PingSensor.jpg "Ping Sensor"
-[ping]:									https://github.com/lawrie/icotools/tree/master/icosoc/examples/ping
-[theremin]:								https://github.com/lawrie/icotools/tree/master/icosoc/examples/theremin
+[ping]:									https://github.com/lawrie/blackicemxbook/tree/master/examples/sensors/ping
+
 
 ### Rotary sensor
 
