@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Soft_Processors/Soft_Processors.html)|[Up](..) |[Next](../Output_Devices/Output_Devices.html)|
+
 # Audio
 
 ## 1-bit DACs
