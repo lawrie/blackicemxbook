@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](..)|
+
 # Resources
 
 ## Learning Verilog
@@ -124,6 +128,3 @@ iCEBreaker
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
 |[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](..)|
-
-
-
