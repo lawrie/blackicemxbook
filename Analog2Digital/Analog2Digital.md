@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../MakingPmods/MakingPmods.html)|[Up](..) |[Next](../Resources/Resources.html)|
+
 # Analog To Digital
 
 ## 12-Bit ADC
