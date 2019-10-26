@@ -23,10 +23,11 @@ See also the Robotics chapter, for another use of an HC-SR04 sensor.
 
 ![Rotary Sensor][img3]
 
-Other types of sensor use quadrature to count rotations. Two signals with a 90-degree phase difference allow the direction of rotation to be measured.
+Other types of sensor use quadrature to count rotations. Two signals with a 90-degree phase difference allow the direction of rotation to be measured. See the [quad][] example, which displays a 12-bit value from a quadrature rotary sensor in hex on the myStorm 7-segment display.
 
 The encoders on encoder motors are also quadrature rotation sensors. See the Actuators and Robotics chapters.
 
+[quad]:									https://github.com/lawrie/blackicemxbook/tree/master/examples/sensors/quad
 [img3]:									./RotarySensor.jpg "Rotary Sensor"
 
 |                        |                        |                        |
