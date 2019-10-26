@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Sensors/Sensors.html)|[Up](..) |[Next](../Actuators/Actuators.html)|
+
 # Storage Devices
 
 ## SD Cards
