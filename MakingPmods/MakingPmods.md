@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../STM32Programming/STM32Programming.html)|[Up](..) |[Next](../Analog2Digital/Analog2Digital.html)|
+
 # Making Pmods
 
 The [myStorm Hackers PMOD kit][1] is available on Tindie and can be used to build PMODs for BlackIce.
