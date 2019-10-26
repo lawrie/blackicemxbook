@@ -30,4 +30,4 @@ The encoders on encoder motors are also quadrature rotation sensors. See the Act
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../RetorComputing/RetroComputing.html)|[Up](..) |[Next](../StorageDevices/StorageDevices.html)|
+|[Prev](../PicoSoC/PicoSoC.html)|[Up](..) |[Next](../StorageDevices/StorageDevices.html)|
