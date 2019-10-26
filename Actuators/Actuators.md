@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../StorageDevices/StorageDevices.html)|[Up](..) |[Next](../STM32Programming/STM32Programming.html)|
+
 # Actuators
 
 ## Servos
