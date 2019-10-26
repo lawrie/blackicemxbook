@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Input_Devices/Input_Devices.html)|[Up](..) |[Next](../PicoSoC/PicoSoC.html)|
+
 # Retro Computing
 
 The BlackIce Mx with its SDRAM, Flash memory, SD card reader, and plentiful Mixmod/Pmod sockets is particularly suited to emulating older computers.
