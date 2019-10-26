@@ -115,7 +115,7 @@ Once this is installed, and you have the icestorm tools installed, you can do:
 ```sh
 git clone https://github.com/lawrie/pico_ram_soc
 cd pico_ram_soc/examples/simple
-make uplosd
+make upload
 ```
 
 If in another terminal you do:
