@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Audio/Audio.html)|[Up](..) |[Next](../Input_Devices/Input_Devices.html)|
+
 # Output Devices
 
 ## LEDs
