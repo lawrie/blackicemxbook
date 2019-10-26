@@ -18,7 +18,7 @@ The [fpga4fun](https://www.fpga4fun.com/) web site is very good, and the source 
 
 The [fpga4student](https://fpga4student.com) also has some interesting projects.
 
-The [FPGA Wars](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_EN) commiunity have a Verilog tutorial.
+The [FPGA Wars](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_EN) community have a Verilog tutorial.
 
 ### Online courses
 
@@ -26,25 +26,23 @@ The [FPGA Wars](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_
 
 ## Tools
 
-icestorm
+[Project Icestorm](http://www.clifford.at/icestorm/)
 
-iVerilog
+Verilog Simulator: [iVerilog](http://iverilog.icarus.com/) 
 
-gtkwave
+Signal viewer: [GTKWave](http://gtkwave.sourceforge.net/)
 
-Verilator
+A fast Cerilog Simulator: [Verilator](https://www.veripool.org/wiki/verilator)
 
-apio
+[apio](https://github.com/FPGAwars/apio)
 
-icestudio
+[icestudio](https://github.com/FPGAwars/icestudio)
 
 ## IDEs
 
-Atom
+[Atom](https://atom.io)
 
-Visual Studio
-
-IntelliJ
+[VSCode](https://code.visualstudio.com/)
 
 ## Risc V cores
 
@@ -62,27 +60,27 @@ Some of the RISC-V cores that run on ice40 devices include:
 
 ## Verilog 
 
-PicoSoc
+[PicoSoc](https://github.com/cliffordwolf/picorv32/tree/master/picosoc)
 
-icoSoC
+[IcoSoC](https://github.com/cliffordwolf/icotools/tree/master/icosoc)
 
-BlackSoc
+[BlackSoc](https://github.com/lawrie/icotools/tree/master/icosoc) - only works on Blackice II
 
-icicle
+[icicle](https://github.com/grahamedgecombe/icicle)
 
-FuseSoC
+[FuseSoC}(https://github.com/olofk/fusesoc)
 
 ## SpinalHDL
 
-Murax
+[Murax](https://github.com/SpinalHDL/VexRiscv/blob/master/src/main/scala/vexriscv/demo/Murax.scala)
 
-Briey
+[Briey](https://github.com/SpinalHDL/VexRiscv/blob/master/src/main/scala/vexriscv/demo/Briey.scala)
 
-SaxonSoc
+[SaxonSoc](https://github.com/SpinalHDL/SaxonSoc/tree/dev)
 
 ### migen
 
-LiteX
+[LiteX](https://github.com/enjoy-digital/litex)
 
 ## Other Hardware Description Languages
 
