@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Introduction/Introduction.html)|[Up](..) |[Next](../GettingStarted/GettingStarted.html)|
+
 # The Hardware
 
 ##	The MyStorm BlackIce Mx Development Board
