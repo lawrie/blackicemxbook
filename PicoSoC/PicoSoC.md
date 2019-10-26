@@ -127,10 +127,7 @@ cat /dev/ttyACM0
 
 You should see `Hello World!¬.
 
-
-
-
-
-
-
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../RetroComputing/RetroComputing.html)|[Up](..) |[Next](../Sensors/Sensors.html)|
 
