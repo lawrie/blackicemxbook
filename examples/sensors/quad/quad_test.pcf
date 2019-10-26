@@ -1,0 +1,18 @@
+set_io clk 60
+
+set_io quadA 21
+set_io quadB 22
+
+set_io seg[0] 3  # a
+set_io seg[1] 4  # b
+set_io seg[2] 144  # c
+set_io seg[3] 143  # d
+set_io seg[4] 1  # e
+set_io seg[5] 8  # f
+set_io seg[6] 7  # g
+set_io seg[7] 2  # dp
+
+set_io ca[0] 135  # ca0
+set_io ca[1] 139 # ca1
+set_io ca[2] 138  # ca2
+
