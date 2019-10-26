@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../GettingStarted/GettingStarted.html)|[Up](..) |[Next](../Directives/Directives.html)|
+
 # Programming the Built-in Hardware
 
 This chapter describes how to use Verilog to access the built-in hardware on the BlackIce Mx board.
