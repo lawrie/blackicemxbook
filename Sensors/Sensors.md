@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../PicoSoC/PicoSoC.html)|[Up](..) |[Next](../StorageDevices/StorageDevices.html)|
+
 # Sensors
 
 Sensors usually have an GPIO (digital), SPI, I2C, ADC or UART interface.
