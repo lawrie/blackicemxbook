@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Directives/Directives.html)|[Up](..) |[Next](../Soft_Processors/Soft_Processors.html)|
+
 # Memory Access
 
 The internal memory in the Ice40 FPGA is known as Block RAM or BRAM. There is 16KB of it in 32 banks of 512 bytes.
