@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](..)|[Up](..) |[Next](../The_Hardware/The_Hardware.html)|
+
 # Introduction
 ##	Field Programmable Gate Arrays
 Field Programmable Gate Arrays (FPGAs) are extremely flexible devices that allow you to implement hardware components by configuring an array of logic gates, RAM and other resources via software.
