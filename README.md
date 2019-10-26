@@ -15,6 +15,7 @@ By Lawrie Griffiths
 * [Output Devices](./Output_Devices/Output_Devices.html)
 * [Input Devices](./Input_Devices/Input_Devices.html)
 * [Retro Computing](./RetroComputing/RetroComputing.html)
+* [Pico RAM SoC](./PicoSoC/PicoSoC.html)
 * [Sensors](./Sensors/Sensors.html)
 * [Storage Devices](./StorageDevices/StorageDevices.html)
 * [Actuators](./Actuators/Actuators.html)
