@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Actuators/Actuators.html)|[Up](..) |[Next](../MakingPmods/MakingPmods.html)|
+
 # STM32 Programming
 
 The STM32 ARM chip can be programmed using native libraries and the gcc compiler or with the Arduino IDE.
