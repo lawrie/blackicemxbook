@@ -56,5 +56,5 @@ This implementation of the [Apple One](https://github.com/lawrie/apple-one) is b
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Input_Devices/Input_Devices.html)|[Up](..) |[Next](../PicoSoc/PicoSoc.html)|
+|[Prev](../Input_Devices/Input_Devices.html)|[Up](..) |[Next](../PicoSoC/PicoSoC.html)|
 
