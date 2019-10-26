@@ -57,7 +57,7 @@ The latest firmware, which supports the USB to UART and writing bitstreams to fl
 To update the firmware to this version, do:
 
 ```sh
-git clone https://github.com/folknology/IceCore/tree/USB-CDC-issue-3
+git clone -b USB-CDC-issue-3 https://github.com/folknology/IceCore
 cd IceCore/firmware/myStorm/output
 dfu-util -s 0x08000000:leave -a 0 -D mystorm.raw -t 1024
 ```
@@ -105,13 +105,4 @@ Unfortunately, you often muss the power-up message as the `cat /dev/ttyACM0` is 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
 |[Prev](../The_Hardware/The_Hardware.html)|[Up](..) |[Next](../Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)|
-
-
-
-
-
-
-
-
-
 
