@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../The_Hardware/The_Hardware.html)|[Up](..) |[Next](../Programming_the_Built-in_Hardware/Programming_the_Built-in_Hardware.html)|
+
 # Getting Started
 
 ## The Blackice Mx device
