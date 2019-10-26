@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Output_Devices/Output_Devices.html)|[Up](..) |[Next](../RetroComputing/RetroComputing.html)|
+
 # Input devices
 
 ## PS/2 Keyboards
