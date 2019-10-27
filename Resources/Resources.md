@@ -62,7 +62,7 @@ Some of the RISC-V cores that run on ice40 devices include:
 
 ## SoC generators
 
-## Verilog 
+### Verilog 
 
 [PicoSoc](https://github.com/cliffordwolf/picorv32/tree/master/picosoc)
 
@@ -74,7 +74,7 @@ Some of the RISC-V cores that run on ice40 devices include:
 
 [FuseSoC}(https://github.com/olofk/fusesoc)
 
-## SpinalHDL
+### SpinalHDL
 
 [Murax](https://github.com/SpinalHDL/VexRiscv/blob/master/src/main/scala/vexriscv/demo/Murax.scala)
 
@@ -88,42 +88,55 @@ Some of the RISC-V cores that run on ice40 devices include:
 
 ## Other Hardware Description Languages
 
-[SpinalHDL](https://github.com/SpinalHDL/SpinalHDL) is the language that VexRiscv and SaxonSoc is written in. Its author is Charles Papn (Dolu1990). There is [online documentation](https://spinalhdl.github.io/SpinalDoc-RTD/).
+[SpinalHDL](https://github.com/SpinalHDL/SpinalHDL) is the Scala-based language that VexRiscv and SaxonSoc is written in. Its author is Charles Papn (Dolu1990). There is [online documentation](https://spinalhdl.github.io/SpinalDoc-RTD/).
 
-[migen](https://github.com/m-labs/migen)
+[migen](https://github.com/m-labs/migen) is a python based language used by Litex.
 
-[nmigen](https://github.com/m-labs/nmigen)
+[nmigen](https://github.com/m-labs/nmigen) is a newer version of migen.
 
-[Chisel](https://github.com/freechipsproject/chisel3)
+[Chisel](https://github.com/freechipsproject/chisel3) is another Scala-based language used by the Sifive Risc-V implementations.
 
 [clash](https://clash-lang.org/)
 
 ## Other open source boards
 
-TinyFPGA BX
+There are a lot of open source FPGA board. Here are some of the current popular ones:
 
-iCEBreaker
+[TinyFPGA BX](https://www.amazon.co.uk/TinyFPGA-MMP-0319-BX-Without-Pins/dp/B07HCXTNFX)
 
-Fomu
+[iCEBreaker](https://www.crowdsupply.com/1bitsquared/icebreaker-fpga)
+
+[Fomu](https://www.crowdsupply.com/sutajio-kosagi/fomu)
+
+[Alhambra](https://alhambrabits.com/alhambra/)
+
+[ULX3S ECP5 board](https://radiona.org/ulx3s/)
 
 ## Retro computer resources
 
+The [Mist](https://github.com/mist-devel/mist-board/wiki) and [Mister](https://github.com/MiSTer-devel/Main_MiSTer/wiki) projects are good sources of Retro Computing FPGA implementations, but many are in VHDL and need converting to Verilog. Most need some conversion to use the Blackice Mx SDRAM.
+
 ### 6502 CPU implementsations
+
+There are several goof 6502 CPU implementations in Verilog. 
+
+A commonly used one in [Arlet](https://github.com/Arlet/verilog-6502), which is used in the Acorn Atom project. One problem with this for some rettro computers is that it is not cycle-accurate.
+
+The NES implementation has a [cycle-accurate microcode implementation](https://github.com/lawrie/up5k-demos/blob/master/nesmx/cpu.v).
 
 ### Z80 CPU implementations
 
+There is a good Verilog microcoded Z80 implementation in [David Banks's CP/M Z80 implementation](https://github.com/hoglet67/Ice40CPMZ80/tree/master/src/Components/Z80).
+
 ## Other forums
 
-TinyFPGA
+There are other forums for ice40 FPGA boards. 
 
-iCEBreaker
+Some popular ones are:
 
-## Chat servers
+[TinyFPGA](https://discourse.tinyfpga.com/)
 
-## IP core repositories
-
-## Twitter
-
+[iCEBreaker](https://forum.icebreaker-fpga.com/)
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
