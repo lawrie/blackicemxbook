@@ -88,6 +88,8 @@ When you are sure you know how your device working and the examples are working,
 
 ## Troubleshooting
 
+You vcsan ask questions on the [myStorm forum](https://forum.mystorm.uk).
+
 If uploading firmware fails, you will usually see the red CDONE (D) LED on, and the green STATUS (S) LED off or flashing. Sometimes the cat statement may hang and you need to unplug your device and plug.
 
 One thing that calls modemmanager. If you have this on your system, you may want to uninstall it, disable it, stop its service, or, better, set up udev rules so that it ignores /dev/ttyACM0.
