@@ -1,0 +1,5 @@
+set_io clk 60
+set_io control 21
+set_io -pullup yes button_dn 49
+set_io -pullup yes button_up 52
+
