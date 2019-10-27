@@ -6,9 +6,7 @@
 
 The STM32 ARM chip can be programmed using and the gcc compiler and the STM32 HAL libraries.
 
-Arduino is covered in the next section.
-
-To use gcc and the native libraries, you need to build the latest [GNU ARM Embedded Toochain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads).
+You need to build the latest [GNU ARM Embedded Toochain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads).
 
 The easiest way to start a development project for the STM32 is to copy and modify the [myStorm firmware](https://github.com/folknology/IceCore/tree/USB-CDC-issue-3/firmware) project. As most STM32 firmware replacement will need to have some way to configure the Ice40 FPGA, starting with the myStorm firmware is usually a good idea.
 
