@@ -98,7 +98,7 @@ Some of the RISC-V cores that run on ice40 devices include:
 
 [Chisel](https://github.com/freechipsproject/chisel3) is another Scala-based language used by the Sifive Risc-V implementations.
 
-[clash](https://clash-lang.org/)
+[clash](https://clash-lang.org/) is a Haskell-based functional HDL.
 
 ## Other open source boards
 
