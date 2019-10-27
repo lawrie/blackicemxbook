@@ -4,11 +4,11 @@
 
 # Making Pmods and MixMods
 
-The Pmods shown below used the Blackice II prototype Pmod which is available from [OSH Park](https://oshpark.com/shared_projects/K76XKzSr)
+The Pmods shown below used the myStorm prototype Pmod which is available from [Tindie](https://www.tindie.com/products/Folknology/the-mystorm-hackers-pmod-kit/) and [OSH Park](https://oshpark.com/shared_projects/K76XKzSr)
 
-PMODs for cheap hardware modules available on ebay and elsewhere are easy to make. Soldering female headers to the proto board allows modules to be plugged into the protoboard and can allow them to be used for multiple similar modules, such as a variety of i2c or SPI modules. Wire-wrapping wire works well for making the connections between the headers.
+PMods for cheap hardware modules available on ebay and elsewhere are easy to make. Soldering female headers to the proto board allows modules to be plugged into the protoboard and can allow them to be used for multiple similar modules, such as a variety of i2c or SPI modules. Wire-wrapping wire works well for making the connections between the headers.
 
-When you are happy with a PMOD, you can get a PCB made for it, by for example, using KiCad and the OSH Park service.
+When you are happy with a PMod, you can get a PCB made for it, by for example, using KiCad and the OSH Park service.
 
 With the Blackice Mx board, there is a prototype board for making MixMods which can be ordered with your Blackice Mx board.
 
