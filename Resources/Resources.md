@@ -24,6 +24,8 @@ The [fpga4student](https://fpga4student.com) also has some interesting projects.
 
 The [FPGA Wars](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_EN) community have a Verilog tutorial.
 
+The [ZipCPU blog](http://zipcpu.com/) is a bit more advanced, but is very good on topics such as formal verification and using industry-standard buses such as Wishbone and AXI.
+
 ### Online courses
 
 [Udemy](https://www.udemy.com/topic/fpga/) has some FPGA and Verilog courses.
