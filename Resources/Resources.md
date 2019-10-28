@@ -140,6 +140,50 @@ Some popular ones are:
 
 [iCEBreaker](https://forum.icebreaker-fpga.com/)
 
+## Chat Servers
+
+### Freenode
+
+Channels:
+
+#mystorm
+
+#yosys
+
+##openfpga
+
+###  Discord
+
+1BitSquared #icebreaker
+
+### Gitter
+
+SpinalHDL/SpinalHDL
+
+SpinalHDL/VexRiscv
+
+## Twitter
+
+Some Open FPGA twitter accounts:
+
+@folknology Alan Wood
+
+@oe1cxw Clofford Wolf
+
+@fpga_dave Dave Shah
+
+@ico_TC
+
+@esden Piotr Esden-Tempski, creator of the iCEBreaker board
+
+@zipcpu Dan Gisselquist
+
+@TinyFPGA Luke Valenty
+
+@mithro Tim Ansell, creator of the Fomu board
+
+@RadionaOrg Creators of the ULX3S ECP5 board
+
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
 |[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](..)|
