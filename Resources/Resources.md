@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](..)|
+|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](..)|
 
 # Resources
 
@@ -186,4 +186,4 @@ Some Open FPGA twitter accounts:
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](..)|
+|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](..)|
