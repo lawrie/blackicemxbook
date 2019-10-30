@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../MakingPmods/MakingPmods.html)|[Up](..) |[Next](../Resources/Resources.html)|
+|[Prev](../MakingPmods/MakingPmods.html)|[Up](..) |[Next](../LogicAnalysers/LogicAnalysers.html)|
 
 # Analog To Digital
 
@@ -19,4 +19,4 @@ And the 8-bit [Flashy device](https://www.knjn.com/Flashy.html) with a suitable 
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../MakingPmods/MakingPmods.html)|[Up](..) |[Next](../Resources/Resources.html)|
+|[Prev](../MakingPmods/MakingPmods.html)|[Up](..) |[Next](../LogicAnalysers/LogicAnalysers.html)|
