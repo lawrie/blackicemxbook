@@ -22,4 +22,5 @@ By Lawrie Griffiths
 * [STM32 Programming](./STM32Programming/STM32Programming.html)
 * [Making Pmods and MixMods](./MakingPmods/MakingPmods.html)
 * [Analog to Digital (ADC)](./Analog2Digital/Analog2Digital.html)
+* [Logic Analysers](./LogicAnalysers/LogicAnalysers.html)
 * [Resources](./Resources/Resources.html)
