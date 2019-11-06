@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Memory_Access/Memory_Access.html)|[Up](..) |[Next](../Audio/Audio.html)|
+|[Prev](../Memory_Access/Memory_Access.html)|[Up](..) |[Next](../Debugging/Debugging.html)|
 
 # Soft Processors
 
@@ -260,5 +260,5 @@ In addition there is a Risc-V SoC called [SaxonSoc][], which uses the VexRiscv R
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Memory_Access/Memory_Access.html)|[Up](..) |[Next](../Audio/Audio.html)|
+|[Prev](../Memory_Access/Memory_Access.html)|[Up](..) |[Next](../Debugging/Debugging.html)|
 
