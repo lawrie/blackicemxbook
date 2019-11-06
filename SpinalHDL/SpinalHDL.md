@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](../Resources/Resources.html)|
+
 # SpinalHDL
 
 SpinalHDL is an alternative Hardware Description Language (HDL). It is Domain Specific Language (DSL) based on the Scala language, and is much more powerful for generating hardware than Verilog.
@@ -296,4 +300,7 @@ object UartCtrlUsageExample{
 }
 ```
 
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](../Resources/Resources.html)|
 
