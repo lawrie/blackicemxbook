@@ -32,7 +32,7 @@ For digital circuits logic analysers are usually more useful than oscilloscopes.
 
 The host software for logic analysers, such as Pulseview, have decoders for common protocols like UART, I2C and SPI, and give you a high level view of the data being transferred.
 
-## LEDS
+## LEDs
 
 One of the simplest techniques for debugging is to use LEDs to show the value of individual pins, or to use a bank of LEDs to show multi-bit items. Note that the user LEDS on the Blackice Mx on on when the signal is low, so you might have to negate signals.
 
