@@ -173,13 +173,13 @@ import spinal.lib._
 class DebounceTest(width:Int = 15) extends Component {
   val io = new Bundle {
     val button1 = in Bool
-    val leds = out UInt(2 bits)
+    val leds = out UInt(3 bits)
   }
 
   val debounce = new Debounce(width)
   debounce.io.pb := io.button1
   
-  val leds = Reg(UInt(2 bits))
+  val leds = Reg(UInt(3 bits))
   io.leds := ~leds // LEDs on on when low
 
   when (debounce.io.pbDown) {
@@ -201,5 +201,53 @@ sbt "runMain mylib.DebounceTest"
 make VERILOG=DebounceTest.v PCF=buttons.pcf prog
 ```
 
+You get a 3-bit count on the green, yellow and red leds of the number of times button1 (corresponding to the blue led) is pressed.
 
+## Led Glow PWM example
+
+Here is the SpinalHDL versiion of LedGlow:
+
+```scala
+package mylib
+
+import spinal.core._
+
+class LedGlow extends Component {
+  val io = new Bundle {
+    val blueLed = out Bool
+  }
+
+  val cnt = Reg(UInt(26 bits))
+  val pwm = Reg(UInt(5 bits))
+
+  cnt := cnt + 1
+
+  val pwmInput = UInt(4 bits)
+
+  when (cnt(25)) {
+    pwmInput := cnt(24 downto 21)
+  } otherwise {
+    pwmInput := ~cnt(24 downto 21)
+  }
+
+  pwm := pwm(3 downto 0).resize(5) + pwmInput.resize(5)
+
+  io.blueLed := pwm(4)  
+}
+
+object LedGlow {
+  def main(args: Array[String]) {
+    BlackIceSpinalConfig.generateVerilog(new LedGlow)
+  }
+}
+```
+
+To build and upload that, do:
+
+```sh
+sbt "runMain mylib.LedGlow"
+make VERILOG=LedGlow.v PCF=leds.pcf prog
+```
+
+You should see the blue LED glowing.
 
