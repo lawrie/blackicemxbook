@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](../Resources/Resources.html)|
+|[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](../SpinalHDL/SpinalHDL.html)|
 
 # Logic Analysers
 
@@ -27,4 +27,4 @@ Another Logic Analyser that could be port to Blackice boards is [SUMP2](https://
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](../Resources/Resources.html)|
+|[Prev](../Analog2Digital/Analog2Digital.html)|[Up](..) |[Next](../SpinalHDL/SpinalHDl.html)|
