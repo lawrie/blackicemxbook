@@ -1,25 +1,51 @@
 # Debugging
 
-There are various techniques for debugging Verilog applications on the BlackIce II. If you wish to check that the correct signals are being generated or the correct signals received, you can connect an oscilloscope or logic analyser to Pmod or other outputs.
+Debugging hardware components is difficult. You can't step through your code with a debugger or add debugging print statements as you can with software.
 
-You can get a lot of bugs out of modules by writing test beds for them and running them in a simulator, as described in the next chapter.
+## Simulation
 
-The best method is not to have to debug at all. You can use formal methods to prove that your code is correct, but that is outside the scope of this book.
+The closest you can get to the is to run your Verilog code in a simulator such as iVerilog or Verilator. When you use this in conjucntion with a wave file viewer such as gtkwave, you can see the history of how each variable (wire or register) in your design changes each clock cycle. This is very useful for checking that your logic is working as you expect and for finding bugs. It does, however, take quite a bit of work to set up test scripts and to write simulated versions of components, so that you can narrow in on the portion of your design that you are interested in. For more detail on simulation, see the Simulation chapter.
+
+## Formal methods
+
+Even better than simulation is to use formal methods to mathematically prove that your design is correct. However, setting this up can be complex, so it is probably not for beginners. 
+
+There is a very good series of articles by Dan Gisselquist starting with his [blog post](https://zipcpu.com/blog/2017/10/19/formal-intro.html) on how he started with formal methods.
+
+## Diagnostic outputs
+
+Another useful technique is to have your components produce diagnostic outputs. This is a set of signals that you can examine to see if your component is working correctly. You can pass these diagnostic outputs up through a chain of components, so that they are available at the top level, where they can be examined in a variety of ways.
 
 ## Test points
 
-Digilent test point Pmods are useful for this as they let you connect wires to any of the input or output pins while providing a passthrough to the real hardware.
+You can connect test points to Pmods and Mixmods to make it easier to examine diagnostic outputs with an oscilloscope or a logic analyser.
 
-![Debugging](./Debugging.jpg "Debugging")
+Digilent sell a [double Pmod test point](https://store.digilentinc.com/pmod-tph2-12-pin-test-point-header/) and you can buy Mixmod test points with your Blackice Mx from the Tindie store. Note however, that the wiring for the Mixmod test point is [currently incorrect](https://forum.mystorm.uk/t/test-mixmod-pinout/620).
+
+## Oscilloscopes
+
+You can use an oscilloscope with a test point to examine an output signal. It is particularly useful to check if the frequency and duty cycle of a sqare wave output such as vertical or horizontal sunc signals for video output, or for PWM outputs.
+
+## Logic analysers
+
+For digital circuits logic analysers are usually more useful than oscilloscopes. You can buy a commercial logic analyser to examine diagnostic signals using test points, or you can build a logic analyser using another Blackice Mx - see the Logic Analysers chapter.
+
+The host software for logic analysers, such as Pulseview, have decoders for common protocols like UART, I2C and SPI, and give you a high level view of the data being transferred.
 
 ## LEDS
 
-One of the simplest techniques for debugging is to use LEDs to show the value of individual pins or bits, or to use a bank of LEDs to show multi-bit items.
+One of the simplest techniques for debugging is to use LEDs to show the value of individual pins, or to use a bank of LEDs to show multi-bit items. Note that the user LEDS on the Blackice Mx on on when the signal is low, so you might have to negate signals.
 
-7-segment LEDS can display such data in a more readable format, either in decimal of hex.
+LEDs only works in simple cases and a logic analyser is usually preferable.
 
-## UART Debugging
+You can use a single LED to see if a specific path through your Verilog code is being reached. You can display slow-changing values on LEDs, but may need to slow down your component with delay counters to make this feasible. You can also display the final value of variables on leds, to check it is as expected.
+
+## 7-segment displays
+
+7-segment LED displsays are also useful for displaying diagnostic values, either in decimal of hex.
+
+## UART 
 
 The UART is useful for sending debugging messages to. [Here][] is an example of a debug module being used to show the key codes coming from a PS/2 keyboard.
 
-[Here]:									https://github.com/lawrie/verilog_examples/tree/master/fpga/debug
+[Here]:									../examples/input/ps2
