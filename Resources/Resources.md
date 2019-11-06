@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](..)|
+|[Prev](../SpinalHDL/SpinalHDL.html)|[Up](..) |[Next](..)|
 
 # Resources
 
@@ -186,4 +186,4 @@ Some Open FPGA twitter accounts:
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](..)|
+|[Prev](../SpinalHDL/SpinalHDL.html)|[Up](..) |[Next](..)|
