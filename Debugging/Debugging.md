@@ -10,7 +10,7 @@ The closest you can get to the is to run your Verilog code in a simulator such a
 
 Even better than simulation is to use formal methods to mathematically prove that your design is correct. However, setting this up can be complex, so it is probably not for beginners. 
 
-There is a very good series of articles by Dan Gisselquist starting with his [blog post](https://zipcpu.com/blog/2017/10/19/formal-intro.html) on how he started with formal methods.
+There is a very good series of articles by Dan Gisselquist starting with his [blog post](https://zipcpu.com/blog/2017/10/19/formal-intro.html) on how he started with formal methods. And the instructions for setting up the Formal methods tools are [here](https://symbiyosys.readthedocs.io/en/latest/quickstart.html).
 
 ## Diagnostic outputs
 
