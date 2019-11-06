@@ -12,7 +12,7 @@ The installation instructions are in the [SpinalTemplateSbt](https://github.com/
 
 Once that is installed, clone my [SpinalBlackiceMx](https://github.com/lawrie/SpinalBlackiceMx) project.
 
-## First example
+## First example - LEDs
 
 Here is how simple Blue LED example is written in SpinalHDL:
 
@@ -72,12 +72,54 @@ This simple example does not show the power of SpinalHDL.
 To build and upload the example, do:
 
 ```
-make VERILOG=BluedLed.v PCF=leds.pcf upload
+make VERILOG=BluedLed.v PCF=leds.pcf prog
 ```
 
 and the blue LED should be on.
 
+If you change the line:
 
+```scala
+    val blueLed = out Bool
+```
 
+to
 
- 
+```scala
+    val blueLed = out(Reg(Bool))
+```
+
+Then the register version with a clock will be generated:
+
+```verilog
+module BlueLed (
+      output reg  io_blueLed,
+      input   clk);
+  always @ (posedge clk) begin
+    io_blueLed <= (! 1'b1);
+  end
+
+endmodule
+```
+
+Note that you do not need to change the assignment statement. The `:=` operator can be used whether a signal is declared as a register on not. For a register it will generate a non-blocking Verilog assignment using the `<=` operator.
+
+Note also that you do not mention `clk`. Clock domains are dealt with implicitly by SpinalHDL.
+
+If you want to set all 4 LEDs on,you could change:
+
+```scala
+    val blueLed = out Bool
+```
+
+to
+
+```scala
+    val leds = out Bits(4 bits)
+```
+
+and change the assignment to:
+
+```scala 
+    io.leds := 0 // LEDS are on when low
+```
