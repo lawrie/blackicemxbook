@@ -72,8 +72,10 @@ This simple example does not show the power of SpinalHDL.
 To build and upload the example, do:
 
 ```
-make VERILOG=BluedLed.v PCF=leds.pcf
+make VERILOG=BluedLed.v PCF=leds.pcf upload
 ```
+
+and the blue LED should be on.
 
 
 
