@@ -24,4 +24,5 @@ By Lawrie Griffiths
 * [Making Pmods and MixMods](./MakingPmods/MakingPmods.html)
 * [Analog to Digital (ADC)](./Analog2Digital/Analog2Digital.html)
 * [Logic Analysers](./LogicAnalysers/LogicAnalysers.html)
+* [SpinalHDL](./SpinalHDL/SpinalHDL.html)
 * [Resources](./Resources/Resources.html)
