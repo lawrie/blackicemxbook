@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Soft_Processors/Soft_Processors.html)|[Up](..) |[Next](../Audio/Audio.html)|
+
 # Debugging
 
 Debugging hardware components is difficult. You can't step through your code with a debugger or add debugging print statements as you can with software.
@@ -49,3 +53,7 @@ You can use a single LED to see if a specific path through your Verilog code is 
 The UART is useful for sending debugging messages to. [Here][] is an example of a debug module being used to show the key codes coming from a PS/2 keyboard.
 
 [Here]:									../examples/input/ps2
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Soft_Processors/Soft_Processors.html)|[Up](..) |[Next](../Audio/Audio.html)|
