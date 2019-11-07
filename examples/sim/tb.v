@@ -1,8 +1,6 @@
-
 `timescale 1ns/100ps
 
 module tb();
-
 	initial begin
 		$dumpfile("waves.vcd");
 		$dumpvars(0);
@@ -52,6 +50,5 @@ module tb();
 
 		$finish;
 	end
-
 endmodule
 
