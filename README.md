@@ -25,4 +25,5 @@ By Lawrie Griffiths
 * [Analog to Digital (ADC)](./Analog2Digital/Analog2Digital.html)
 * [Logic Analysers](./LogicAnalysers/LogicAnalysers.html)
 * [SpinalHDL](./SpinalHDL/SpinalHDL.html)
+* [SaxonSoc](./SaxonSoc/SaxonSoc.html)
 * [Resources](./Resources/Resources.html)
