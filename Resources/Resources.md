@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../SaxonSoc/SaxonSov.html)|[Up](..) |[Next](..)|
+|[Prev](../SaxonSoc/SaxonSoc.html)|[Up](..) |[Next](..)|
 
 # Resources
 
