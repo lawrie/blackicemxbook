@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../SpinalHDL/SpinalHDL.html)|[Up](..) |[Next](..)|
+|[Prev](../SaxonSoc/SaxonSov.html)|[Up](..) |[Next](..)|
 
 # Resources
 
@@ -186,4 +186,4 @@ Some Open FPGA twitter accounts:
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../SpinalHDL/SpinalHDL.html)|[Up](..) |[Next](..)|
+|[Prev](../SaxonSoc/SaxonSoc.html)|[Up](..) |[Next](..)|
