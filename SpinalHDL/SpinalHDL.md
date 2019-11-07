@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](../Resources/Resources.html)|
+|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](../SaxonSoc/SaxonSoc.html)|
 
 # SpinalHDL
 
@@ -302,5 +302,4 @@ object UartCtrlUsageExample{
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](../Resources/Resources.html)|
-
+|[Prev](../LogicAnalysers/LogicAnalysers.html)|[Up](..) |[Next](../SaxonSoc/SaxonSoc.html)|
