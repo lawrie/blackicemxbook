@@ -1,12 +1,16 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Debugging/Debugging.html)|[Up](..) |[Next](../Audio/Audio.html)|
+
 # Simulation
 
 Simulation is a useful technique to verify and debug your Verilog designs.
 
-There are two common open source tools that are used for simulation Icarus Verilog (iverilog) and Verilator.
+There are two common open source tools that are used for simulation: Icarus Verilog (iverilog) and Verilator.
 
 With Icarus Verilog you write a test bench for the component that you want to test in System Verilog. System Verilog has many features for testing that are not synthesizable and connot be used in standard Verilog.
 
-Verilator is a more powerful tool that generates C++ from your Verilog code. You normally write a testbench in C++ to test your Verilog modules, and do not usually need to write a System Verilog testbench. Verilator allows a lot of common components to be simulated.
+Verilator is a more powerful tool that generates C++ from your Verilog code. You normally write a testbench in C++ to test your Verilog modules, and do not usually need to write a System Verilog testbench. Verilator has interactive and graphical simulators for a lot of components.
 
 ## Icarus Verilog
 
@@ -81,7 +85,7 @@ It then instantiates txuart and defines registers for its input signals and wire
 
 The test code starts with i_wr=0 and then sends a character by setting i_wr=1 and i_data="H". It waits for o_busy to go to zero, for the character to have been sent, and then sets i_data="e" to send the next character (leaving i_wr=1). When this has been sent, it sets i_wr=0 to prevent further transmission and after a few clock cycles, finishes (using $finish).
 
-You can compile the tb.v by doing:
+You can compile tb.v by doing:
 
 ```sh
 iverilog -o tb tb.v txuart.v
@@ -103,4 +107,6 @@ This is the relevant part of the wave file, as shown by gtkwave. You can confitm
 
 ![txuart](./txuart.png)
 
-
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../Debugging/Debugging.html)|[Up](..) |[Next](../Audio/Audio.html)|
