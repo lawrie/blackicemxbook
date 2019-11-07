@@ -1,16 +1,16 @@
 # SaxonSoc
 
-SaxonSoc is a Risc-V System-on-a-Chip (Soc) based on the SpinalHDL VexRiscv 32-bit Risc-V implementation.
+SaxonSoc is a Risc-V System-on-a-Chip (Soc) generator based on the SpinalHDL VexRiscv 32-bit Risc-V implementation.
 
-It is a scalable SoC that works on the smallest Lattice up5k ice40 boards, but scales up to run Linux with DDR memory on much larger boards.
+It is a scalable SoC platform that works on the smallest Lattice up5k ice40 boards, but scales up to run Linux with DDR memory on much larger boards.
 
-It supports a wide range of memory options including BRAM, SDR and DDR SDRAM, SRAM, and Execute-in-place (XIP) from flash memory. It supports many peripherals, including UART, I2C and SPI, is extremely configurable, and has an API that makes it very easy to configure exactly which SoC you need for your projects. It supports generating Board Support Packages (BSPs) with generated C header files and Linux device trees. It allows FPGA pins to be shared by many peripherals.
+It supports a wide range of memory options including BRAM, SDR and DDR SDRAM, SRAM, and Execute-in-place (XIP) from flash memory. It supports many peripherals, including UART, I2C and SPI, is extremely configurable, and has an API that makes it very easy to configure exactly which SoC you need for your project. It supports generating Board Support Packages (BSPs) with generated C header files and Linux device trees. It allows FPGA pins to be shared by multiple peripherals.
 
 ## Installation
 
 You first need to install SpinalHDL - see the SpinalHDL chapter.
 
-You then need to install a Risc-V GNU toolchain - see the PicoSoC section for one possible version of the toolchain. Alternatively, ou can also follow the instructions to install the SiFive version of the toolchain in the SpinalHDL/Vexriscv repository.
+You then need to install a Risc-V GNU toolchain - see the PicoSoC section for one possible version of the toolchain. Alternatively, ou can also follow the instructions to install the SiFive version of the toolchain in the [SpinalHDL/Vexriscv repository](https://github.com/SpinalHDL/Vexriscv) - see the "Build the RISC-V GCC" section.
 
 Finally, you should install the dev branch of SaxonSoc by:
 
@@ -26,9 +26,9 @@ SaxonSoc uses a new way in SpinalHDL of generating the HDL, called generators, w
 
 Note that this example omits the package statement and imports needed at the top of the SpinalHDL source file, but is otherwise defines a complete working SoC. It differs slightly from the version of BlackiceMxMinimal in the SaxonSoc repository, as I have omittted the two SPI peripherals, which that version of the SoC uses.
 
-In the SaxonSoc repository, the source for a SoC for aspecific board is in the hardware/scala/saxon/board/<board-name> directory.
+In the SaxonSoc repository, the source for a SoC for a specific board is in the hardware/scala/saxon/board/<board-name> directory.
 
-To define a new SoC, you create a class for the system, which specifies the memory and peripheral you require and which addresses they use.
+To define a new SoC, you create a class for the system, which specifies the memory and peripherals you require and which addresses they use.
 
 ```scala
 class BlackiceMxMinimalSystem extends BmbApbVexRiscvGenerator{
@@ -65,8 +65,7 @@ class BlackiceMxMinimal extends Generator{
 }
 ```
 
-You then configure the memory and peripherals using the companion object of the system. You can define multiple different configurations here. This example just creates one called default. It specifies the VexRiscv configuration you require and the size of the BRAM memory.
-It specifies the uart parameters including the size of receive and transmit fifos. It specifies how many GPIO pins tyou aish to use.
+You then configure the memory and peripherals using the companion object of the system class. You can define multiple different configurations here. This example just creates one called default. It specifies the VexRiscv configuration you require and the size of the BRAM memory. It specifies the uart parameters including the size of receive and transmit fifos. It specifies how many GPIO pins you wish to use.
 
 If you are executing code from BRAM, you can load the code from a hex file.
 
@@ -115,13 +114,13 @@ object BlackiceMxMinimal {
 }
 ```
 
-The pcf file is not generated for you, but the report does list all the top-level port names, which makes creating the pcf file easier/
+The pcf file is not generated for you, but the report does list all the top-level port names, which makes creating the pcf file easier.
 
 ## Generating the SoC
 
-In the SaxonSoc repository, the synthesisc files for a specific board are in the hardware/synthesis/<board-name> directory and the verilog is generated in the hardware/netlist directory.
+In the SaxonSoc repository, the synthesis files for a specific board are in the hardware/synthesis/<board-name> directory and the verilog is generated in the hardware/netlist directory.
   
-To generate a Blackice Mx Soc, you do, with your board plugged in:
+To generate a BlackiceMxMinimal Soc, you do, with your board plugged in:
 
 ```sh
 cd hardware/synthesis/blackicemx
@@ -132,7 +131,7 @@ make prog
 
 and your SoC starts running.
 
-If Your SoC runs code from flash memory, you will first need to load the software binary into flash memory at the address specified in the SoC configuration and the linker script. On Blackice Mx, you can do that with the writeFlash script, but it will soon be supported by the STM32 firmware.
+If your SoC runs code from flash memory, you will first need to load the software binary into flash memory at the address specified in the SoC configuration and the linker script. On Blackice Mx, you can do that with the writeFlash utility (described below), but it will soon be supported by the STM32 firmware.
 
 Another way of running software is to use a bootloader in BRAM and load code over the uart into SDRAM. That is what the BlackiceMxArduino system does.
 
@@ -153,7 +152,7 @@ cd software/standalone/blinkAndEcho
 make BSP=BlackiceMxMinimal
 ```
 
-Note that the BSP used here is in the bsp directory in thec SaxonSoC directory. It is mainly created when genewrate your SoC, but you do have to set up include/soc.mk and include/default.mk. You can often copy these from another BSP that uses similar options. The soc.mk  specifies which Risc-V options you are using (compressed and/or multiply/divide hardware support).
+Note that the BSP used here is in the bsp directory in the SaxonSoC directory. Most of the BSP is created when generate your SoC, but you do have to set up include/soc.mk and include/default.ld. You can often copy these from another BSP that uses similar options. The soc.mk  specifies which Risc-V options you are using (compressed and/or multiply/divide hardware support).
 
 Note that there is a cross dependency between the hardware and software in that the BSP is not generated until you build the SoC, but you need the BSP to compile the software. This means that if you uses hexInit to load the software binary, you must first set it null, 
 generate the SoC, then build the software with the BSP, and then set hexInit to the software binary and regenerate the SoC.
@@ -166,13 +165,13 @@ The SaxonSoc repository contains several Blackice Mx configurations:
 - BlackiceMxSocSdram - similar to Minimal but adds SDRAM memory. Used by the writeFlash utility.
 - BlackiceMxArduino - supports the SaxonArduino system. Uses a boot loader to load the software over uart into SDRAM.
 - BlackiceMxXip - executes code in place (XIP) from dflash memory
-- BlackiceMxZephyr - a version of Xip for running the Zephyr OS. Uses SDRAM for the ram.
+- BlackiceMxZephyr - a version of Xip for running the Zephyr OS. Uses SDRAM for the RAM.
 
 ## Using the writeFlash utility
 
 There is a software example in software/standalone/writeFlash that can be used to write a software binary to flash memory.
 
-It requires the BlackiceMxSdram configuration as it reads the software binary from the uart into SDRAM, and rthen writes it to the flash memory. The software binary needs to prefixed with the address to write it to and its length. There is a createPrefix.py python script that will create such a prefix.
+It requires the BlackiceMxSdram configuration as it reads the software binary from the uart into SDRAM, and then writes it to the flash memory. The software binary needs to prefixed with the address to write it to and its length. There is a createPrefix.py python script that will create such a prefix.
 
 So to use the utility, you first build the software:
 
@@ -188,7 +187,7 @@ stty -F /dev/ttyACM0 raw -echo
 cat /dev/ttyACM0
 ```
 
-and then edit createPrefix.py to set the address and length your require and do:
+and then edit createPrefix.py to set the addr and length your require and do:
 
 ```sh
 cd hardware/synthesis/blackicemx
@@ -227,7 +226,5 @@ cmake -DBOARD=vexriscv_saxon_up5k_evn .. make -j${nproc}
 
 If you then write the generated software binary to address 0x50000 in flash memory using writeFlash, as described above, and then run the BlackiceMxZephyr SoC it will run the philosophers demo and you should see the output on /dev/tyyACM0.
 
-Unfortunately it does not currebtly seem to work with /dev/ttyACM0, but if you connect a serial to uart device to the TX pin on the Blackice Mx RPi header, you should see the output on /dev/ttyUSB0.
-
-
+Unfortunately it does not currently seem to work with /dev/ttyACM0, but if you connect a USB to UART device to the TX pin on the Blackice Mx RPi header, you should see the output on /dev/ttyUSB0.
 
