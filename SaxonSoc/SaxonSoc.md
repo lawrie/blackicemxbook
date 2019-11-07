@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../SpinalHDL/SpinalHDL.html)|[Up](..) |[Next](../Resources/Resources.html)|
+
 # SaxonSoc
 
 SaxonSoc is a Risc-V System-on-a-Chip (Soc) generator based on the SpinalHDL VexRiscv 32-bit Risc-V implementation.
@@ -228,3 +232,6 @@ If you then write the generated software binary to address 0x50000 in flash memo
 
 Unfortunately it does not currently seem to work with /dev/ttyACM0, but if you connect a USB to UART device to the TX pin on the Blackice Mx RPi header, you should see the output on /dev/ttyUSB0.
 
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../SpinalHDL/SpinalHDL.html)|[Up](..) |[Next](../Resources/Resources.html)|
