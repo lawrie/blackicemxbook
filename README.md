@@ -12,6 +12,7 @@ By Lawrie Griffiths
 * [Memory Access](./Memory_Access/Memory_Access.html)
 * [Soft Processors](./Soft_Processors/Soft_Processors.html)
 * [Debugging](./Debugging/Debugging.html)
+* [Simulation](./Simulation/Simulation.html)
 * [Audio](./Audio/Audio.html)
 * [Output Devices](./Output_Devices/Output_Devices.html)
 * [Input Devices](./Input_Devices/Input_Devices.html)
