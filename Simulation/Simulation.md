@@ -103,7 +103,7 @@ You can then view the wave file by:
 gtkwave waves.vcd
 ```
 
-This is the relevant part of the wave file, as shown by gtkwave. You can confitm that the o_tx_uart signal is correct.
+This is the relevant part of the wave file, as shown by gtkwave. You can confitm that the o_uart_tx signal is correct.
 
 ![txuart](./txuart.png)
 
