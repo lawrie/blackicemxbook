@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Debugging/Debugging.html)|[Up](..) |[Next](../Output_Devices/Output_Devices.html)|
+|[Prev](../Simulation/Simulation.html)|[Up](..) |[Next](../Output_Devices/Output_Devices.html)|
 
 # Audio
 
@@ -158,4 +158,4 @@ The quality is not very good.
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Debugging/Debugging.html)|[Up](..) |[Next](../Output_Devices/Output_Devices.html)|
+|[Prev](../Simulation/Simulation.html)|[Up](..) |[Next](../Output_Devices/Output_Devices.html)|
