@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Soft_Processors/Soft_Processors.html)|[Up](..) |[Next](../Audio/Audio.html)|
+|[Prev](../Soft_Processors/Soft_Processors.html)|[Up](..) |[Next](../Simulation/Simulation.html)|
 
 # Debugging
 
@@ -56,4 +56,4 @@ The UART is useful for sending debugging messages to. [Here][] is an example of 
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../Soft_Processors/Soft_Processors.html)|[Up](..) |[Next](../Audio/Audio.html)|
+|[Prev](../Soft_Processors/Soft_Processors.html)|[Up](..) |[Next](../Simulation/Simulation.html)|
