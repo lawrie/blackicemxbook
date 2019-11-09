@@ -22,7 +22,7 @@ Here is an [example][] of using a servo with Blackice Mx using the Diglinet Pmod
 
 [img1]:									./Servos.jpg "Servos"
 [Digilent CON3 R/C Servo Pmod]:			https://store.digilentinc.com/pmod-con3-r-c-servo-connectors/
-[example]:				../examples/actuators/servo/
+[example]:				https://github.com/lawrie/blackicemxbook/tree/master/examples/actuators/servo
 
 ## Gear Motors
 
