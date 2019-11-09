@@ -237,9 +237,9 @@ Here is a [video][] of the [led panel version][] of this program:
 
 ![LED Panel][img2]
 
-[video]:					https://www.youtube.com/watch?v=effNf-3IUxI
-[led panel version]:		https://github.com/lawrie/verilog_examples/blob/master/fpga/ledbaby/
-[img2]:						./LedPanel.jpg								"LED Panel"
+[video]:			https://www.youtube.com/watch?v=effNf-3IUxI
+[led panel version]:		https://github.com/lawrie/blackicemxbook/tree/master/examples/ledbaby
+[img2]:				./LedPanel.jpg	"LED Panel"
 
 ## System on a chip (SoC)
 
