@@ -157,7 +157,7 @@ always @(posedge clk) begin
    endcase
 end
 
-assign led = {1'b0, state == STOPPED}; 
+assign led = ~{1'b0, state == STOPPED}; 
 assign led2 = state;
 
 endmodule

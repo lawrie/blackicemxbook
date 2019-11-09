@@ -1,6 +1,6 @@
 set_io clk25 60
-set_io resetn 52
-set_io button 49
+set_io -pullup yes resetn 52
+set_io -pullup yes button 49
 
 set_io panel_r0  141
 set_io panel_g0  142
