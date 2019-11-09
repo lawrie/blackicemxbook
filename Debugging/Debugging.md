@@ -52,7 +52,7 @@ You can use a single LED to see if a specific path through your Verilog code is 
 
 The UART is useful for sending debugging messages to. [Here][] is an example of a debug module being used to show the key codes coming from a PS/2 keyboard.
 
-[Here]:									../examples/input/ps2
+[Here]:									https://github.com/lawrie/blackicemxbook/tree/master/examples/input/ps2
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
