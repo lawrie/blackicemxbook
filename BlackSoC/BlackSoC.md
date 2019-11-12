@@ -1,3 +1,7 @@
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../PicoSoC/PicoSoC.html)|[Up](..) |[Next](../Sensors/Sensors.html)|
+
 # BlackSoC
 
 Another [picorv32][] based Risc-V SoC that is available on Blackice Mx is [BlackSoC][] which is derived from Clifford Wolf's [icoSoC][].
@@ -131,3 +135,7 @@ You will see the BlackSoC bootloader messages in the first terminal, followed by
 If you edit main.c without touching any of the other files (like icosoc.cfg) and do “make run” again, the bitstream will not change so the program should rebuild quickly. Your will see bootloader messages on /dev/ttyUSB0 again as a new appimage.hex file is sent to the BlackSoC bootloader.
 
 To write your own application, follow the conventions of the example programs. You can write new modules and they will be used automatically providing they follow all the rules sand are in the correct directory. Each module used must have an entry in icosoc.cfg, specifying the pins it uses, and other parameters.
+
+|                        |                        |                        |
+|------------------------|------------------------|------------------------|
+|[Prev](../PicoSoC/PicoSoC.html)|[Up](..) |[Next](../Sensors/Sensors.html)|
