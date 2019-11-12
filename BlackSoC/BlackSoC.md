@@ -1,12 +1,18 @@
 # BlackSoC
 
-This SoC that this book will concentrate on is [BlackSoC][] which is derived from [icoSoC][], which itself was derived from Clifford Wolf’s [picorv32][] SoC.
+Another [picorv32][] based Risc-V SoC that is available on Blackice Mx is [BlackSoC][] which is derived from Clifford Wolf's [icoSoC][].
 
-BlackSoC is introduced early in this ebook as it is used to access a lot of hardware. That is because devices that use complex I2C or SPI protocols are much easier to access in C than in Verilog.
+BlackSoC differs from PicoSoC in that it is a SoC generator, using a python program to generate the top-level Verilog file, an include file for the make file, the pcf files, C header files and other files.
 
-BlackSoC and icoSoc on which it is based, consist of a picorv32 Risc-V implementation plus a set of Verilog modules with a standardised interface that can be used by Risc-V program written in C (or another language).
+BlackSoC (and icoSoc on which it is based) consist of a picorv32 Risc-V CPU plus a set of Verilog modules with a standardised interface that can be used by Risc-V programs written in C (or another language).
 
-The modules are accessed via a memory-mapped API. Corresponding to each Verilog module is some simple standardised python code that generates the C API code for accessing the module.
+The modules are accessed via a memory-mapped API. Corresponding to each Verilog module is some simple standardised python code that generates the C API code for accessing the module. Most of the modules implement protocols sicg as I2C, SPI or UART, or specific peripheral such as LED panels.
+
+All the user needs to write to generate the hardware is a simple configuration file (icosoc.cfg) that specifies what modulules are required, which pins they are connected to and any necessary parameters for them. 
+
+BlackSoC is rather easier to use than PicoSoc if you just want to use existing modules and it is not hard to define new modules. It is not as fast or configurable as the SpinalHDL SaxonSoC, which is introduced later in this book.
+
+The version of BlackSoC on Blackice Mx uses a small bootloader in BRAM to load the user program over the UART (dev/ttyACM0). The program is loaded into SDRAM and executed from there. Flash memory is not currently used. The SDRAM controller used was written by Dan Gisselquist.
 
 [BlackSoC]:					https://github.com/lawrie/icotools/tree/master/icosoc
 [icoSoC]:					https://github.com/cliffordwolf/icotools/tree/master/icosoc
@@ -25,16 +31,17 @@ BlackSoC currently has the following modules:
 | mod_gpio       |: Access to GPIO pins for input and output.                                              |
 | mod_i2c_master |: Access to i2c devices.                                                                 |
 | mod_ledpanel   |: Access to 32x32 and similar LED panels                                                 |
+| mod_mixmodssd  |: Access to the myStorm 7-segment Mixmod                                                 |
 | mod_ping       |: Access to HC-SR04 ultrasonic sensors                                                   |
 | mod_pmodssd    |: Access to 7-segment displays                                                           |
 | mod_ps2        |: Accessing PS/2 keyboards                                                               |
 | mod_pullup     |: A version of mod_gpio with pullup resistors on                                         |
 | mod_pwm        |: Setting frequency and duty cycles for Pulse Width Modulation signals                   |
-| mod_qspi_slave |: A QSPI slave mainly to receive data from the STM32                                     |
 | mod_rotary     |: Access to rotary sensors. Also usable for encoder motors.                              |
 | mod_rs232      |: Access to uarts                                                                        |
 | mod_spi        |: SPI master                                                                             |
 | mod_spi_oled   |: A version of mod_spi for Oled displays                                                 |
+| mod_ttexture   |: For tile and texture based VGA output                                                  |
 | mod_tone       |: Generating audio tones                                                                 |
 | mod_vga_text   |: Support for text on VGA monitors                                                       |
 
@@ -42,11 +49,11 @@ BlackSoC currently has the following modules:
 
 For each program to be run and specifically for each BlackSoC example program, there is a configuration file, [icosoc.cfg][], that defines what modules the program uses, what pins they are connected to and other parameters.
 
-There is a python program, icosoc.py, that generates all the run time files including the top-level Verilog file, the pcf file, C header files, a hex image file for the C program, and the Makefile.
+There is a python program, icosoc.py, that generates all the run time files including the top-level Verilog file, the pcf file, C header files, a hex image file for the C program, and an include file for the Makefile.
 
-It processes all configuration files and uses the python API files for each module used by the program.
+The icosoc.py python program processes all configuration files and uses the python program associated with each module to generates C programs and headers for the API for that module.
 
-There is also main.c program that defines the top-level C program to be run. The C program uses the APIs defined by the <module>.py files.
+There is also main.c program that defines the top-level C program to be run. The C program uses the APIs defined by the <module>.py files. You can also use extra C filesc and herader files.
 
 If modules exist for all the hardware you wish to use, then all you need to do to write is an icosoc.cfg file and a main.c file.
 
@@ -76,12 +83,11 @@ Here are the current BlackSoC examples:
 | ledpanel     | Test of LED panel
 | life         | Conway’s Game of Life on an LED panel
 | memtest      | Memory access test
+| mixmod-ssd   | Test of myStorm 7-segment Mixmod
 | motor        | Test of an encoder gear motor using Digilent dual H-bridge Pmod
 | otl_demo     | Test of 7-segment display using the Digilent Pmod
 | ping         | Test of an HC-SR04 ultrasonic sensor
 | ps2          | Test of scan codes from a PS/2 keyboard using the Digilent Pmod
-| qspiaudio    | Receives audio data from the STM32 and plays it using mod_audio
-| qspi_slave   | Receives data from an Arduino program on the STM32
 | rotary       | Test of a rotary sensor or the encoder on a motor
 | rtc          | Test of DS1307 i2c real time clock module
 | scales       | Not tested on BlackSoC
@@ -114,19 +120,12 @@ You will need both USB1 and USB2 connected.
 
 In one terminal do:
 
-	stty -F /dev/ttyACM0 raw
+	stty -F /dev/ttyACM0 raw -ecjo
 	cat /dev/ttyACM0
-
-You will see the iceboot messages in this terminal.
 
 In a second terminal do:
 
-	stty -F /dev/ttyUSB0 raw -echo 115200
-	cat /dev/ttyUSB0
-
-In a third terminal, do:
-
-	cd icotools/icosoc/examples/<example-directory>
+	cd blacksoc/examples/<example-directory>
 	make run
 
 You will see the BlackSoC bootloader messages in the second terminal. Followed by any messages from the example program. If the example program requires console input, you can connect a serial terminal program to /dev/ttyUSB0.
