@@ -2,13 +2,13 @@
 
 Another [picorv32][] based Risc-V SoC that is available on Blackice Mx is [BlackSoC][] which is derived from Clifford Wolf's [icoSoC][].
 
-BlackSoC differs from PicoSoC in that it is a SoC generator, using a python program to generate the top-level Verilog file, an include file for the make file, the pcf files, C header files and other files.
+BlackSoC differs from PicoSoC in that it is a SoC generator, using a python program to generate the top-level Verilog file, and all the other files needed to generate the hardware and software.
 
 BlackSoC (and icoSoc on which it is based) consist of a picorv32 Risc-V CPU plus a set of Verilog modules with a standardised interface that can be used by Risc-V programs written in C (or another language).
 
-The modules are accessed via a memory-mapped API. Corresponding to each Verilog module is some simple standardised python code that generates the C API code for accessing the module. Most of the modules implement protocols sicg as I2C, SPI or UART, or specific peripheral such as LED panels.
+The modules are accessed via a memory-mapped API. Corresponding to each Verilog module is some simple standardised python code that generates the C API code for accessing the module. Most of the modules implement protocols such as I2C, SPI or UART, or specific peripheral such as LED panels.
 
-All the user needs to write to generate the hardware is a simple configuration file (icosoc.cfg) that specifies what modulules are required, which pins they are connected to and any necessary parameters for them. 
+All the user needs to write to generate the hardware is a simple configuration file (icosoc.cfg) that specifies what modules are required, which pins they are connected to and any necessary parameters for them. 
 
 BlackSoC is rather easier to use than PicoSoc if you just want to use existing modules and it is not hard to define new modules. It is not as fast or configurable as the SpinalHDL SaxonSoC, which is introduced later in this book.
 
@@ -47,11 +47,11 @@ BlackSoC currently has the following modules:
 
 ## BlackSoC examples
 
-For each program to be run and specifically for each BlackSoC example program, there is a configuration file, [icosoc.cfg][], that defines what modules the program uses, what pins they are connected to and other parameters.
+For each user program including the BlackSoC example programs, there is a configuration file, [icosoc.cfg][], that defines what modules the program uses, what pins they are connected to and other parameters.
 
 There is a python program, icosoc.py, that generates all the run time files including the top-level Verilog file, the pcf file, C header files, a hex image file for the C program, and an include file for the Makefile.
 
-The icosoc.py python program processes all configuration files and uses the python program associated with each module to generates C programs and headers for the API for that module.
+The icosoc.py python program processes the configuration file and uses the python program associated with each module to generates C programs and headers for the API for that module.
 
 There is also main.c program that defines the top-level C program to be run. The C program uses the APIs defined by the <module>.py files. You can also use extra C filesc and herader files.
 
@@ -110,15 +110,13 @@ Here are the current BlackSoC examples:
 
 More information on BlackSoC is available in the [README][] file. Before you can run BlackSoC programs, you need to install the picorv32 toolchain which is needed to build the C programs. BlackSoC examples only use the basic picorv32i version of the toolchain, not all 4 variants. But they will use the variants if the configuration file requires them.
 
-[README]:					https://github.com/lawrie/icotools/blob/master/icosoc/README
+[README]:					https://github.com/lawrie/blacksoc/blob/master/README
 
 To run one of the examples, first do:
 
-	git clone https://github.com/lawrie/icotools
+	git clone https://github.com/lawrie/blacksoc
 
-You will need both USB1 and USB2 connected.
-
-In one terminal do:
+Then connect your Blackice Mx and in one terminal do:
 
 	stty -F /dev/ttyACM0 raw -ecjo
 	cat /dev/ttyACM0
@@ -128,7 +126,7 @@ In a second terminal do:
 	cd blacksoc/examples/<example-directory>
 	make run
 
-You will see the BlackSoC bootloader messages in the second terminal. Followed by any messages from the example program. If the example program requires console input, you can connect a serial terminal program to /dev/ttyUSB0.
+You will see the BlackSoC bootloader messages in the first terminal, followed by any messages from the example program. If the example program requires console input, you can connect a serial terminal program to /dev/ttyACM0.
 
 If you edit main.c without touching any of the other files (like icosoc.cfg) and do “make run” again, the bitstream will not change so the program should rebuild quickly. Your will see bootloader messages on /dev/ttyUSB0 again as a new appimage.hex file is sent to the BlackSoC bootloader.
 
