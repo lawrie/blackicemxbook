@@ -416,6 +416,34 @@ Here is [an example][] of driving a short 8 neopixel strip.
 [img9]:				./NeoPixels.jpg "Neopixels"
 [an example]:			https://github.com/lawrie/blackicemxbook/tree/master/examples/output/ws2812b
 
+## OLED displays
+
+### I2C OLED displays
+
+Some of the cheaper OLED displays are driven by I2C. There are cheap 4-pin modules available on ebay and elsewhere that can be plugged in to a Pmod header via a simple homemade adapter or even directly into the Pmod header (or via a connecting cable) if VCC and GND are in the correct position. An I2C master module, mod_i2c_master is available in BlackSoC, with an [example program][]. Some versions of the module use two colours, but they are fixed and not variable by software.  Often the top lines of that display use yellow text and the other lines blue.
+
+It is harder to access i2c oled displays and other i2c devices without a soft processor as they have complex sequences of commands for initialisation and writing data. However it is not too hard to set up a ROM with the appropriate initialisation commands.
+
+[example program]:		https://github.com/lawrie/blacksoc/tree/master/examples/ssd1306
+
+### SPI OLED displays
+
+![SPI OLED Displays][img12]
+
+OLED displays such sssd1306, ssd1351 etc. Are driven either by the SPI or I2C protocol.
+
+Icosoc has an implementation of an SPI master in mod_spi which is also in BlackSoC.
+
+The OLED displays use a variant of SPI that is output only and so has no MISO pin, and which has an extra pin (DC) to distinguish between commands and data. They also have a reset pin. To cope with this a new BlackSoC module, mod_spi_oled has been produced.
+
+There are BlackSoC examples for a variety of monochrome and RGB SPI OLED displays: the [ssd1306 or sh1106][], the [ssd1331][] and the [ssd1335][].
+
+[img12]:		./SPIOLEDDisplay.jpg "SPI OLED Displays"
+[ssd1306 or sh1106]:	https://github.com/lawrie/blacksoc/tree/master/examples/spi1306
+[ssd1331]:		https://github.com/lawrie/blacksoc/tree/master/examples/ssd1331
+[ssd1335]:		https://github.com/lawrie/blacksoc/tree/master/examples/ssd1335
+
+
 ## LCD Displays
 
 ### LCD Text Displays
