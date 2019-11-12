@@ -109,6 +109,14 @@ include ../blackicemx.mk
 
 You can then use the first three dip switches on the board to set the colour of the RGB LED.
 
+## 74HC595 shift register
+
+You can drive 8 or more LEDs with just 3 pins using am 74HC595 shift register chip.
+
+![shiftout](./shiftout.jpg)
+
+Here is an [example](https://github.com/lawrie/blackicemxbook/tree/master/examples/output/shiftout).
+
 ## Seven segment displays
 
 ### 3-digit MixMod
