@@ -1,0 +1,6 @@
+set_io clk_25MHz 60
+
+set_io shiftout_latch 136
+set_io shiftout_clock 137
+set_io shiftout_data 134
+
