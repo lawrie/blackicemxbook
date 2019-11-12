@@ -2,7 +2,7 @@
 |------------------------|------------------------|------------------------|
 |[Prev](../RetroComputing/RetroComputing.html)|[Up](..) |[Next](../BlackSoC/BlackSoC.html)|
 
-# PicoSoc
+# PicoSoC
 
 PicoSoC is a simple 32-bit Risc-V  System-on-a-Chip based on the PicoRV32 Risc-V system. Both PicoRV32 and PicoSoC were written by Clifford Wolf, the author of the icestorm tools.
 
