@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../RetroComputing/RetroComputing.html)|[Up](..) |[Next](../Sensors/Sensors.html)|
+|[Prev](../RetroComputing/RetroComputing.html)|[Up](..) |[Next](../BlackSoC/BlackSoC.html)|
 
 # PicoSoc
 
@@ -133,5 +133,5 @@ You should see `Hello World!¬.
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../RetroComputing/RetroComputing.html)|[Up](..) |[Next](../Sensors/Sensors.html)|
+|[Prev](../RetroComputing/RetroComputing.html)|[Up](..) |[Next](../BlackSoC/BlackSoC.html)|
 
