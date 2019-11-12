@@ -1,6 +1,6 @@
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../PicoSoC/PicoSoC.html)|[Up](..) |[Next](../StorageDevices/StorageDevices.html)|
+|[Prev](../BlackSoC/BlackSoC.html)|[Up](..) |[Next](../StorageDevices/StorageDevices.html)|
 
 # Sensors
 
@@ -36,4 +36,4 @@ The encoders on encoder motors are also quadrature rotation sensors. See the Act
 
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
-|[Prev](../PicoSoC/PicoSoC.html)|[Up](..) |[Next](../StorageDevices/StorageDevices.html)|
+|[Prev](../BlackSoC/BlackSoC.html)|[Up](..) |[Next](../StorageDevices/StorageDevices.html)|
