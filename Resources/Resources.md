@@ -38,7 +38,7 @@ Verilog Simulator: [iVerilog](http://iverilog.icarus.com/)
 
 Signal viewer: [GTKWave](http://gtkwave.sourceforge.net/)
 
-A fast Cerilog Simulator: [Verilator](https://www.veripool.org/wiki/verilator)
+A fast verilog Simulator: [Verilator](https://www.veripool.org/wiki/verilator)
 
 [apio](https://github.com/FPGAwars/apio)
 
