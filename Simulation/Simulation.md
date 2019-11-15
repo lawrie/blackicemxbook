@@ -188,6 +188,26 @@ int main(int argc, char**argv) {
 You then do `make sim` to build and run the simulation and you should see this output:
 
 ```
+k =  0, sw = 0, led = 0
+k =  1, sw = 1, led = 1
+k =  2, sw = 0, led = 0
+k =  3, sw = 1, led = 1
+k =  4, sw = 0, led = 0
+k =  5, sw = 1, led = 1
+k =  6, sw = 0, led = 0
+k =  7, sw = 1, led = 1
+k =  8, sw = 0, led = 0
+k =  9, sw = 1, led = 1
+k = 10, sw = 0, led = 0
+k = 11, sw = 1, led = 1
+k = 12, sw = 0, led = 0
+k = 13, sw = 1, led = 1
+k = 14, sw = 0, led = 0
+k = 15, sw = 1, led = 1
+k = 16, sw = 0, led = 0
+k = 17, sw = 1, led = 1
+k = 18, sw = 0, led = 0
+k = 19, sw = 1, led = 1
 ```
 
 There is a lot more information in the [ZipCPU tutorial](https://zipcpu.com/tutorial/).
