@@ -107,6 +107,119 @@ This is the relevant part of the wave file, as shown by gtkwave. You can confitm
 
 ![txuart](./txuart.png)
 
+## Verilator
+
+Here is an example of the use of Verilator taken from [Dan Gisselquist's ZipCPU tutorial](https://zipcpu.com/tutorial/lsn-01-wires.pdf).
+
+You will need to install Verilator, which on Debian variants of Linux can be done by `sudo apt-get install verilator`, but if you plan to use SpinalHDL, a more recent version may be needed - see the SpinalHDL chapter.
+
+The simple Verilog design (thruwire.v) from the ZipCPU tutorial is:
+
+```verilog
+`default_nettype 	none
+
+module	thruwire(i_sw, o_led);
+	input	wire i_sw;
+	output	wire o_led;
+
+	assign	o_led=i_sw;
+endmodule
+```
+
+The Makefile for this is:
+
+```make
+VERILOG_FILES = thruwire.v
+PCF_FILE = thruwire.pcf
+CPP_FILES = thruwire.cpp
+VERILATOR_HOME = /usr/local/share/verilator
+
+include ../blackicemx.mk
+
+sim: ${VERILOG_FILES} ${CPP_FILES}
+	verilator  -Wall -cc  ${VERILOG_FILES}
+	(cd obj_dir; make -f Vthruwire.mk)
+	g++ -I ${VERILATOR_HOME}/include -I obj_dir/ ${VERILATOR_HOME}/include/verilated.cpp ${CPP_FILES}  obj_dir/Vthruwire__ALL.a -o tb
+	./tb
+
+clean:
+	rm -rf bin obj_dir tb
+```
+
+The pcf file is:
+
+```
+set_io -pullup yes i_sw 49
+set_io o_led 56
+```
+
+All these files are part of [this example](https://github.com/lawrie/blackicemxbook/tree/master/examples/verilator).
+
+To synthesize that design and run it on the Blackice Mx, do `make upload`. When you press button 1, you should see both the blue and red LEDs come on. The blue led is wired to the button and thruwire Verilog module causes the red LED to come on when the button is pressed.
+
+To run the verilator simulation, you need the thruwire.cpp file:
+
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+#include "Vthruwire.h"
+#include "verilated.h"
+
+int main(int argc, char**argv) {
+	// Call  commandArgs  first!
+	Verilated::commandArgs(argc, argv);
+	//  Instantiate  our  design
+	Vthruwire *tb = new Vthruwire;
+
+	for(int k=0; k<20; k++) {
+		// We’ll set  the  switch  input
+		// to the  LSB of our  counter
+		tb->i_sw = k&1;
+		tb->eval();
+		
+		// Now  let’s print  our  results
+		printf("k = %2d, ", k);
+		printf("sw = %d, ", tb->i_sw);
+		printf("led = %d\n", tb->o_led);
+	}
+}
+```
+
+You then do `make sim` to build and run the simulation and you should see this output:
+
+```
+```
+
+There is a lot more information in the [ZipCPU tutorial](https://zipcpu.com/tutorial/).
+
+In particular, the design above is a simple combinatorial one that does not use a clock. Most designs use a clock and your cpp will need a function such as tick to advance the clock each cycle and do an evaluation to determine the state of all the variable after the clock has ticked.
+
+If your clock is called i_clk and your top-level Verilog module is called top, your tick function can be defined as:
+
+```cpp
+void tick (Vtop *tb) {
+        // The following eval() looks
+        // redundant ... many of hours
+        // of debugging reveal its not
+        tb->eval();
+        tb->i_clk = 1;
+        tb->eval();
+        tb->i_clk = 0;
+        tb->eval();
+}
+```
+
+If you want to produce a wave file for analysis by gtkwave, you include a code such as:
+
+```cp
+        // Generate a trace
+        Verilated::traceEverOn(true);
+        VerilatedVcdC *tfp = new VerilatedVcdC;
+        tb >trace(tfp , 99);
+        tfp->open("wave.vcd");
+}
+```
+
 |                        |                        |                        |
 |------------------------|------------------------|------------------------|
 |[Prev](../Debugging/Debugging.html)|[Up](..) |[Next](../Audio/Audio.html)|
